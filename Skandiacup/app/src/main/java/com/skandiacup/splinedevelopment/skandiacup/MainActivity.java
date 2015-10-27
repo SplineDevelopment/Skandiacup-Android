@@ -3,6 +3,7 @@ package com.skandiacup.splinedevelopment.skandiacup;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -62,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Removing our actionbar (OK to do it here?
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
     }
 
 
@@ -86,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
     /**
