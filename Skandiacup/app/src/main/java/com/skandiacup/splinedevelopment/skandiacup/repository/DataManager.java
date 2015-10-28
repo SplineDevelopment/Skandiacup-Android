@@ -6,11 +6,13 @@ import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
 import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
+import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentClub;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.FieldsMapper;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentClubMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentTeamMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentMatchesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.RSSMapper;
@@ -194,6 +196,29 @@ public class DataManager {
             public void successCallback(Object data) {
                 ArrayList<Field> fields = FieldsMapper.mapFields((SoapObject) data);
                 callback.successCallback(fields);
+            }
+
+            @Override
+            public void errorCallback() {
+                callback.errorCallback();
+            }
+        });
+
+        req.execute(params.toArray(new String[params.size()]));
+    }
+
+    public void getTournamentClubs(String limit, final SoapCallback<ArrayList<TournamentClub>> callback){
+        List <String> params = new ArrayList<>();
+        params.add("getClubs");
+        if(limit != null){
+            params.add("limit");
+            params.add(limit);
+        }
+        SoapRequest req = new SoapRequest(new SoapRequestCallback() {
+            @Override
+            public void successCallback(Object data) {
+                ArrayList<TournamentClub> clubs = TournamentClubMapper.mapTournamentClubs((SoapObject) data);
+                callback.successCallback(clubs);
             }
 
             @Override
