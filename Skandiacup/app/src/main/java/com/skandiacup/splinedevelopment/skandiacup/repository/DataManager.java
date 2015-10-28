@@ -1,6 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup.repository;
 
 import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
+import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
 
@@ -19,7 +20,7 @@ public class DataManager {
         return ourInstance;
     }
 
-    public void getArenas(String limit, String timestampSince, final SoapCallback callback){
+    public void getArenas(String limit, String timestampSince, final SoapCallback<ArrayList<Arena>> callback){
         List<String> params = new ArrayList<>();
         params.add("getArenas");
         if(limit != null){
@@ -31,7 +32,7 @@ public class DataManager {
             params.add(timestampSince);
         }
 
-        SoapRequest req = new SoapRequest(new SoapCallback() {
+        SoapRequest req = new SoapRequest(new SoapRequestCallback() {
             @Override
             public void successCallback(Object data) {
                 ArrayList<Arena> arenas = ArenasMapper.mapArenas((SoapObject) data);

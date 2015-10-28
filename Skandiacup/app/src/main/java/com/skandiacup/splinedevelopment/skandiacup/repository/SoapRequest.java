@@ -3,6 +3,7 @@ package com.skandiacup.splinedevelopment.skandiacup.repository;
 import android.os.AsyncTask;
 
 import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
+import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
 public class SoapRequest extends AsyncTask<String, Void, Object>{
     private static String NAMESPACE = "http://profixio.com/soap/tournament/ForTournamentExt.php";
     private static String URL = "http://profixio.com/soap/tournament/ForTournamentExt.php";
-    private SoapCallback callback;
+    private SoapRequestCallback callback;
 
-    public SoapRequest (SoapCallback callback){
+    public SoapRequest (SoapRequestCallback callback){
         this.callback = callback;
     }
 

@@ -27,10 +27,10 @@ public class EndplayActivityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        DataManager.getInstance().getArenas(null, null, new SoapCallback() {
+        DataManager.getInstance().getArenas(null, null, new SoapCallback<ArrayList<Arena>>() {
             @Override
-            public void successCallback(Object data) {
-                ArrayList<Arena> arenas = (ArrayList<Arena>) data;
+            public void successCallback(ArrayList<Arena> data) {
+                ArrayList<Arena> arenas = data;
                 TextView txt = (TextView) getView().findViewById(R.id.testViewEndPlay);
                 txt.setText(arenas.toString());
             }
@@ -40,6 +40,7 @@ public class EndplayActivityFragment extends Fragment {
 
             }
         });
+
         return inflater.inflate(R.layout.fragment_endplay, container, false);
     }
 }
