@@ -1,6 +1,8 @@
-package com.skandiacup.splinedevelopment.skandiacup;
+package com.skandiacup.splinedevelopment.skandiacup.repository;
 
 import android.os.AsyncTask;
+
+import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -12,24 +14,21 @@ import java.util.ArrayList;
 /**
  * Created by Jorgen on 27/10/15.
  */
-public class SoapRequest extends AsyncTask<String, Void, Void>{
+public class SoapRequest extends AsyncTask<String, Void, Object>{
     private static String NAMESPACE = "http://profixio.com/soap/tournament/ForTournamentExt.php";
-    private static String METHOD_NAME = "getFields";
-    private static String SOAP_ACTION = "http://profixio.com/soap/tournament/ForTournamentExt.php#getFields";
     private static String URL = "http://profixio.com/soap/tournament/ForTournamentExt.php";
-    private ArrayList<Object> data;
     private SoapCallback callback;
 
     public SoapRequest (SoapCallback callback){
         this.callback = callback;
-        this.data = new ArrayList<>();
     }
 
     @Override
-    protected Void doInBackground(String... params) {
+    protected Object doInBackground(String... params) {
        try {
-           String response = null;
-           SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
+           String soap_action = "http://profixio.com/soap/tournament/ForTournamentExt.php#" + params[0];
+
+           SoapObject Request = new SoapObject(NAMESPACE, params[0]);
            Request.addProperty("application_key", "enKHJhF");
            Request.addProperty("tournamentID", 14218);
 
@@ -39,15 +38,13 @@ public class SoapRequest extends AsyncTask<String, Void, Void>{
            HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
            androidHttpTransport.debug = true;
 
-           androidHttpTransport.call(SOAP_ACTION, soapEnvelope);
+           //Make the HTTP call
+           androidHttpTransport.call(soap_action, soapEnvelope);
 
            // Get the SoapResult from the envelope body.
            SoapObject obj1 = (SoapObject) soapEnvelope.getResponse();
 
-           for(int i=0; i<obj1.getPropertyCount(); i++){
-               SoapObject obj2 = (SoapObject) obj1.getProperty(i);
-               this.data.add(obj2);
-           }
+           return obj1;
        }catch(Exception e){
            System.out.println("EXCEPTION");
            e.printStackTrace();
@@ -56,9 +53,9 @@ public class SoapRequest extends AsyncTask<String, Void, Void>{
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-        this.callback.successCallback(data);
+    protected void onPostExecute(Object object) {
+        super.onPostExecute(object);
+        this.callback.successCallback(object);
     }
 
     @Override

@@ -7,12 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
+import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
+import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
-import java.net.Proxy;
 import java.util.ArrayList;
 
 /**
@@ -31,11 +28,12 @@ public class EndplayActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         System.out.println("ON CREATE VIEW");
-        SoapRequest req = new SoapRequest(new SoapCallback() {
+        DataManager.getInstance().getArenas(new SoapCallback() {
             @Override
-            public void successCallback(ArrayList<Object> data) {
+            public void successCallback(Object data) {
+                ArrayList<Arena> arenas = (ArrayList<Arena>) data;
                 TextView txt = (TextView) getView().findViewById(R.id.testViewEndPlay);
-                txt.setText(data.toString());
+                txt.setText(arenas.toString());
             }
 
             @Override
@@ -43,7 +41,6 @@ public class EndplayActivityFragment extends Fragment {
 
             }
         });
-        req.execute();
         return inflater.inflate(R.layout.fragment_endplay, container, false);
     }
 }
