@@ -5,10 +5,12 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
 import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
+import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.FieldsMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentTeamMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentMatchesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.RSSMapper;
@@ -123,7 +125,7 @@ public class DataManager {
         SoapRequest req = new SoapRequest(new SoapRequestCallback() {
             @Override
             public void successCallback(Object data) {
-                ArrayList<TournamentMatch> matches = TournamentMatchesMapper.mapMatches((SoapObject)data);
+                ArrayList<TournamentMatch> matches = TournamentMatchesMapper.mapMatches((SoapObject) data);
                 callback.successCallback(matches);
             }
 
@@ -171,4 +173,35 @@ public class DataManager {
 
          req.execute(params.toArray(new String[params.size()]));
      }
+
+    public void getFields(String arenaId, String limit, String timestampSince, final SoapCallback<ArrayList<Field>> callback){
+        List <String> params = new ArrayList<>();
+        params.add("getFields");
+        if (arenaId != null){
+            params.add("clubId");
+            params.add(arenaId);
+        }
+        if(limit != null){
+            params.add("limit");
+            params.add(limit);
+        }
+        if(timestampSince != null){
+            params.add("timestamp_since");
+            params.add(timestampSince);
+        }
+        SoapRequest req = new SoapRequest(new SoapRequestCallback() {
+            @Override
+            public void successCallback(Object data) {
+                ArrayList<Field> fields = FieldsMapper.mapFields((SoapObject) data);
+                callback.successCallback(fields);
+            }
+
+            @Override
+            public void errorCallback() {
+                callback.errorCallback();
+            }
+        });
+
+        req.execute(params.toArray(new String[params.size()]));
+    }
 }
