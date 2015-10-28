@@ -7,6 +7,7 @@ import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jorgen on 28/10/15.
@@ -18,10 +19,18 @@ public class DataManager {
         return ourInstance;
     }
 
-    private DataManager() {
-    }
+    public void getArenas(String limit, String timestampSince, final SoapCallback callback){
+        List<String> params = new ArrayList<>();
+        params.add("getArenas");
+        if(limit != null){
+            params.add("limit");
+            params.add(limit);
+        }
+        if (timestampSince != null){
+            params.add("timestamp_since");
+            params.add(timestampSince);
+        }
 
-    public void getArenas(final SoapCallback callback){
         SoapRequest req = new SoapRequest(new SoapCallback() {
             @Override
             public void successCallback(Object data) {
@@ -34,6 +43,7 @@ public class DataManager {
                 callback.errorCallback();
             }
         });
-        req.execute("getArenas");
+
+        req.execute(params.toArray(new String[params.size()]));
     }
 }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class EndplayActivityFragment extends Fragment {
     private static final String NAMESPACE = "http://www.w3schools.com/webservices/";
-    private static final String MAIN_REQUEST_URL = "http://www.w3schools.com/webservices/tempconvert.asmx";
+    private static final String MAIN_REQUEST_URL = "http:/2/www.w3schools.com/webservices/tempconvert.asmx";
     private static final String SOAP_ACTION = "http://www.w3schools.com/webservices/FahrenheitToCelsius";
     private ArrayList<Object> data;
 
@@ -27,8 +27,7 @@ public class EndplayActivityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        System.out.println("ON CREATE VIEW");
-        DataManager.getInstance().getArenas(new SoapCallback() {
+        DataManager.getInstance().getArenas(null, null, new SoapCallback() {
             @Override
             public void successCallback(Object data) {
                 ArrayList<Arena> arenas = (ArrayList<Arena>) data;
