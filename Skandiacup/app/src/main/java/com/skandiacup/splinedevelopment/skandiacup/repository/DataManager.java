@@ -5,10 +5,12 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
 import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.MatchClassesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentTeamMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentMatchesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.RSSMapper;
@@ -19,6 +21,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import cz.msebera.android.httpclient.Header;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,4 +174,24 @@ public class DataManager {
 
          req.execute(params.toArray(new String[params.size()]));
      }
+
+    public void getMatchClasses(final SoapCallback<ArrayList<MatchClass>> callback){
+        List <String> params = new ArrayList<>();
+        params.add("getMatchClasses");
+
+        SoapRequest req = new SoapRequest(new SoapRequestCallback() {
+            @Override
+            public void successCallback(Object data) {
+                ArrayList<MatchClass> matchClasses = MatchClassesMapper.mapMatchClasses((SoapObject)data);
+                callback.successCallback(matchClasses);
+            }
+
+            @Override
+            public void errorCallback() {
+                callback.errorCallback();
+            }
+        });
+
+        req.execute(params.toArray(new String[params.size()]));
+    }
 }
