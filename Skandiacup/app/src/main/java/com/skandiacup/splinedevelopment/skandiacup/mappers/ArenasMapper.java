@@ -17,7 +17,12 @@ public class ArenasMapper {
             SoapObject obj2 = (SoapObject) soapObject.getProperty(i);
             Arena arena = new Arena();
 
-            arena.setArenaID(Integer.parseInt(obj2.getPrimitiveProperty("arenaID").toString()));
+            try{
+                arena.setArenaID(Integer.parseInt(obj2.getPrimitiveProperty("arenaID").toString()));
+            }catch(NumberFormatException e){
+                //Use Integer class and set null instead??
+                arena.setArenaID(-1);
+            }
             arena.setArenaName(obj2.getPrimitiveProperty("arenaName").toString());
             arena.setArenaDescription(obj2.getPrimitiveProperty("arenaDescription").toString());
             arena.setUpdate_timestamp(obj2.getPrimitiveProperty("update_timestamp").toString());
