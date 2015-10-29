@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.RSSMapper;
+
 import java.util.ArrayList;
 
 /**
@@ -16,12 +19,15 @@ class NewsAdapter extends BaseAdapter {
 
     Context context;
     String[] data;
+    ArrayList<RSSObject> rssObjects;
     private static LayoutInflater inflater = null;
 
 
-    public NewsAdapter(Context context, String[] data) {
+
+    public NewsAdapter(Context context, String[] data, ArrayList<RSSObject> rssObjects) {
         // TODO Auto-generated constructor stub
         this.context = context;
+        this.rssObjects = rssObjects;
         this.data = data;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -30,7 +36,7 @@ class NewsAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return data.length;
+        return rssObjects.size();
     }
 
     @Override
@@ -49,16 +55,23 @@ class NewsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         View vi = convertView;
-       // if (vi == null){
+        if (vi == null){
             vi = inflater.inflate(R.layout.news_item, null);
-   // }
+        }
 
+        if (rssObjects!=null){
+            System.out.println(position);
 
-        TextView header = (TextView) vi.findViewById(R.id.firstLine);
-        header.setText(data[position]);
+            TextView header = (TextView) vi.findViewById(R.id.firstLine);
+            header.setText(rssObjects.get(position).getTitle());
 
-        TextView body = (TextView) vi.findViewById(R.id.secondLine);
-        body.setText("body");
+            TextView body = (TextView) vi.findViewById(R.id.secondLine);
+            body.setText(rssObjects.get(position).getItemDescription());
+
+            //System.out.println(rssObjects.get(position).getTitle());
+        } else {
+            System.out.println("rssObjects = null");
+        }
 
         return vi;
     }
