@@ -7,12 +7,14 @@ import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTable;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentClub;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.FieldsMapper;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.MatchTablesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentClubMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.MatchClassesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentTeamMapper;
@@ -240,7 +242,7 @@ public class DataManager {
         SoapRequest req = new SoapRequest(new SoapRequestCallback() {
             @Override
             public void successCallback(Object data) {
-                ArrayList<MatchClass> matchClasses = MatchClassesMapper.mapMatchClasses((SoapObject)data);
+                ArrayList<MatchClass> matchClasses = MatchClassesMapper.mapMatchClasses((SoapObject) data);
                 callback.successCallback(matchClasses);
             }
 
@@ -252,4 +254,44 @@ public class DataManager {
 
         req.execute(params.toArray(new String[params.size()]));
     }
+
+    public void getMatchTables(String groupID, String playoffID, String teamID, String language, String playoffLevel, final SoapCallback<ArrayList<MatchTable>> callback){
+        List <String> params = new ArrayList<>();
+        params.add("getTable");
+        if(groupID != null){
+            params.add("groupID");
+            params.add(groupID);
+        }
+        if(playoffID != null){
+            params.add("playoffID");
+            params.add(playoffID);
+        }
+        if(teamID != null){
+            params.add("teamID");
+            params.add(teamID);
+        }
+        if(language != null){
+            params.add("language");
+            params.add(language);
+        }
+        if(playoffLevel != null){
+            params.add("playoffLevel");
+            params.add(playoffLevel);
+        }
+        SoapRequest req = new SoapRequest(new SoapRequestCallback() {
+            @Override
+            public void successCallback(Object data) {
+                ArrayList<MatchTable> tables = MatchTablesMapper.mapMatchTables((SoapObject) data);
+                callback.successCallback(tables);
+            }
+
+            @Override
+            public void errorCallback() {
+                callback.errorCallback();
+            }
+        });
+
+        req.execute(params.toArray(new String[params.size()]));
+    }
+
 }
