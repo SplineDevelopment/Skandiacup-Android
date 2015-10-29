@@ -46,13 +46,15 @@
                     android:layout_height="fill_parent">
 
                     <Button
-                        android:id="@+id/image1"
+                        android:id="@+id/newsButton"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_gravity="center"
-                        android:text="news"/>
+                        android:text="news"
+                        android:onClick="changeToNewsActivity"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -63,13 +65,15 @@
                     android:layout_height="fill_parent">
 
                     <Button
-                        android:id="@+id/image2"
+                        android:id="@+id/socialButton"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_gravity="center"
-                        android:text="social"/>
+                        android:text="social"
+                        android:onClick="changeToSocialActivity"
+                        />
                 </LinearLayout>
             </LinearLayout>
 
@@ -87,13 +91,15 @@
                     android:layout_height="fill_parent">
 
                     <Button
-                        android:id="@+id/image3"
+                        android:id="@+id/tournamentButton"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_gravity="center"
-                        android:text="teams"/>
+                        android:text="tournament"
+                        android:onClick="changeToTournamentActivity"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -104,13 +110,15 @@
                     android:layout_height="fill_parent">
 
                     <Button
-                        android:id="@+id/image4"
+                        android:id="@+id/fieldsButton"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_gravity="center"
-                        android:text="fields"/>
+                        android:text="fields"
+                        android:onClick="changeToFieldsActivity"
+                        />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -127,13 +135,15 @@
                     android:layout_height="fill_parent">
 
                     <Button
-                        android:id="@+id/image3"
+                        android:id="@+id/endplayButton"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_gravity="center"
-                        android:text="endplay"/>
+                        android:text="endplay"
+                        android:onClick="changeToEndplayActivity"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -144,13 +154,15 @@
                     android:layout_height="fill_parent">
 
                     <Button
-                        android:id="@+id/image4"
+                        android:id="@+id/favoritesButton"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_gravity="center"
-                        android:text="favorites"/>
+                        android:text="favorites"
+                        android:onClick="changeToFavoritesActivity"
+                        />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
