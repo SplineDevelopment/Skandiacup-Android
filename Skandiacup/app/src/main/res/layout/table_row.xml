@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minHeight="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="#0E0808"
+    android:id="@+id/tableRowItem">
+
+    <TextView
+        android:layout_width="35dp"
+        android:layout_height="50dp"
+        android:text="#"
+        android:id="@+id/position"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:text="teamname"
+        android:id="@+id/teamname"
+        android:layout_row="0"
+        android:gravity="center"
+        android:layout_column="1" />
+
+    <TextView
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:text="Sp"
+        android:id="@+id/matchesPlayed"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:text="S"
+        android:id="@+id/wins"
+        android:layout_row="0"
+        android:layout_column="3"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:text="U"
+        android:id="@+id/draws"
+        android:layout_row="0"
+        android:layout_column="4"
+        android:gravity="center"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:text="T"
+        android:id="@+id/losses"
+        android:layout_row="0"
+        android:layout_column="5"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:text="+/-"
+        android:id="@+id/plusminus"
+        android:layout_row="0"
+        android:layout_column="6"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:text="P"
+        android:id="@+id/points"
+        android:layout_row="0"
+        android:layout_column="7"
+        android:gravity="center"
+        android:textAlignment="center" />
+</GridLayout>

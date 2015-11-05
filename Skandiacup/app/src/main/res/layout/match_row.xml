@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minHeight="100dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="#0E0808"
+    android:id="@+id/matchRowItem">
+
+    <TextView
+        android:background="#B1ADAB"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="New Text"
+        android:id="@+id/dateLabel"
+        android:textColor="#0E0808"
+        android:layout_gravity="left|top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="New Text"
+        android:id="@+id/homeScoreLabel"
+        android:textColor="#0E0808"
+        android:layout_gravity="left|center_vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="New Text"
+        android:id="@+id/awayScoreLabel"
+        android:textColor="#0E0808"
+        android:layout_gravity="left|bottom" />
+
+    <TextView
+        android:layout_width="218dp"
+        android:layout_height="30dp"
+        android:text="New Text"
+        android:id="@+id/homeTeamLabel"
+        android:textColor="#0E0808"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="218dp"
+        android:layout_height="30dp"
+        android:text="New Text"
+        android:id="@+id/awayTeamLabel"
+        android:textColor="#0E0808"
+        android:layout_gravity="center_horizontal|bottom" />
+</FrameLayout>

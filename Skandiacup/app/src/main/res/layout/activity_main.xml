@@ -44,37 +44,52 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToNewsActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/newsButton"
-                        android:layout_height="fill_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
-                        android:layout_gravity="center"
-                        android:text="news"
-                        android:onClick="changeToNewsActivity"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:padding="0dip"
-                    android:layout_height="fill_parent">
-
-                    <Button
+                    <ImageView
                         android:id="@+id/socialButton"
-                        android:layout_height="fill_parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
-                        android:layout_gravity="center"
-                        android:text="social"
-                        android:onClick="changeToSocialActivity"
-                        />
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/newsicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="News and Info" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="0dip"
+                    android:onClick="changeToSocialActivity"
+                    android:background="@android:drawable/btn_default"
+                    android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:id="@+id/socialButton"
+                            android:layout_marginTop="30dp"
+                            android:layout_height="80dp"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/socialicon"/>
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:text="Social Feed" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -90,18 +105,26 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToTournamentActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/tournamentButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/tournamenticon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="tournament"
-                        android:onClick="changeToTournamentActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Tournament" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -109,18 +132,26 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToFieldsActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/fieldsButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/fieldicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="fields"
-                        android:onClick="changeToFieldsActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Fields" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -135,18 +166,26 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToEndplayActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/endplayButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/endplayicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="endplay"
-                        android:onClick="changeToEndplayActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Endplay" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,18 +193,26 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToFavoritesActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/favoritesButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/favoriteicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="favorites"
-                        android:onClick="changeToFavoritesActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Favorites" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
