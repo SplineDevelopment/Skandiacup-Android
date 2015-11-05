@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
+
 public class FavoritesActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,10 @@ public class FavoritesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorites);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        System.out.println("Kjorer getInstagramPhotos");
+        //DataManager.getInstance().getInstagramPhotos({});
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

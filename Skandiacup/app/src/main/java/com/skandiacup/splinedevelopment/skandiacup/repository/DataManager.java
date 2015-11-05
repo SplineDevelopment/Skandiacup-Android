@@ -1,7 +1,12 @@
 package com.skandiacup.splinedevelopment.skandiacup.repository;
 
+import android.util.Log;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.skandiacup.splinedevelopment.skandiacup.InstagramRestClient;
 import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
 import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
@@ -14,6 +19,8 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.ArenasMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.FieldsMapper;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.InstagramItem;
+import com.skandiacup.splinedevelopment.skandiacup.mappers.InstagramMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.MatchTablesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentClubMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.MatchClassesMapper;
@@ -21,15 +28,29 @@ import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentTeamMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentMatchesMapper;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.RSSMapper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.util.EntityUtils;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Jorgen on 28/10/15.
@@ -293,5 +314,68 @@ public class DataManager {
 
         req.execute(params.toArray(new String[params.size()]));
     }
+
+    public void getInstagramPhotos(final SoapCallback<ArrayList<InstagramItem>> callback){
+
+        String tag = "Skandiacup2015";
+        String id = "121ee171e8534280918447ab69eb8c5b";
+        String get_uri = "https://api.instagram.com/v1/tags/" + tag + "/media/recent?client_id=" + id;
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(get_uri, null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                InstagramMapper instagramMapper = new InstagramMapper();
+                callback.successCallback(instagramMapper.mapFromJson(response));
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+                System.out.println(statusCode);
+                System.out.println("? JSONArray timeline --- getInstagramPhotos -- DataManager ");
+            }
+        });
+
+
+
+
+        /*AsyncHttpClient client = new AsyncHttpClient();
+        client.
+        client.get(get_uri, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+
+                try {
+                    System.out.println("Response");
+                    System.out.println(response);
+
+
+                    System.out.println(response.length);
+
+                    //callback.successCallback(arr);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    //callback.errorCallback();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                //callback.errorCallback();
+                System.out.println(statusCode);
+                e.printStackTrace();
+            }
+        });*/
+    }
+
+
+
+
+
+
+
 
 }
