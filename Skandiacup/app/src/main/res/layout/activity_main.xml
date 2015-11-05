@@ -1,31 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffcc5d00"
+    android:background="#010100"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/testlayout">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/testlayout"
+    android:fitsSystemWindows="true"
+    tools:context="com.skandiacup.splinedevelopment.skandiacup.NewsActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout android:id="@+id/appbar"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:paddingTop="0dp"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-                android:layout_width="match_parent" android:layout_height="60dp"
-                android:background="#0000ff" app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="Skandiacup"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-            </android.support.v7.widget.Toolbar>
-
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.AppBarLayout>
-
 
         <LinearLayout
             android:orientation="vertical"
@@ -43,37 +44,52 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToNewsActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/newsButton"
-                        android:layout_height="fill_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
-                        android:layout_gravity="center"
-                        android:text="news"
-                        android:onClick="changeToNewsActivity"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:padding="0dip"
-                    android:layout_height="fill_parent">
-
-                    <Button
+                    <ImageView
                         android:id="@+id/socialButton"
-                        android:layout_height="fill_parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
-                        android:layout_gravity="center"
-                        android:text="social"
-                        android:onClick="changeToSocialActivity"
-                        />
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/newsicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="News and Info" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="0dip"
+                    android:onClick="changeToSocialActivity"
+                    android:background="@android:drawable/btn_default"
+                    android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:id="@+id/socialButton"
+                            android:layout_marginTop="30dp"
+                            android:layout_height="80dp"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/socialicon"/>
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:text="Social Feed" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -81,25 +97,34 @@
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToTournamentActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/tournamentButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/tournamenticon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="tournament"
-                        android:onClick="changeToTournamentActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Tournament" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -107,43 +132,60 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToFieldsActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/fieldsButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/fieldicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="fields"
-                        android:onClick="changeToFieldsActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Fields" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToEndplayActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/endplayButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/endplayicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="endplay"
-                        android:onClick="changeToEndplayActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Endplay" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,20 +193,28 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:padding="0dip"
+                    android:onClick="changeToFavoritesActivity"
+                    android:background="@android:drawable/btn_default"
                     android:layout_height="fill_parent">
 
-                    <Button
-                        android:id="@+id/favoritesButton"
-                        android:layout_height="fill_parent"
+                    <ImageView
+                        android:id="@+id/socialButton"
+                        android:layout_marginTop="30dp"
+                        android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/favoriteicon"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="favorites"
-                        android:onClick="changeToFavoritesActivity"
-                        />
+                        android:layout_margin="10dp"
+                        android:text="Favorites" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class SoapRequest extends AsyncTask<String, Void, Object>{
     private static String NAMESPACE = "http://profixio.com/soap/tournament/ForTournamentExt.php";
     private static String URL = "http://profixio.com/soap/tournament/ForTournamentExt.php";
+    // does the timeout value work properly?
+    private static int HTTP_TIMEOUT_MS = 5000;
     private SoapRequestCallback callback;
 
     public SoapRequest (SoapRequestCallback callback){
@@ -44,7 +46,7 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
            soapEnvelope.setOutputSoapObject(Request);
 
-           HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+           HttpTransportSE androidHttpTransport = new HttpTransportSE(URL, HTTP_TIMEOUT_MS);
            androidHttpTransport.debug = true;
 
            //Make the HTTP call
@@ -64,7 +66,12 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
     @Override
     protected void onPostExecute(Object object) {
         super.onPostExecute(object);
-        this.callback.successCallback(object);
+        if (object != null) {
+            this.callback.successCallback(object);
+        } else {
+            System.out.println("object in onPostExecute (SoapRequest) is null");
+            this.callback.errorCallback();
+        }
     }
 
     @Override

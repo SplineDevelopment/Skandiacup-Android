@@ -1,5 +1,6 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,10 +24,8 @@ import java.util.ArrayList;
  */
 public class NewsActivityFragment extends Fragment {
     ListView lv = null;
-    String[] header = {"Nyhetoverskrift 1", "Nyhetoverskrift 2"};
 
     ArrayList<RSSObject> rssObject;
-
 
     public NewsActivityFragment() {
 
@@ -45,29 +44,27 @@ public class NewsActivityFragment extends Fragment {
             public void successCallback(ArrayList<RSSObject> data) {
                 System.out.println("Datamanager RSS OK: " + data.size());
                 rssObject = data;
-                NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), header, data);
-                lv.setAdapter(newsAdapter);
+                if (getContext() != null) {
+                    System.out.println("View ikke tilgjengelig!");
+                    NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), data);
+                    lv.setAdapter(newsAdapter);
+                }
             }
 
             @Override
             public void errorCallback() {
-                //Legg inn feilmelding
+                //TODO Legg inn feilmelding
                 System.out.println("Datamanager RSS IKKE-OK");
-
-                rssObject = new ArrayList<RSSObject>();
             }
         });
-
-
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                System.out.println("Du klikker pa: " + rssObject.get(position));
-                
-
-
+                Intent detailIntent = new Intent(getContext(), NewsItemActivity.class);
+                detailIntent.putExtra("NewItem",rssObject.get(position));
+                startActivity(detailIntent);
             }
         });
 
