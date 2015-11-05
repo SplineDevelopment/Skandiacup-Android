@@ -1,9 +1,13 @@
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
+import android.text.Html;
+
+import java.io.Serializable;
+
 /**
  * Created by borgarlie on 28/10/15.
  */
-public class RSSObject {
+public class RSSObject implements Serializable{
     private String title;
     private String pubDate;
     private String category;
@@ -48,7 +52,7 @@ public class RSSObject {
     }
 
     public String getItemDescription() {
-        return itemDescription;
+        return Html.fromHtml(itemDescription).toString();
     }
 
     public void setItemDescription(String itemDescription) {

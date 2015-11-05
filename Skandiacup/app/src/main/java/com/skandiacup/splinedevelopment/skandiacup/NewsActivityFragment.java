@@ -1,5 +1,6 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -51,7 +52,7 @@ public class NewsActivityFragment extends Fragment {
 
             @Override
             public void errorCallback() {
-                //Legg inn feilmelding
+                //TODO Legg inn feilmelding
                 System.out.println("Datamanager RSS IKKE-OK");
 
                 rssObject = new ArrayList<RSSObject>();
@@ -64,8 +65,9 @@ public class NewsActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                System.out.println("Du klikker pa: " + rssObject.get(position));
-                
+                Intent detailIntent = new Intent(getContext(), NewsItemActivity.class);
+                detailIntent.putExtra("NewItem",rssObject.get(position));
+                startActivity(detailIntent);
 
 
             }
