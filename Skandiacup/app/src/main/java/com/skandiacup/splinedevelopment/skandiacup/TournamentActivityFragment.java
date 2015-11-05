@@ -1,10 +1,12 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -31,11 +33,20 @@ public class TournamentActivityFragment extends Fragment {
         DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
             @Override
             public void successCallback(ArrayList<TournamentTeam> data) {
-                ArrayList<TournamentTeam> teamNames = new ArrayList<TournamentTeam>();
+                final ArrayList<TournamentTeam> teamNames = new ArrayList<TournamentTeam>();
                 for(TournamentTeam t : data){
                     teamNames.add(t);
                 }
                 lv.setAdapter(new TeamsAdapter(getContext(), teamNames));
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        Intent intent = new Intent(getContext(), TeamActivity.class);
+                        intent.putExtra("TeamName", teamNames.get(position));
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
