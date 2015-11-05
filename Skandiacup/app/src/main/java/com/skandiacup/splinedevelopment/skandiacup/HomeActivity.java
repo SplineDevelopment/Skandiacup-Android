@@ -3,6 +3,7 @@ package com.skandiacup.splinedevelopment.skandiacup;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -54,22 +55,17 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        ActionBar a = getSupportActionBar();
+        if (a != null) {
+            a.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        //getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
@@ -83,6 +79,10 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if (id==android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -107,8 +107,6 @@ public class HomeActivity extends AppCompatActivity {
                     return new NewsActivityFragment();
                 case 1:
                     return new NewsActivityFragment();
-                case 2:
-                    return new NewsActivityFragment();
                 default:
                     return new NewsActivityFragment();
             }
@@ -117,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -127,8 +125,6 @@ public class HomeActivity extends AppCompatActivity {
                     return "News";
                 case 1:
                     return "Info";
-                case 2:
-                    return "Social";
             }
             return null;
         }

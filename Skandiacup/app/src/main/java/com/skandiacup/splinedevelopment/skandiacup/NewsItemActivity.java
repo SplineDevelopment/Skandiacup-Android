@@ -1,5 +1,6 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -17,6 +18,10 @@ public class NewsItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news_item);
         setupViewFromRSSObject();
 
+        ActionBar a = getSupportActionBar();
+        if (a != null) {
+            a.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     void setupViewFromRSSObject(){
@@ -32,7 +37,7 @@ public class NewsItemActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_news_item, menu);
+        //getMenuInflater().inflate(R.menu.menu_news_item, menu);
         return true;
     }
 
@@ -46,6 +51,10 @@ public class NewsItemActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if (id==android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
