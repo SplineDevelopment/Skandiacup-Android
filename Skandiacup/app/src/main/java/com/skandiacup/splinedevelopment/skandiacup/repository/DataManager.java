@@ -337,38 +337,6 @@ public class DataManager {
             }
         });
 
-
-
-
-        /*AsyncHttpClient client = new AsyncHttpClient();
-        client.
-        client.get(get_uri, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                // called when response HTTP status is "200 OK"
-
-                try {
-                    System.out.println("Response");
-                    System.out.println(response);
-
-
-                    System.out.println(response.length);
-
-                    //callback.successCallback(arr);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    //callback.errorCallback();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                //callback.errorCallback();
-                System.out.println(statusCode);
-                e.printStackTrace();
-            }
-        });*/
     }
 
 
