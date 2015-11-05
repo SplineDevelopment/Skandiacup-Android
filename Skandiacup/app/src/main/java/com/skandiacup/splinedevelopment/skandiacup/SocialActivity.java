@@ -24,6 +24,11 @@ public class SocialActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+
+
+
     }
 
 }

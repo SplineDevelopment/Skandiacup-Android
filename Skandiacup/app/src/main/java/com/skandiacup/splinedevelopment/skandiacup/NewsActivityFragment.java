@@ -24,10 +24,8 @@ import java.util.ArrayList;
  */
 public class NewsActivityFragment extends Fragment {
     ListView lv = null;
-    String[] header = {"Nyhetoverskrift 1", "Nyhetoverskrift 2"};
 
     ArrayList<RSSObject> rssObject;
-
 
     public NewsActivityFragment() {
 
@@ -48,7 +46,7 @@ public class NewsActivityFragment extends Fragment {
                 rssObject = data;
                 if (getContext() != null) {
                     System.out.println("View ikke tilgjengelig!");
-                    NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), header, data);
+                    NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), data);
                     lv.setAdapter(newsAdapter);
                 }
             }
@@ -57,12 +55,8 @@ public class NewsActivityFragment extends Fragment {
             public void errorCallback() {
                 //TODO Legg inn feilmelding
                 System.out.println("Datamanager RSS IKKE-OK");
-
-                rssObject = new ArrayList<RSSObject>();
             }
         });
-
-
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -71,8 +65,6 @@ public class NewsActivityFragment extends Fragment {
                 Intent detailIntent = new Intent(getContext(), NewsItemActivity.class);
                 detailIntent.putExtra("NewItem",rssObject.get(position));
                 startActivity(detailIntent);
-
-
             }
         });
 
