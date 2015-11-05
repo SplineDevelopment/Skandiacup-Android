@@ -46,8 +46,11 @@ public class NewsActivityFragment extends Fragment {
             public void successCallback(ArrayList<RSSObject> data) {
                 System.out.println("Datamanager RSS OK: " + data.size());
                 rssObject = data;
-                NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), header, data);
-                lv.setAdapter(newsAdapter);
+                if (getContext() != null) {
+                    System.out.println("View ikke tilgjengelig!");
+                    NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), header, data);
+                    lv.setAdapter(newsAdapter);
+                }
             }
 
             @Override
