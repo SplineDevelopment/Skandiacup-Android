@@ -14,24 +14,22 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by eiriksandberg on 05.11.2015.
  */
 public class MatchAdapter extends BaseAdapter{
     Context context;
+    private ArrayList<TournamentMatch> matches;
     private ArrayList<TournamentMatch> matchesNotYetPlayed;
     private ArrayList<TournamentMatch> matchesPlayed;
-    private ArrayList<TournamentMatch> matches;
     private MatchTable table;
     private ArrayList<MatchTableRow> matchTableRows;
     private static LayoutInflater inflater = null;
-    private final int sections = 4;
-    private int matchesSet = 0;
-    private int matchesPlayedSet = 0;
-    private int numberOfTableRowsIncludingHeader;
-    private int numberOfTableRowsSet = 0;
-    private int newPosition = 0;
+    private int sections = 4;
+    Map<String, Integer> map = new HashMap<String, Integer>();
 
 
     public MatchAdapter(Context context, ArrayList<TournamentMatch> matches, ArrayList<MatchTable> tables) {
@@ -41,7 +39,6 @@ public class MatchAdapter extends BaseAdapter{
         this.matchesPlayed = matchesPlayed(matches);
         this.table = tables.get(0);
         this.matchTableRows = table.getRows();
-        this.numberOfTableRowsIncludingHeader = matchTableRows.size()+1;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -68,9 +65,8 @@ public class MatchAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        int count = matches.size() + sections + numberOfTableRowsIncludingHeader;
+        int count = matchTableRows.size() + matches.size() + sections; // + matches.size() plus 1 beacuse og tableinformationheader
         System.out.println("Antall celler som skal fylles ut " +count);
-        newPosition = 0;
         return count;
     }
 
@@ -88,6 +84,14 @@ public class MatchAdapter extends BaseAdapter{
         View vi = convertView;
         vi = inflater.inflate(R.layout.list_header, null);
         TextView text = (TextView) vi.findViewById(R.id.list_header_title);
+        text.setText(title);
+        return text;
+    }
+
+    public View setInfosection(View convertView, String title){
+        View vi = convertView;
+        vi = inflater.inflate(R.layout.infosection, null);
+        TextView text = (TextView) vi.findViewById(R.id.info_header_title);
         text.setText(title);
         return text;
     }
@@ -136,83 +140,129 @@ public class MatchAdapter extends BaseAdapter{
         return goalsFor - goalsAgainst;
     }
 
+    public View setMatchesNotPlayed(int position, View vi){
+        vi = inflater.inflate(R.layout.match_row, null);
+        TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
+        dateLabel.setText(matchesNotYetPlayed.get(position).getMatchdate());
+        TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
+        homescore.setText(matchesNotYetPlayed.get(position).getHomegoal());
+        TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
+        awayscore.setText(matchesNotYetPlayed.get(position).getAwaygoal());
+        TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
+        hometeam.setText(matchesNotYetPlayed.get(position).getHometeamname());
+        TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
+        awayteam.setText(matchesNotYetPlayed.get(position).getAwayteamname());
+        return vi;
+    }
+
+    public View setMatchesPlayed(int position, View vi){
+        vi = inflater.inflate(R.layout.match_row, null);
+        TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
+        dateLabel.setText(matchesPlayed.get(position).getMatchdate());
+        TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
+        homescore.setText(matchesPlayed.get(position).getHomegoal());
+        TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
+        awayscore.setText(matchesPlayed.get(position).getAwaygoal());
+        TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
+        hometeam.setText(matchesPlayed.get(position).getHometeamname());
+        TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
+        awayteam.setText(matchesPlayed.get(position).getAwayteamname());
+        return vi;
+    }
+
+    public void positionResolver(int position){
+        map = new HashMap<String, Integer>();
+        final int TABLECOUNTER = matchTableRows.size() + 2; // plus 2 because of the header and the tableinformation
+        final int UPCOMMINGMATCHES = TABLECOUNTER + matchesNotYetPlayed.size() + 1; // plus 1 because of the header
+        final int MATCHESPLAYED = UPCOMMINGMATCHES + matchesPlayed.size() + 1; // plus 1 because of the header
+        if (position >= 0 && position < TABLECOUNTER) {
+            if (position == 0) {
+                System.out.println("Setting tableheader in positionResolver()");
+                map.put("tableheader", 0);
+            } else if (position == 1){
+                System.out.println("Setting tableinformation in positionResolver()");
+                map.put("tableinformation", 0);
+            } else{
+                System.out.println("Setting tableitem in positionResolver()");
+                int newPosition = position - 2; // resets position to fill in correct tableitems
+                map.put("tableitem", newPosition); // Minus 1 because of the header
+            }
+        }
+        if (position >= TABLECOUNTER && position < UPCOMMINGMATCHES) {
+            int newPosition = position - TABLECOUNTER;
+            System.out.println(newPosition);
+            if (newPosition == 0) {
+                System.out.println("Setting matches not played header in positionResolver()");
+                map.put("matchesnotplayedheader", 0);
+            }
+            else{
+                newPosition = newPosition-1; // minus 1 because of header
+                System.out.println("Setting matches not played item in positionResolver()");
+                map.put("matchesnotplayeditem", newPosition);
+            }
+        }
+        if (position >= UPCOMMINGMATCHES && position < MATCHESPLAYED) {
+            int newPosition = position - UPCOMMINGMATCHES;
+            System.out.println(newPosition);
+            if (newPosition == 0) {
+                System.out.println("Setting matches played header in positionResolver()");
+                map.put("matchesplayedheader", 0);
+            } else{
+                newPosition = newPosition-1; // minus 1 because of header
+                System.out.println("Setting matches played item in positionResolver()");
+                map.put("matchesplayeditem", newPosition);
+            }
+        }
+    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
-        System.out.println("position: " + position);
-        return setHeader(vi, "test");
-        /*
-        if(position == 0){
-            System.out.println("celle 0 satt. (header 1)");
-            return setHeader(vi, "Tabell");
-        }
-        if (position > 0 && position <= numberOfTableRowsIncludingHeader && numberOfTableRowsIncludingHeader > 1){
-            if(numberOfTableRowsSet < numberOfTableRowsIncludingHeader){
-                if(numberOfTableRowsSet == 0){
-                    numberOfTableRowsSet++;
-                    System.out.println("celle 1 satt.(tabellheader)");
-                    return setTableHeader(convertView); // Tableheader is being set
-                }
+        positionResolver(position);
+        String s = map.keySet().toString();
+        s = s.replace("]", "");
+        s = s.replace("[", "");
+        System.out.println(s);
+        switch (s){
+            case "tableheader": {
+                return setHeader(vi, "Tabell");
+            }
+            case "tableinformation": {
+                return setTableHeader(vi);
+            }
+            case "tableitem": {
+                String indexString = map.get("tableitem").toString();
+                int index = Integer.parseInt(indexString);
+                return setTableRow(vi, matchTableRows.get(index));
+            }
+            case "matchesnotplayedheader": {
+                return setHeader(vi, "Kommende kamper");
+            }
+            case "noupcomming": {
+                return setInfosection(vi, "Ingen kommende kamper");
+            }
+            case "matchesnotplayeditem": {
+                String indexString = map.get("matchesnotplayeditem").toString();
+                int index = Integer.parseInt(indexString);
+                return setMatchesNotPlayed(index, vi);
+            }
+            case "matchesplayedheader": {
+                return setHeader(vi, "Kamper spilt");
+            }
+            case "nomatchesplayed": {
+                return setInfosection(vi, "Ingen kamper spilt");
+            }
+            case "matchesplayeditem": {
+                String indexString = map.get("matchesplayeditem").toString();
+                int index = Integer.parseInt(indexString);
+                return setMatchesPlayed(index, vi);
+            }
+            default:{
+                return setInfosection(vi, "Det har oppstått en feil");
+            }
 
-                View v = setTableRow(convertView, matchTableRows.get(numberOfTableRowsSet-1));
-                numberOfTableRowsSet++;
-                System.out.println("celle: " + numberOfTableRowsSet + " er satt. (lag)");
-                return v;
-            }
         }
-        newPosition = numberOfTableRowsIncludingHeader+1; // defining new position where header will be put
-        if(position == newPosition){
-            System.out.println("celle " + newPosition + " satt. (Header 3. Kommende kamper)");
-            return setHeader(vi, "Kommende kamper");
-        }
-        if(position > newPosition && position <= (matchesNotYetPlayed.size() + newPosition)) {
-            if (matchesSet < matchesNotYetPlayed.size()) {
-                vi = inflater.inflate(R.layout.match_row, null);
-                TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
-                dateLabel.setText(matchesNotYetPlayed.get(matchesSet).getMatchdate());
-                TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
-                homescore.setText(matchesNotYetPlayed.get(matchesSet).getHomegoal());
-                TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
-                awayscore.setText(matchesNotYetPlayed.get(matchesSet).getAwaygoal());
-                TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
-                hometeam.setText(matchesNotYetPlayed.get(matchesSet).getHometeamname());
-                TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
-                awayteam.setText(matchesNotYetPlayed.get(matchesSet).getAwayteamname());
-                System.out.println("Celle " + (newPosition + matchesSet) + " er satt. (Lag er satt i kamper ikke spilt)");
-                matchesSet++;
-                return vi;
-            }
-        }
-        newPosition = newPosition + matchesNotYetPlayed.size() +1;
-        System.out.println("Newposition ====== " + newPosition);
-       // if(position == (matchesNotYetPlayed.size() + 3)){ gammel
-        if(position == newPosition){
-            System.out.println("Celle " + newPosition + " er satt (kamper spilt header)");
-            return setHeader(vi, "Kamper spilt");
-        }
-        //if (position > (matchesNotYetPlayed.size() + 3) && position <= (matchesNotYetPlayed.size() + matchesPlayed.size() + 3)){
-        if (position > newPosition && position <= (newPosition+matchesPlayed.size())){
-            if (matchesSet < matchesPlayed.size()){
-                vi = inflater.inflate(R.layout.match_row, null);
-                TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
-                dateLabel.setText(matchesPlayed.get(matchesPlayedSet).getMatchdate());
-                TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
-                homescore.setText(matchesPlayed.get(matchesPlayedSet).getHomegoal());
-                TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
-                awayscore.setText(matchesPlayed.get(matchesPlayedSet).getAwaygoal());
-                TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
-                hometeam.setText(matchesPlayed.get(matchesPlayedSet).getHometeamname());
-                TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
-                awayteam.setText(matchesPlayed.get(matchesPlayedSet).getAwayteamname());
-                matchesPlayedSet++;
-                System.out.println("Celle " + (newPosition+matchesPlayedSet) + " er satt. (Lag satt i kamper spilt)");
-                return vi;
-            }
-        }
-        System.out.println("Hallllllaaaa");
-        return null;
-        */
     }
 }
 

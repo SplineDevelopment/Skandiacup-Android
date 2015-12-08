@@ -1,11 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/list_header_title"
+    android:id="@+id/info_header_title"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dip"
     android:paddingBottom="10dip"
     android:paddingLeft="5dip"
+    android:textSize="30sp"
     android:textAlignment="center"
-    android:background="#8BBB30"
+    android:textColor="#0E0808"
     style="?android:attr/listSeparatorTextViewStyle" />
