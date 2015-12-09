@@ -1,11 +1,14 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTable;
@@ -13,9 +16,13 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class TeamActivity extends AppCompatActivity {
+    SharedPreferences preferences;
+    ArrayList<TournamentTeam> favoriteTeams;
     ListView lv = null;
     TournamentTeam team = null;
     MatchTable table = null;
@@ -23,12 +30,28 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_team);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         team = (TournamentTeam) getIntent().getSerializableExtra("TeamName");
         System.out.println(team.getName());
         setTitle(team.getName());
+        final Button button = (Button) findViewById(R.id.favoritebutton);
+        button.setOnClickListener(new View.OnClickListener() {
+                                      public void onClick(View v){
+                                          setFavoriteTeam(button,team.getName());
+                                          favoriteTeams = getFavoritedTeams(button);
+                                          if (favoriteTeams != null){
+                                              for (TournamentTeam t : favoriteTeams){
+                                                  System.out.println(t.getName());
+                                              }
+                                          } else{
+                                              System.out.println("Tomt i favoriteslista");
+                                          }
+                                      }
+                                  });
+        favoriteTeams = getFavoritedTeams(button);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv = (ListView) findViewById(R.id.matchList);
         DataManager.getInstance().getTournamentMatches(null, team.getMatchGroupId(), null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
@@ -55,12 +78,12 @@ public class TeamActivity extends AppCompatActivity {
                     }
                 });
             }
-
             @Override
             public void errorCallback() {
 
             }
         });
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,4 +93,43 @@ public class TeamActivity extends AppCompatActivity {
         });
     }
 
+    public ArrayList<TournamentTeam> getFavoritedTeams(Button button){
+        ArrayList<TournamentTeam> teams = new ArrayList<>();
+        Map<String, ?> favoritedteams = preferences.getAll();
+        if (favoritedteams != null){
+            if(favoritedteams.containsValue(team.getName())){
+                button.setText("Unfavorite");
+                System.out.println(team + " Finnes i favoritter");
+            }
+        } else{
+            System.out.println(team + " Finnes ikke i favoritter");
+            button.setText("Favorite");
+            return null;
+        }
+        return teams;
+    }
+
+    public boolean checkIfAlreadyFavorited(String team){
+        Map<String, ?> favoritedteams = preferences.getAll();
+        if(favoritedteams.containsValue(team)){
+            return true;
+        }
+        return false;
+    }
+
+    public void setFavoriteTeam(Button button, String team){
+        if (!checkIfAlreadyFavorited(team)){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(team, team);
+            editor.commit();
+            button.setText("Unfavorite");
+            System.out.println(team + " ble lagt til i favoritter");
+        } else{
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(team);
+            editor.commit();
+            button.setText("Favorite");
+            System.out.println(team + " ble fjernet fra favoritter");
+        }
+    }
 }
