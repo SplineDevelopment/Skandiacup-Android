@@ -1,9 +1,11 @@
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Jorgen on 28/10/15.
  */
-public class MatchGroup {
+public class MatchGroup implements Serializable{
     private String id;
     private String name;
     private String matchClassId;

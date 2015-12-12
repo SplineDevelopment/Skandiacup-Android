@@ -1,11 +1,12 @@
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Jorgen on 28/10/15.
  */
-public class MatchClass {
+public class MatchClass implements Serializable{
     private String id;
     private String code;
     private String name;

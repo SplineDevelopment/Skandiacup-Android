@@ -50,13 +50,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewsItemActivity"
-            android:label="@string/title_activity_news_item" >
-        </activity>
+            android:label="@string/title_activity_news_item"></activity>
         <activity
             android:name=".TeamActivity"
             android:label="@string/title_activity_team"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MatchClassActivity"
+            android:label="@string/title_activity_match_class"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
