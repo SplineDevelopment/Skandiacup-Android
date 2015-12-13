@@ -11,4 +11,6 @@
     <string name="title_activity_team">TeamActivity</string>
     <string name="title_activity_match_class">MatchClass</string>
     <string name="title_activity_match_view">MatchViewActivity</string>
+    <string name="title_activity_field_diaries_team_selected">FieldDiariesTeamSelectedActivity
+    </string>
 </resources>

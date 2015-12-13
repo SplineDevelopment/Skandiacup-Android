@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minHeight="100dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="#0E0808"
+    android:id="@+id/matchRowItem">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#B1ADAB"
+        android:minHeight="60dp"
+        android:layout_width="195dp"
+        android:layout_height="34dp"
+        android:textSize="20sp"
+        android:textColor="#0E0808"
+        android:id="@+id/fieldDiaryMatchDate"
+        android:text="text"
+        android:layout_gravity="left|top">
+    </TextView>
+
+    <TextView
+        android:textSize="16sp"
+        android:textColor="#0E0808"
+        android:id="@+id/fieldDiaryMatchTeams"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:text="New Text"
+        android:layout_gravity="left|center_vertical" />
+
+    <TextView
+        android:gravity="right"
+        android:textSize="20sp"
+        android:textColor="#0E0808"
+        android:minHeight="60dp"
+        android:background="#B1ADAB"
+        android:layout_width="190dp"
+        android:layout_height="34dp"
+        android:text="New Text"
+        android:id="@+id/fieldDiaryMatchTime"
+        android:layout_gravity="right|top" />
+
+</FrameLayout>

@@ -3,6 +3,7 @@ package com.skandiacup.splinedevelopment.skandiacup;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -45,28 +47,36 @@ public class FavoritesActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         favoriteTeamsID = getFavoritedTeamsId();
-        System.out.println("Antall lag i som er favorited: " + favoriteTeamsID.size());
             DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
                 @Override
                 public void successCallback(ArrayList<TournamentTeam> data) {
-                    System.out.println(data.size() + " hamnahamna");
-                    for(String s : favoriteTeamsID){
-                        for(TournamentTeam t : data){
-                            if (t.getId().equals(s)){
-                                System.out.println(s + " Finnes i favoritter!!!! legger den til nuuu");
+                    for (String s : favoriteTeamsID) {
+                        for (TournamentTeam t : data) {
+                            if (t.getId().equals(s)) {
                                 teams.add(t);
                             }
                         }
                     }
                     lv = (ListView) findViewById(R.id.favoritesListView);
                     lv.setAdapter(new FavoritesAdapter(getApplicationContext(), teams));
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            Intent intent = new Intent(getApplicationContext(), TeamActivity.class);
+                            intent.putExtra("TeamName", teams.get(position));
+                            startActivity(intent);
+                        }
+                    });
                 }
+
                 @Override
                 public void errorCallback() {
 
                 }
             });
         }
+
     public ArrayList<String> getFavoritedTeamsId(){
         ArrayList<String> teams = new ArrayList<>();
         Map<String, ?> favoritedteams = preferences.getAll();
@@ -74,7 +84,7 @@ public class FavoritesActivity extends AppCompatActivity {
         if(s != null) {
             for (Iterator<String> it = s.iterator(); it.hasNext(); ) {
                 String id = it.next();
-                System.out.println("Klubbid ===== " + id);
+                System.out.println("lag ID ===== " + id);
                 teams.add(id);
             }
         }
