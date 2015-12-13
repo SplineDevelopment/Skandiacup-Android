@@ -7,20 +7,20 @@
     tools:context=".MainActivity$PlaceholderFragment"
     android:id="@+id/fieldMap">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <scaleimageview.ScaleImageView
         android:id="@+id/mapimagefield"
-        android:src="@drawable/fieldsmap"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/fieldsmap" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click"
+        android:text="Rotate"
+        android:id="@+id/mapRotateButton"
         android:layout_alignBottom="@+id/mapimagefield"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="63dp" />
+        android:layout_marginBottom="0dp" />
 
 </RelativeLayout>

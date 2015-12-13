@@ -19,7 +19,11 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
+
 public class EndplayActivity extends AppCompatActivity {
+
+    private MatchClass matchclass;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,6 +43,7 @@ public class EndplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_endplay);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -54,16 +59,8 @@ public class EndplayActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        this.matchclass = (MatchClass) getIntent().getSerializableExtra("matchClass");
+        setTitle(matchclass.getName());
     }
 
 
@@ -101,16 +98,17 @@ public class EndplayActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            System.out.println("POSITION IS FREAKIN "  + position);
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            switch(position){
-                case 0:
-                    return new EndplayActivityFragment();
-                case 1:
-                    return new EndplayActivityFragment();
-                default:
-                    return new EndplayActivityFragment();
-            }
+            Bundle args = new Bundle();
+            args.putString("endGameLevel", "" + (position+1));
+            args.putString("matchClassId", matchclass.getId());
+
+            EndplayActivityFragment frag = new EndplayActivityFragment();
+            frag.setArguments(args);
+
+            return frag;
         }
 
         @Override
