@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeToEndplayActivity(View view){
-        Intent intent = new Intent(this, EndplayActivity.class);
+        Intent intent = new Intent(this, EndPlayClassesActivity.class);
         startActivity(intent);
     }
 

@@ -12,7 +12,6 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import java.util.ArrayList;
 
 class MatchGroupsAdapter extends BaseAdapter {
-
     Context context;
     ArrayList<MatchGroup> mgs;
     private static LayoutInflater inflater = null;
