@@ -47,7 +47,7 @@ public class EndplayActivityFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(getContext(), MatchViewActivity.class);
-                        intent.putExtra("match", matches.get(position));
+                        intent.putExtra("match", (TournamentMatch) lv.getAdapter().getItem(position));
                         startActivity(intent);
                     }
                 });

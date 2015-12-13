@@ -49,8 +49,7 @@ public class EndPlayMatchAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        int subtract = (int)Math.floor(Math.log(position) / Math.log(2));
-        return matches.get(position-subtract);
+        return matches.get(position-getMinusFromPos(position));
     }
 
     @Override
@@ -60,7 +59,6 @@ public class EndPlayMatchAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         double i = 0;
         int pow = 0;
         int index = position;
@@ -81,37 +79,7 @@ public class EndPlayMatchAdapter extends BaseAdapter{
             }
             pow++;
         }
-
-//        int subtract = (int)Math.floor(Math.log(position) / Math.log(2));
-//        position -= subtract;
-
-        //@TODO - find a generalized mathematical formula for this.
-        if(position<2){        // add 3
-            position -= 1;
-        } else if(position<5){ // add 5
-            position -= 2;
-        }else if(position<10){ // add 9
-            position -= 3;
-        }else if(position<19){ // add 17
-            position -= 4;
-        }else if(position<36){ // add 33
-            position -= 5;
-        }else if(position<69){ // add 65
-            position -= 6;
-        }else if(position<134){ // add 129
-            position -= 7;
-        }else if(position<263){ // add 257
-            position -= 8;
-        }else if(position<520){ // add 513
-            position -= 9;
-        }else if(position<1033){ // add 1025
-            position -= 10;
-        } else if(position<2058){ // add 2049
-            position -= 11;
-        }else if(position < 4107){ // lol
-            position -= 12;
-        }
-
+        position -= getMinusFromPos(position);
         View vi = inflater.inflate(R.layout.match_row, null);
         ((TextView) vi.findViewById(R.id.homeTeamLabel)).setText(matches.get(position).getHometeamname());
         ((TextView) vi.findViewById(R.id.awayTeamLabel)).setText(matches.get(position).getAwayteamname());
@@ -119,6 +87,13 @@ public class EndPlayMatchAdapter extends BaseAdapter{
         ((TextView) vi.findViewById(R.id.awayScoreLabel)).setText(matches.get(position).getAwaygoal());
         ((TextView) vi.findViewById(R.id.dateLabel)).setText(matches.get(position).getMatchdate());
         return vi;
+    }
+
+    private int getMinusFromPos(int pos) {
+        int i = 1;
+        int res = 2;
+        while(res <= pos) res += (int)Math.pow(2, i++)+1;
+        return i;
     }
 
     private int getNumberOfHeaders(){
