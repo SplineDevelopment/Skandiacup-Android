@@ -119,6 +119,36 @@ public class DataManager {
         });
     }
 
+    public void getRSSFeedInfo(final SoapCallback<ArrayList<RSSObject>> callback) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = "http://skandiacup.no/feed/";
+        client.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+                ArrayList<RSSObject> arr;
+                arr = new ArrayList<>();
+                arr.add(new RSSObject("test", "test1", "test2", "test123123123 test test test test test"));
+                callback.successCallback(arr);
+                /*
+                try {
+                    arr = RSSMapper.mapRSS(response);
+                    callback.successCallback(arr);
+                } catch (XmlPullParserException | IOException e) {
+                    e.printStackTrace();
+                    callback.errorCallback();
+                }
+                */
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                callback.errorCallback();
+            }
+        });
+    }
+
 
     public void getTournamentMatches(String classID, String groupID, String matchID, String endplay,
                                      String since, String limit, String matchTXID,
