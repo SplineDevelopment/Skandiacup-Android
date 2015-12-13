@@ -16,9 +16,11 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.InstagramItem;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
@@ -39,32 +41,47 @@ public class SocialActivity extends AppCompatActivity {
         setList();
 
         setContentView(R.layout.activity_social);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         grid = (GridLayout) findViewById(R.id.grid);
-        for(int x=0;x<20;x++) {
-            ImageButton image = new ImageButton(SocialActivity.this);
-            image.setPadding(3, 3, 3, 3);
-            image.setBackgroundResource(R.drawable.logosmal);
-            DownloadImageTask a = new DownloadImageTask(image);
-            //a.doInBackground("http://skandiacup.no/wp-content/uploads/2012/03/diplomis.jpg");
-            grid.addView(image);
-        }
+
+
+        ViewHolderSosialView viewHolderSosialView = new ViewHolderSosialView();
     }
-
-
-
-
 
     void setList(){
         DataManager.getInstance().getInstagramPhotos(new SoapCallback<ArrayList<InstagramItem>>() {
             @Override
             public void successCallback(ArrayList<InstagramItem> data) {
                 list = data;
+                grid = (GridLayout) findViewById(R.id.grid);
+                for(int x=0;x<list.size();x++) {
+                    final ImageButton image = new ImageButton(SocialActivity.this);
+                    image.setPadding(10, 10, 10, 10);
+                    grid.addView(image);
+                    //"http://skandiacup.no/wp-content/uploads/2012/03/diplomis.jpg"
+                    System.out.println(list.get(x).getThumbnailUrl());
+                    //"https://finncdn.no/mmo/2015/6/cms/18/g/fin/n-d/evi/ces/_op/t.p/ng_960825654.jpg"
 
+                    DataManager.getInstance().getInstagramItem(list.get(x).getThumbnailUrl(), new SoapCallback<byte[]>() {
+                        @Override
+                        public void successCallback(byte[] data) {
+
+                            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            //ImageView image = (ImageView) findViewById(R.id.imageView1);
+                            image.setImageBitmap(bmp);
+
+                        }
+
+                        @Override
+                        public void errorCallback() {
+                            System.out.println("ERROR CALLBACK i INSTAGRAM");
+
+                        }
+                    });
+
+                }
             }
 
             @Override
@@ -74,7 +91,7 @@ public class SocialActivity extends AppCompatActivity {
         });
     }
 
-    public static Drawable LoadImageFromWebOperations(String url) {
+    public static Drawable loadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
             Drawable d = Drawable.createFromStream(is, "src name");
@@ -84,39 +101,15 @@ public class SocialActivity extends AppCompatActivity {
         }
     }
 
+
+
 }
 
-
-
-class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageButton bmImage;
-    String url = "http://skandiacup.no/wp-content/uploads/2012/03/diplomis.jpg";
-
-    public DownloadImageTask(ImageButton bmImage) {
-        this.bmImage = bmImage;
-    }
-
-    @Override
-    protected Bitmap doInBackground(String... urls) {
-        System.out.println("qweqweqweqweqweqweqwe");
-        //String urldisplay = url;
-        String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
-        try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }
-        return mIcon11;
-    }
-
-    protected void onPostExecute(Bitmap result) {
-        System.out.println("fjklsdklafjaklsdøfjkladsjfjklas");
-        bmImage.setImageBitmap(result);
-    }
+class ViewHolderSosialView {
+    /*TextView text;
+    TextView timestamp;
+    ImageView icon;
+    ProgressBar progress;
+    int position;*/
 }
-
-
 

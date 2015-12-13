@@ -44,14 +44,8 @@
                 android:horizontalSpacing="3dp"
                 android:stretchMode="columnWidth">
 
-
-
-
             </GridLayout>
         </ScrollView>
-
-
-
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

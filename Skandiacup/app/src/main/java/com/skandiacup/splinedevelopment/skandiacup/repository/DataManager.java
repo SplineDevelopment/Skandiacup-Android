@@ -5,6 +5,7 @@ import android.util.Log;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.MySSLSocketFactory;
 import com.loopj.android.http.RequestParams;
 import com.skandiacup.splinedevelopment.skandiacup.InstagramRestClient;
 import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
@@ -46,11 +47,14 @@ import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.KeyStore;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 /**
  * Created by Jorgen on 28/10/15.
@@ -317,7 +321,7 @@ public class DataManager {
 
     public void getInstagramPhotos(final SoapCallback<ArrayList<InstagramItem>> callback){
 
-        String tag = "Skandiacup2015";
+        String tag = "Beachday";
         String id = "121ee171e8534280918447ab69eb8c5b";
         String get_uri = "https://api.instagram.com/v1/tags/" + tag + "/media/recent?client_id=" + id;
 
@@ -338,4 +342,51 @@ public class DataManager {
         });
 
     }
+
+    public void getInstagramItem(String url, final SoapCallback<byte[]> callback) {
+        //AsyncHttpClient client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        try{
+            /// We initialize a default Keystore
+            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            // We load the KeyStore
+            trustStore.load(null, null);
+            // We initialize a new SSLSocketFacrory
+            MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
+            // We set that all host names are allowed in the socket factory
+            socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            // We initialize the Async Client
+            client = new AsyncHttpClient();
+            // We set the timeout to 30 seconds
+            client.setTimeout(30*1000);
+            // We set the SSL Factory
+            client.setSSLSocketFactory(socketFactory);
+            // We initialize a GET http request
+
+        } catch (Exception e) {
+            System.out.println("error: "+e);
+        }
+
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+                try {
+                    callback.successCallback(response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callback.errorCallback();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                System.out.println("ERROR: "+ statusCode + " " + e);
+                callback.errorCallback();
+            }
+        });
+    }
+
 }
