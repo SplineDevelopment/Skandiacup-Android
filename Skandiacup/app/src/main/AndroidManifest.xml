@@ -58,7 +58,18 @@
         <activity
             android:name=".MatchViewActivity"
             android:label="@string/title_activity_match_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".InstagramPopoverActivity"
+            android:label="@string/title_activity_match_view"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+        android:name=".EndPlayClassesActivity"
+        android:label="@string/title_activity_match_view"
+        android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>
