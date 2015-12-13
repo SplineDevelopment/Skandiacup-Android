@@ -8,9 +8,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTable;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
@@ -25,7 +27,9 @@ public class TeamActivity extends AppCompatActivity {
     ArrayList<TournamentTeam> favoriteTeams;
     ListView lv = null;
     TournamentTeam team = null;
+    MatchGroup matchgroup = null;
     MatchTable table = null;
+    String matchGroupId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +38,20 @@ public class TeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Apparently no need to try/catch this - Android checks if the data exist, and if it doesnt, it returns null.
+        //Therefore check for null when using team /matchgroup in other places.
         team = (TournamentTeam) getIntent().getSerializableExtra("TeamName");
-        System.out.println(team.getName());
-        setTitle(team.getName());
+        matchgroup = (MatchGroup) getIntent().getSerializableExtra("matchGroup");
+
+        if(team != null){
+            matchGroupId = team.getMatchGroupId();
+        } else if (matchgroup != null){
+            this.findViewById(R.id.favoritebutton).setVisibility(View.INVISIBLE);
+            matchGroupId = matchgroup.getId();
+        }
+
+        setTitle(team != null ? team.getName() : matchgroup != null ? "Gruppe " + matchgroup.getName() : "");
         final Button button = (Button) findViewById(R.id.favoritebutton);
         button.setOnClickListener(new View.OnClickListener() {
                                       public void onClick(View v){
@@ -54,16 +69,19 @@ public class TeamActivity extends AppCompatActivity {
         favoriteTeams = getFavoritedTeams(button);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv = (ListView) findViewById(R.id.matchList);
-        DataManager.getInstance().getTournamentMatches(null, team.getMatchGroupId(), null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
+        DataManager.getInstance().getTournamentMatches(null, matchGroupId, null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
             @Override
             public void successCallback(ArrayList<TournamentMatch> data) {
                 final ArrayList<TournamentMatch> matches = new ArrayList<TournamentMatch>();
                 for (TournamentMatch m : data) {
-                    if (m.getHometeamname().equals(team.getName()) || m.getAwayteamname().equals(team.getName())) {
+                    if (matchgroup == null && (m.getHometeamname().equals(team.getName()) || m.getAwayteamname().equals(team.getName()))) {
+                        matches.add(m);
+                    } else{
                         matches.add(m);
                     }
                 }
-                DataManager.getInstance().getMatchTables(team.getMatchGroupId(), null, null, null, null, new SoapCallback<ArrayList<MatchTable>>() {
+
+                DataManager.getInstance().getMatchTables(matchGroupId, null, null, null, null, new SoapCallback<ArrayList<MatchTable>>() {
                     @Override
                     public void successCallback(ArrayList<MatchTable> data) {
                         ArrayList<MatchTable> tables = new ArrayList<MatchTable>();
@@ -96,7 +114,7 @@ public class TeamActivity extends AppCompatActivity {
     public ArrayList<TournamentTeam> getFavoritedTeams(Button button){
         ArrayList<TournamentTeam> teams = new ArrayList<>();
         Map<String, ?> favoritedteams = preferences.getAll();
-        if (favoritedteams != null){
+        if (favoritedteams != null && team != null){
             if(favoritedteams.containsValue(team.getName())){
                 button.setText("Unfavorite");
                 System.out.println(team + " Finnes i favoritter");
@@ -111,8 +129,10 @@ public class TeamActivity extends AppCompatActivity {
 
     public boolean checkIfAlreadyFavorited(String team){
         Map<String, ?> favoritedteams = preferences.getAll();
-        if(favoritedteams.containsValue(team)){
-            return true;
+        if (team != null){
+            if(favoritedteams.containsValue(team)){
+                return true;
+            }
         }
         return false;
     }
