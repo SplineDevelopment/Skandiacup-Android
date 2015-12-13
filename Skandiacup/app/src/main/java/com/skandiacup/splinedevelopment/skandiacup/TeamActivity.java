@@ -1,6 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -69,6 +71,16 @@ public class TeamActivity extends AppCompatActivity {
         favoriteTeams = getFavoritedTeams(button);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv = (ListView) findViewById(R.id.matchList);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TournamentMatch match = (TournamentMatch) lv.getAdapter().getItem(position);
+                Intent intent = new Intent(getApplicationContext(), MatchViewActivity.class);
+                intent.putExtra("match", match);
+                startActivity(intent);
+            }
+        });
         DataManager.getInstance().getTournamentMatches(null, matchGroupId, null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
             @Override
             public void successCallback(ArrayList<TournamentMatch> data) {
