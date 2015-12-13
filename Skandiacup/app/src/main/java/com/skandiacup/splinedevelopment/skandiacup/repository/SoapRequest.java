@@ -29,6 +29,9 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
     @Override
     protected Object doInBackground(String... params) {
        try {
+           for(int i = 0; i<params.length; i++){
+               System.out.println("PARAMTER " + params[i]);
+           }
            String soap_action = "http://profixio.com/soap/tournament/ForTournamentExt.php#" + params[0];
            SoapObject Request = new SoapObject(NAMESPACE, params[0]);
            Request.addProperty("application_key", "enKHJhF");
