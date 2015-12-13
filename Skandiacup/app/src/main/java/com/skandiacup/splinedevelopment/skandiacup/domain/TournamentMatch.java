@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Jorgen on 28/10/15.
  */
-public class TournamentMatch implements Serializable{
+public class TournamentMatch implements Serializable, Comparable{
     private String id;
     private String matchTXID;
     private String matchno;
@@ -291,5 +291,11 @@ public class TournamentMatch implements Serializable{
                 ", updateTimeStamp='" + updateTimeStamp + '\'' +
                 ", matchGroupId='" + matchGroupId + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        TournamentMatch obj = (TournamentMatch) another;
+        return this.sortorder.compareTo(obj.sortorder);
     }
 }
