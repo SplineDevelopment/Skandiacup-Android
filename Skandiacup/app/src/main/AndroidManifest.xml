@@ -21,16 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".NewsActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TournamentActivity"
             android:label="@string/title_activity_tournament"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".NewsActivity"
-            android:label="@string/title_activity_news"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SocialActivity"
@@ -50,13 +46,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewsItemActivity"
-            android:label="@string/title_activity_news_item" >
-        </activity>
+            android:label="@string/title_activity_news_item" />
         <activity
             android:name=".TeamActivity"
             android:label="@string/title_activity_team"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MatchClassActivity"
+            android:label="@string/title_activity_match_class"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MatchViewActivity"
+            android:label="@string/title_activity_match_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

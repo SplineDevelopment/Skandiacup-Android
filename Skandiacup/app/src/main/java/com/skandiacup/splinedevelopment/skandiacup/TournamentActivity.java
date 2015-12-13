@@ -107,7 +107,7 @@ public class TournamentActivity extends AppCompatActivity {
                 case 0:
                     return new TournamentActivityFragment();
                 case 1:
-                    return new TournamentActivityFragment();
+                    return new TournamentGroupsActivityFragment();
                 default:
                     return new TournamentActivityFragment();
             }

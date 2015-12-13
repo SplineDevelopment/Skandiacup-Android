@@ -1,21 +1,14 @@
 <resources>
     <string name="app_name">Skandiacup</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_main22">Main22Activity</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_home">News Activity test</string>
     <string name="title_activity_tournament">TournamentActivity</string>
-    <string name="title_activity_news">NewsActivity</string>
     <string name="title_activity_social">SocialActivity</string>
     <string name="title_activity_endplay">EndplayActivity</string>
     <string name="title_activity_favorites">FavoritesActivity</string>
     <string name="title_activity_fields">FieldsActivity</string>
-    <string name="title_activity_hoihoi">hoihoi</string>
-    <string name="title_activity_main23">Main23Activity</string>
-    <string name="title_activity_main24">Main24Activity</string>
-    <string name="title_activity_fuckass">fuckass</string>
     <string name="title_activity_news_item">NewsItemActivity</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_team">TeamActivity</string>
+    <string name="title_activity_match_class">MatchClass</string>
+    <string name="title_activity_match_view">MatchViewActivity</string>
 </resources>

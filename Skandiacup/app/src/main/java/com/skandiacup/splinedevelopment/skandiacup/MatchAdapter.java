@@ -37,8 +37,13 @@ public class MatchAdapter extends BaseAdapter{
         this.matches = matches;
         this.matchesNotYetPlayed = matchesNotYetPlayed(matches);
         this.matchesPlayed = matchesPlayed(matches);
-        this.table = tables.get(0);
-        this.matchTableRows = table.getRows();
+        if(!tables.isEmpty()){
+            this.table = tables.get(0);
+            this.matchTableRows = table.getRows();
+        }else{
+            this.matchTableRows = new ArrayList<>();
+        }
+
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -66,13 +71,28 @@ public class MatchAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         int count = matchTableRows.size() + matches.size() + sections; // + matches.size() plus 1 beacuse og tableinformationheader
-        System.out.println("Antall celler som skal fylles ut " +count);
+        System.out.println("Antall celler som skal fylles ut " + count);
         return count;
     }
 
     @Override
     public Object getItem(int position) {
-        return matches.get(position);
+        positionResolver(position);
+        String s = map.keySet().toString();
+        s = s.replace("]", "");
+        s = s.replace("[", "");
+        int index = -1;
+        switch (s) {
+            case "matchesnotplayeditem": {
+                String indexString = map.get("matchesnotplayeditem").toString();
+                index = Integer.parseInt(indexString);
+            }
+            case "matchesplayeditem": {
+                String indexString = map.get("matchesplayeditem").toString();
+                index = Integer.parseInt(indexString);
+            }
+        }
+        return matches.get(index);
     }
 
     @Override
@@ -263,6 +283,10 @@ public class MatchAdapter extends BaseAdapter{
             }
 
         }
+    }
+
+    public ArrayList<TournamentMatch> getMatches(){
+        return matches;
     }
 }
 
