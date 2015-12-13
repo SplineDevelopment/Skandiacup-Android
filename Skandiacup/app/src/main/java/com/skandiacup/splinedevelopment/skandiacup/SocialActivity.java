@@ -1,5 +1,6 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -7,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
+import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import com.skandiacup.splinedevelopment.skandiacup.mappers.InstagramItem;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 import java.util.ArrayList;
@@ -16,6 +20,8 @@ import java.util.ArrayList;
 public class SocialActivity extends AppCompatActivity {
     ArrayList<InstagramItem> list;
     GridLayout grid;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +54,24 @@ public class SocialActivity extends AppCompatActivity {
                     image.setMaxWidth(bestSize);
                     image.setMaxHeight(bestSize);
                     grid.addView(image);
-                    
+
+                    image.setId(x);
+                    image.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Toast.makeText(view.getContext(),
+                                    "Button clicked index = " + image.getId() , Toast.LENGTH_SHORT)
+                                    .show();
+                            Intent intent = new Intent(getApplicationContext(), InstagramPopoverActivity.class);
+                            intent.putExtra(("profileImage"), list.get(image.getId()).getUserPhotoURL());
+                            intent.putExtra(("username"), list.get(image.getId()).getUser());
+                            intent.putExtra(("mainImage"), list.get(image.getId()).getUrl());
+                            startActivity(intent);
+                        }
+                    });
+
+
+
+
 
                     DataManager.getInstance().getInstagramItem(list.get(x).getThumbnailUrl(), new SoapCallback<byte[]>() {
                         @Override
@@ -73,11 +96,4 @@ public class SocialActivity extends AppCompatActivity {
     }
 }
 
-class ViewHolderSosialView {
-    /*TextView text;
-    TextView timestamp;
-    ImageView icon;
-    ProgressBar progress;
-    int position;*/
-}
 
