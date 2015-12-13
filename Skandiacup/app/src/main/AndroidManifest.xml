@@ -21,16 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".NewsActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TournamentActivity"
             android:label="@string/title_activity_tournament"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".NewsActivity"
-            android:label="@string/title_activity_news"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SocialActivity"

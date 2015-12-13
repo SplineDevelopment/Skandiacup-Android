@@ -57,7 +57,7 @@ public class TeamActivity extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.favoritebutton);
         button.setOnClickListener(new View.OnClickListener() {
                                       public void onClick(View v){
-                                          setFavoriteTeam(button,team.getName());
+                                          setFavoriteTeam(button,team);
                                           favoriteTeams = getFavoritedTeams(button);
                                           if (favoriteTeams != null){
                                               for (TournamentTeam t : favoriteTeams){
@@ -127,7 +127,7 @@ public class TeamActivity extends AppCompatActivity {
         ArrayList<TournamentTeam> teams = new ArrayList<>();
         Map<String, ?> favoritedteams = preferences.getAll();
         if (favoritedteams != null && team != null){
-            if(favoritedteams.containsValue(team.getName())){
+            if(favoritedteams.containsValue(team.getId())){
                 button.setText("Unfavorite");
                 System.out.println(team + " Finnes i favoritter");
             }
@@ -149,16 +149,16 @@ public class TeamActivity extends AppCompatActivity {
         return false;
     }
 
-    public void setFavoriteTeam(Button button, String team){
-        if (!checkIfAlreadyFavorited(team)){
+    public void setFavoriteTeam(Button button, TournamentTeam team){
+        if (!checkIfAlreadyFavorited(team.getId())){
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(team, team);
+            editor.putString(team.getId(), team.getId());
             editor.commit();
             button.setText("Unfavorite");
             System.out.println(team + " ble lagt til i favoritter");
         } else{
             SharedPreferences.Editor editor = preferences.edit();
-            editor.remove(team);
+            editor.remove(team.getId());
             editor.commit();
             button.setText("Favorite");
             System.out.println(team + " ble fjernet fra favoritter");

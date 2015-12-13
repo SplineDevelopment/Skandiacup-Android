@@ -1,35 +1,83 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.FrameLayout;
+import android.widget.ListView;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
-public class FavoritesActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
+
+public class FavoritesActivity extends AppCompatActivity {
+    SharedPreferences preferences;
+    ArrayList<String> favoriteTeamsID;
+    ArrayList<TournamentTeam> teams = new ArrayList<>();
+    ListView lv = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        System.out.println("Kjorer getInstagramPhotos");
-        //DataManager.getInstance().getInstagramPhotos({});
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
+        preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        favoriteTeamsID = getFavoritedTeamsId();
+        System.out.println("Antall lag i som er favorited: " + favoriteTeamsID.size());
+            DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
+                @Override
+                public void successCallback(ArrayList<TournamentTeam> data) {
+                    System.out.println(data.size() + " hamnahamna");
+                    for(String s : favoriteTeamsID){
+                        for(TournamentTeam t : data){
+                            if (t.getId().equals(s)){
+                                System.out.println(s + " Finnes i favoritter!!!! legger den til nuuu");
+                                teams.add(t);
+                            }
+                        }
+                    }
+                    lv = (ListView) findViewById(R.id.favoritesListView);
+                    lv.setAdapter(new FavoritesAdapter(getApplicationContext(), teams));
+                }
+                @Override
+                public void errorCallback() {
 
-}
+                }
+            });
+        }
+    public ArrayList<String> getFavoritedTeamsId(){
+        ArrayList<String> teams = new ArrayList<>();
+        Map<String, ?> favoritedteams = preferences.getAll();
+        Set s = favoritedteams.keySet();
+        if(s != null) {
+            for (Iterator<String> it = s.iterator(); it.hasNext(); ) {
+                String id = it.next();
+                System.out.println("Klubbid ===== " + id);
+                teams.add(id);
+            }
+        }
+        return teams;
+    }
+ }
