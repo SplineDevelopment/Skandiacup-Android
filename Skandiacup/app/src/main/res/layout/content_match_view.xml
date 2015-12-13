@@ -8,32 +8,40 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/finalmatchview"
+
+
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.skandiacup.splinedevelopment.skandiacup.MatchViewActivity"
     tools:showIn="@layout/activity_match_view">
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/homeTeamNameLabel"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="39dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/awayTeamNameLabel"
-        android:layout_alignTop="@+id/homeTeamNameLabel"
+        android:layout_marginTop="39dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -43,6 +51,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -53,6 +62,7 @@
         android:layout_marginTop="26dp" />
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -64,16 +74,21 @@
         android:layout_marginTop="78dp" />
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/awayTeamGoalLabel"
-        android:layout_alignBottom="@+id/homeTeamGoalLabel"
-        android:layout_alignLeft="@+id/awayTeamNameLabel"
-        android:layout_alignStart="@+id/awayTeamNameLabel" />
+
+
+        android:layout_below="@+id/timeLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="78dp" />
 
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
