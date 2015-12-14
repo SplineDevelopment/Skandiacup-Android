@@ -245,7 +245,8 @@ public class MatchAdapter extends BaseAdapter{
         System.out.println(s);
         switch (s){
             case "tableheader": {
-                return setHeader(vi, "Tabell"); //getResources().getString(R.string.activity_Team_Toast_teamAdded);
+                String adapter_match_table = context.getResources().getString(R.string.adapter_match_table);
+                return setHeader(vi, adapter_match_table); //
             }
             case "tableinformation": {
                 return setTableHeader(vi);
@@ -256,10 +257,12 @@ public class MatchAdapter extends BaseAdapter{
                 return setTableRow(vi, matchTableRows.get(index));
             }
             case "matchesnotplayedheader": {
-                return setHeader(vi, "Kommende kamper");
+                String adapter_match_upcomingMatches = context.getResources().getString(R.string.adapter_match_upcomingMatches);
+                return setHeader(vi, adapter_match_upcomingMatches);
             }
             case "noupcomming": {
-                return setInfosection(vi, "Ingen kommende kamper");
+                String adapter_match_noUpcomingMatches = context.getResources().getString(R.string.adapter_match_noUpcomingMatches);
+                return setInfosection(vi, adapter_match_noUpcomingMatches);
             }
             case "matchesnotplayeditem": {
                 String indexString = map.get("matchesnotplayeditem").toString();
@@ -267,10 +270,12 @@ public class MatchAdapter extends BaseAdapter{
                 return setMatchesNotPlayed(index, vi);
             }
             case "matchesplayedheader": {
-                return setHeader(vi, "Kamper spilt");
+                String adapter_match_gamesPlayed = context.getResources().getString(R.string.adapter_match_gamesPlayed);
+                return setHeader(vi, adapter_match_gamesPlayed);
             }
             case "nomatchesplayed": {
-                return setInfosection(vi, "Ingen kamper spilt");
+                String adapter_match_noGamesPlayed = context.getResources().getString(R.string.adapter_match_noGamesPlayed);
+                return setInfosection(vi, adapter_match_noGamesPlayed);
             }
             case "matchesplayeditem": {
                 String indexString = map.get("matchesplayeditem").toString();
@@ -278,7 +283,8 @@ public class MatchAdapter extends BaseAdapter{
                 return setMatchesPlayed(index, vi);
             }
             default:{
-                return setInfosection(vi, "Det har oppstått en feil");
+                String adapter_match_errorOccurd = context.getResources().getString(R.string.adapter_match_errorOccurd);
+                return setInfosection(vi, adapter_match_errorOccurd);
             }
 
         }
