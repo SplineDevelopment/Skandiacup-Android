@@ -1,8 +1,10 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
@@ -41,5 +43,18 @@ public class MatchViewActivity extends AppCompatActivity {
                 ((TextView)this.findViewById(R.id.awayTeamGoalLabel)).setText(match.getAwaygoal());
             }
         }
+        ActionBar a = getSupportActionBar();
+        if (a != null) {
+            a.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
