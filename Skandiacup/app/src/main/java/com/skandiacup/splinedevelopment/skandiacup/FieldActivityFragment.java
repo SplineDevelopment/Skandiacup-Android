@@ -40,11 +40,10 @@ public class FieldActivityFragment extends Fragment {
                     img.setScaleY(1f);
                 } else {
                     img.setRotation(270);
-                    img.setScaleX(1.4f);
-                    img.setScaleY(1.4f);
+                    img.setScaleX(1.2f);
+                    img.setScaleY(1.2f);
                 }
                 rotated = !rotated;
-                System.out.println("clicked the button");
             }
         });
 
