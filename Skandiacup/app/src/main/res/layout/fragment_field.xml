@@ -14,10 +14,12 @@
         android:layout_marginBottom="60dp"
         android:src="@drawable/fieldsmap" />
 
-    <Button
+    <ImageButton
+        android:contentDescription="rotatebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rotate"
+        android:background="@null"
+        android:src="@drawable/rotateicon"
         android:id="@+id/mapRotateButton"
         android:layout_alignBottom="@+id/mapimagefield"
         android:layout_centerHorizontal="true"

@@ -6,7 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 /**
  * Created by Jorgen on 27/10/15.
@@ -25,15 +29,19 @@ public class FieldActivityFragment extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_field, container, false);
 
-        Button mapRotateButton = (Button) view.findViewById(R.id.mapRotateButton);
+        ImageButton mapRotateButton = (ImageButton) view.findViewById(R.id.mapRotateButton);
         mapRotateButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scaleimageview.ScaleImageView img = (scaleimageview.ScaleImageView) view.findViewById(R.id.mapimagefield);
                 if (rotated) {
                     img.setRotation(0);
+                    img.setScaleX(1f);
+                    img.setScaleY(1f);
                 } else {
                     img.setRotation(270);
+                    img.setScaleX(1.4f);
+                    img.setScaleY(1.4f);
                 }
                 rotated = !rotated;
                 System.out.println("clicked the button");
