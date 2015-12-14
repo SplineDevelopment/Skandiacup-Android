@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -40,7 +42,10 @@ public class TeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        ActionBar a = getSupportActionBar();
+        if (a != null) {
+            a.setDisplayHomeAsUpEnabled(true);
+        }
         //Apparently no need to try/catch this - Android checks if the data exist, and if it doesnt, it returns null.
         //Therefore check for null when using team /matchgroup in other places.
         team = (TournamentTeam) getIntent().getSerializableExtra("TeamName");
@@ -163,5 +168,13 @@ public class TeamActivity extends AppCompatActivity {
             button.setText("Favorite");
             System.out.println(team + " ble fjernet fra favoritter");
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
