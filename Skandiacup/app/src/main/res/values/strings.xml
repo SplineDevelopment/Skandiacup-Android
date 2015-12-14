@@ -50,19 +50,10 @@
     <string name="adapter_match_noGamesPlayed">No games played</string>
     <string name="adapter_match_errorOccurd">No games played</string>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- Values contained in the spinner in filterView-->
+    <string-array name="sexPickerValues">
+        <item>All</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
