@@ -33,7 +33,6 @@ public class SocialActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle("#Skandiacup2016");
 
         ActionBar a = getSupportActionBar();
         if (a != null) {

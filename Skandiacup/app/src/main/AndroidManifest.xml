@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SocialActivity"
-            android:label="@string/title_activity_social"
+            android:label="@string/title_Activity_InstagramPopover"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EndplayActivity"
@@ -62,13 +62,13 @@
 
         <activity
             android:name=".InstagramPopoverActivity"
-            android:label="@string/title_activity_match_view"
+            android:label="@string/title_Activity_InstagramPopover"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-        android:name=".EndPlayClassesActivity"
-        android:label="@string/title_activity_match_view"
-        android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".EndPlayClassesActivity"
+            android:label="@string/title_activity_match_view"
+            android:theme="@style/AppTheme.NoActionBar"/>
         
         <activity
             android:name=".FieldDiariesTeamSelectedActivity"
