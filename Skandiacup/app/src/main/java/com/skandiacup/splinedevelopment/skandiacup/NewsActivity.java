@@ -115,9 +115,9 @@ public class NewsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "News";
+                    return getResources().getString(R.string.activity_news_tab_news);
                 case 1:
-                    return "Info";
+                    return getResources().getString(R.string.activity_news_tab_info);
             }
             return null;
         }
