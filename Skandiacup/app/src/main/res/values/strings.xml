@@ -14,6 +14,15 @@
     <string name="title_activity_field_diaries_team_selected">Field diary</string>
     <string name="title_Activity_InstagramPopover">#Skandiacup2016</string>
 
+    <!--Static names in Main activity -->
+    <string name="main_activity_home">News and Info</string>
+    <string name="main_activity_social">Social feed</string>
+    <string name="main_activity_tournament">Tournament</string>
+    <string name="main_activity_field">Fields</string>
+    <string name="main_activity_endplay">Endplay</string>
+    <string name="main_activity_favourite">Favourite</string>
+
+
 
     <!--Static names in News activity -->
     <string name="activity_news_tab_news">News</string>
@@ -31,13 +40,6 @@
     <string name="activity_Endplay_tab_aendplay">A-Endplay</string>
     <string name="activity_Endplay_tab_bendplay">B-Endplay</string>
 
-
-    <!--Static names in MatchView activity
-    <string name="activity_MatchView">xxx</string>
-    <string name="activity_MatchView">xxx</string>
-    -->
-
-
     <!--Static names in Team Activity activity-->
     <string name="activity_Team_Toast_teamAdded">Team added to favorites</string>
     <string name="activity_Team_Toast_teamRemoved">Team removed from favorites</string>
@@ -50,19 +52,14 @@
     <string name="adapter_match_noGamesPlayed">No games played</string>
     <string name="adapter_match_errorOccurred">Error occurred</string>
 
+    <!-- Values contained in the spinner in filterView-->
+    <string name ="sex_all">All</string>
+    <string name ="sex_male">Men</string>
+    <string name ="sex_female">Women</string>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string-array name="sexPickerValues">
+        <item>@string/sex_all</item>
+        <item>@string/sex_male</item>
+        <item>@string/sex_female</item>
+    </string-array>
 </resources>

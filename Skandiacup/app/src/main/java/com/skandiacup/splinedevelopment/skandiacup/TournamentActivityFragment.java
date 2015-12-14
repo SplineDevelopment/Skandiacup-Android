@@ -3,6 +3,7 @@ package com.skandiacup.splinedevelopment.skandiacup;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
@@ -33,6 +35,7 @@ public class TournamentActivityFragment extends Fragment {
     private Spinner countryPicker;
     private ArrayList<TournamentTeam> teamNames;
     private ArrayList<TournamentTeam> filteredTeams;
+    private ArrayList<MatchClass> matchClasses;
 
 
     public TournamentActivityFragment() {
@@ -133,10 +136,22 @@ public class TournamentActivityFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(getContext(), TeamActivity.class);
-                        intent.putExtra("TeamName", (TournamentTeam)lv.getAdapter().getItem(position));
+                        intent.putExtra("TeamName", (TournamentTeam) lv.getAdapter().getItem(position));
                         startActivity(intent);
                     }
                 });
+            }
+
+            @Override
+            public void errorCallback() {
+
+            }
+        });
+
+        DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
+            @Override
+            public void successCallback(ArrayList<MatchClass> data) {
+                matchClasses = data;
             }
 
             @Override
@@ -151,7 +166,16 @@ public class TournamentActivityFragment extends Fragment {
         filteredTeams.clear();
         for(TournamentTeam team: teamNames){
             if(team.getName().toLowerCase().contains(filterText.getText().toString().toLowerCase()) && team.getCountryCode().equals(countryPicker.getSelectedItem().toString())){
-                filteredTeams.add(team);
+                if(sexPicker.getSelectedItemPosition() == 0){
+                    filteredTeams.add(team);
+                }
+                for(MatchClass mc : matchClasses){
+                    if(team.getMatchClassId().equals(mc.getId()) && sexPicker.getSelectedItemPosition()==1 && mc.getGender().equals("M")){
+                        filteredTeams.add(team);
+                    }else if(team.getMatchClassId().equals(mc.getId()) && sexPicker.getSelectedItemPosition()==2 && mc.getGender().equals("F")){
+                        filteredTeams.add(team);
+                    }
+                }
             }
         }
 

@@ -16,7 +16,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/sexPicker"
         android:layout_gravity="center_horizontal"
-        android:spinnerMode="dialog" />
+        android:spinnerMode="dialog"
+        android:entries="@array/sexPickerValues"
+        />
     <!-- Dropdown mode is preferred but causes a crash-->
 
     <Spinner

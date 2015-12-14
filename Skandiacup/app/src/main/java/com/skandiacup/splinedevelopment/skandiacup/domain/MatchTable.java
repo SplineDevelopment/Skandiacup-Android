@@ -1,11 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-/**
- * Created by eiriksandberg on 29.10.2015.
- */
 public class MatchTable {
     MatchTableRow header;
     ArrayList<MatchTableRow> rows;
@@ -24,5 +20,13 @@ public class MatchTable {
 
     public void setRows(ArrayList<MatchTableRow> rows) {
         this.rows = rows;
+    }
+
+    @Override
+    public String toString() {
+        return "MatchTable{" +
+                "header=" + header +
+                ", rows=" + rows +
+                '}';
     }
 }
