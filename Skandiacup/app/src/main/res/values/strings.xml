@@ -53,9 +53,13 @@
     <string name="adapter_match_errorOccurred">Error occurred</string>
 
     <!-- Values contained in the spinner in filterView-->
+    <string name ="sex_all">All</string>
+    <string name ="sex_male">Men</string>
+    <string name ="sex_female">Women</string>
+
     <string-array name="sexPickerValues">
-        <item>All</item>
-        <item>Male</item>
-        <item>Female</item>
+        <item>@string/sex_all</item>
+        <item>@string/sex_male</item>
+        <item>@string/sex_female</item>
     </string-array>
 </resources>

@@ -35,4 +35,7 @@
     <string name="title_activity_news_item">Nyheter</string>
     <string name="title_activity_team">Lag</string>
     <string name="title_activity_tournament">Turnering</string>
+    <string name="sex_all">Alle</string>
+    <string name="sex_female">Damer</string>
+    <string name="sex_male">Menn</string>
 </resources>
