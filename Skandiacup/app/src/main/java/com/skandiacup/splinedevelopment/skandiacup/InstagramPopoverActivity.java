@@ -28,6 +28,7 @@ public class InstagramPopoverActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("#Skandiacup2016");
 
         ActionBar a = getSupportActionBar();
         if (a != null) {
@@ -35,7 +36,6 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-
         try{
             username = intent.getStringExtra("username");
             mainImageURL = intent.getStringExtra("mainImage");
@@ -45,6 +45,7 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         }catch (Exception e){
             System.out.println(e);
             finish();
+
         }
 
 
@@ -89,18 +90,9 @@ public class InstagramPopoverActivity extends AppCompatActivity {
                         //TODO Error ?
                     }
                 });
-
-
             }
 
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_instagram_popover, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -108,11 +100,6 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         if (id == android.R.id.home) {
             finish();
