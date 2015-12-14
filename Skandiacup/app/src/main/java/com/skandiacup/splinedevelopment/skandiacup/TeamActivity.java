@@ -134,6 +134,7 @@ public class TeamActivity extends AppCompatActivity {
             }
         } else{
             System.out.println(team + " Finnes ikke i favoritter");
+            //TODO Change .getDrawable? This will not work for Android API 15.
             button.setImageDrawable(getResources().getDrawable(R.drawable.favoriteunfilled, getTheme()));
             return null;
         }
@@ -164,8 +165,7 @@ public class TeamActivity extends AppCompatActivity {
             editor.commit();
             button.setImageDrawable(getResources().getDrawable(R.drawable.favoritefilled, getTheme()));
             System.out.println(team + " ble lagt til i favoritter");
-            // TODO: make toast message in strings.XML for locale
-            String text = "Team added to favorites";
+            String text = getResources().getString(R.string.activity_Team_Toast_teamAdded);
             makeFavoriteToast(text);
         } else{
             SharedPreferences.Editor editor = preferences.edit();
@@ -173,8 +173,7 @@ public class TeamActivity extends AppCompatActivity {
             editor.commit();
             button.setImageDrawable(getResources().getDrawable(R.drawable.favoriteunfilled, getTheme()));
             System.out.println(team + " ble fjernet fra favoritter");
-            // TODO: make toast message in strings.XML for locale
-            String text = "Team removed from favorites";
+            String text = getResources().getString(R.string.activity_Team_Toast_teamRemoved);
             makeFavoriteToast(text);
         }
     }

@@ -1,6 +1,5 @@
 <resources>
     <!--Static activity-names -->
-
     <string name="app_name">Skandiacup</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">General information</string>
@@ -39,10 +38,25 @@
     -->
 
 
-    <!--Static names in MatchView activity
-    <string name="activity_MatchView">xxx</string>
-    <string name="activity_MatchView">xxx</string>
-    -->
+    <!--Static names in Team Activity activity-->
+    <string name="activity_Team_Toast_teamAdded">Team added to favorites</string>
+    <string name="activity_Team_Toast_teamRemoved">Team removed from favorites</string>
+
+    <!--Static names in Match adapter-->
+    <string name="adapter_match_table">Table</string>
+    <string name="adapter_match_upcomingMatches">Upcoming matches</string>
+    <string name="adapter_match_noUpcomingMatches">No upcoming matches</string>
+    <string name="adapter_match_gamesPlayed">Games played</string>
+    <string name="adapter_match_noGamesPlayed">No games played</string>
+    <string name="adapter_match_errorOccurd">No games played</string>
+
+
+
+
+
+
+
+
 
 
 
