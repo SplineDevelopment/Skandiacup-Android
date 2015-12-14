@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:text="News and Info" />
+                        android:text="@string/main_activity_home"/>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -89,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
-                            android:text="Social Feed" />
+                            android:text="@string/main_activity_social" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:text="Tournament" />
+                        android:text="@string/main_activity_tournament"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:text="Fields" />
+                        android:text="@string/main_activity_field" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -185,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:text="Endplay" />
+                        android:text="@string/main_activity_endplay" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -212,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:text="Favorites" />
+                        android:text="@string/main_activity_favourite" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

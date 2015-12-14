@@ -14,6 +14,15 @@
     <string name="title_activity_field_diaries_team_selected">Field diary</string>
     <string name="title_Activity_InstagramPopover">#Skandiacup2016</string>
 
+    <!--Static names in Main activity -->
+    <string name="main_activity_home">News and Info</string>
+    <string name="main_activity_social">Social feed</string>
+    <string name="main_activity_tournament">Tournament</string>
+    <string name="main_activity_field">Fields</string>
+    <string name="main_activity_endplay">Endplay</string>
+    <string name="main_activity_favourite">Favourite</string>
+
+
 
     <!--Static names in News activity -->
     <string name="activity_news_tab_news">News</string>
@@ -30,13 +39,6 @@
     <!--Static names in Endplay activity -->
     <string name="activity_Endplay_tab_aendplay">A-Endplay</string>
     <string name="activity_Endplay_tab_bendplay">B-Endplay</string>
-
-
-    <!--Static names in MatchView activity
-    <string name="activity_MatchView">xxx</string>
-    <string name="activity_MatchView">xxx</string>
-    -->
-
 
     <!--Static names in Team Activity activity-->
     <string name="activity_Team_Toast_teamAdded">Team added to favorites</string>
