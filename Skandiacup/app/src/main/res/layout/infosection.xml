@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingTop="10dip"
     android:paddingBottom="10dip"
-    android:paddingLeft="5dip"
     android:textSize="30sp"
-    android:textAlignment="center"
+    android:gravity="center"
     android:textColor="#0E0808"
     style="?android:attr/listSeparatorTextViewStyle" />

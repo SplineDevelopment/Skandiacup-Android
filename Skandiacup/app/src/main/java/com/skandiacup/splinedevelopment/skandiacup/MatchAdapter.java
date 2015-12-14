@@ -162,7 +162,10 @@ public class MatchAdapter extends BaseAdapter{
     public View setMatchesNotPlayed(int position, View vi){
         vi = inflater.inflate(R.layout.match_row, null);
         TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
-        dateLabel.setText(matchesNotYetPlayed.get(position).getMatchdate());
+        String dateText = matchesNotYetPlayed.get(position).getMatchdate();
+        String[] tempDate = dateText.split("T");
+        String finalDate = tempDate[0] + " " + tempDate[1];
+        dateLabel.setText(finalDate);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
         homescore.setText(matchesNotYetPlayed.get(position).getHomegoal());
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
@@ -177,7 +180,10 @@ public class MatchAdapter extends BaseAdapter{
     public View setMatchesPlayed(int position, View vi){
         vi = inflater.inflate(R.layout.match_row, null);
         TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
-        dateLabel.setText(matchesPlayed.get(position).getMatchdate());
+        String dateText = matchesPlayed.get(position).getMatchdate();
+        String[] tempDate = dateText.split("T");
+        String finalDate = tempDate[0] + " " + tempDate[1];
+        dateLabel.setText(finalDate);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
         homescore.setText(matchesPlayed.get(position).getHomegoal());
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
