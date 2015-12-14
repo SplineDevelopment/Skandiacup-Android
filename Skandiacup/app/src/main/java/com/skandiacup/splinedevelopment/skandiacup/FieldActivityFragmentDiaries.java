@@ -1,9 +1,11 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,6 @@ public class FieldActivityFragmentDiaries extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_field_diary, container, false);
         lv = (ListView)rootView.findViewById(R.id.fieldDiariesList);
         DataManager.getInstance().getFields(null, null, null, new SoapCallback<ArrayList<Field>>() {
@@ -66,7 +67,6 @@ public class FieldActivityFragmentDiaries extends Fragment {
                         });
                     }
                 });
-
             }
 
             @Override
