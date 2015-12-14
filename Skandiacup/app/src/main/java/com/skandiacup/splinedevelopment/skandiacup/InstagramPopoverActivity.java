@@ -28,7 +28,6 @@ public class InstagramPopoverActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("#Skandiacup2016");
 
         ActionBar a = getSupportActionBar();
         if (a != null) {
@@ -45,10 +44,7 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         }catch (Exception e){
             System.out.println(e);
             finish();
-
         }
-
-
     }
 
             public void setInstagram(){
