@@ -124,9 +124,9 @@ public class FieldsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Map";
+                    return getResources().getString(R.string.activity_field_tab_map);
                 case 1:
-                    return "Diaries";
+                    return getResources().getString(R.string.activity_field_tab_Diaries);
             }
             return null;
         }
