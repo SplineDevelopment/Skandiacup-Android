@@ -4,22 +4,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.skandiacup.splinedevelopment.skandiacup.mappers.InstagramItem;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
-
-import java.util.ArrayList;
 
 public class InstagramPopoverActivity extends AppCompatActivity {
     String username = "";
@@ -30,6 +25,14 @@ public class InstagramPopoverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_popover);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar a = getSupportActionBar();
+        if (a != null) {
+            a.setDisplayHomeAsUpEnabled(true);
+        }
 
         Intent intent = getIntent();
 
@@ -72,15 +75,13 @@ public class InstagramPopoverActivity extends AppCompatActivity {
                 DataManager.getInstance().getInstagramItem(profileImageURL, new SoapCallback<byte[]>() {
                     @Override
                     public void successCallback(byte[] data) {
-                        int bestProfileImageSize = (getWindowSizeWidth()-10)/3;
+                        int bestProfileImageSize = (getWindowSizeWidth() - 10) / 3;
                         ImageView profileImageImageView = (ImageView) findViewById(R.id.profileIamge);
-                        /*profileImageImageView.setMinimumHeight(bestProfileImageSize);
-                        profileImageImageView.setMinimumWidth(bestProfileImageSize);
-                        profileImageImageView.setMaxHeight(bestProfileImageSize);
-                        profileImageImageView.setMaxWidth(bestProfileImageSize);*/
+
 
                         Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
                         profileImageImageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, bestProfileImageSize, bestProfileImageSize, false));
+
                     }
 
                     @Override
@@ -113,6 +114,10 @@ public class InstagramPopoverActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == android.R.id.home) {
+            finish();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -123,7 +128,6 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         int width = size.x;
         return width;
     }
-
 
 
 

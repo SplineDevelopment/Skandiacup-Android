@@ -58,9 +58,6 @@ public class SocialActivity extends AppCompatActivity {
                     image.setId(x);
                     image.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View view) {
-                            Toast.makeText(view.getContext(),
-                                    "Button clicked index = " + image.getId() , Toast.LENGTH_SHORT)
-                                    .show();
                             Intent intent = new Intent(getApplicationContext(), InstagramPopoverActivity.class);
                             intent.putExtra(("profileImage"), list.get(image.getId()).getUserPhotoURL());
                             intent.putExtra(("username"), list.get(image.getId()).getUser());
