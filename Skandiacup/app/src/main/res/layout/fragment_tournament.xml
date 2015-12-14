@@ -1,4 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+<RelativeLayout
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,4 +17,23 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@android:drawable/ic_menu_search"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/teamsList"
+        android:layout_alignEnd="@+id/teamsList" />
 </RelativeLayout>
+
+    <ImageView
+    android:id="@+id/darkenScreen"
+    android:layout_height="0dp"
+    android:layout_width="0dp"
+    android:alpha="1.0"
+    android:contentDescription = "Popup Fade out"
+    android:src="@drawable/blacksquare" />
+</FrameLayout>
