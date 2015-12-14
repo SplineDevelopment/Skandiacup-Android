@@ -4,17 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTable;
@@ -59,7 +60,7 @@ public class TeamActivity extends AppCompatActivity {
         }
 
         setTitle(team != null ? team.getName() : matchgroup != null ? "Gruppe " + matchgroup.getName() : "");
-        final Button button = (Button) findViewById(R.id.favoritebutton);
+        final ImageButton button = (ImageButton) findViewById(R.id.favoritebutton);
         button.setOnClickListener(new View.OnClickListener() {
                                       public void onClick(View v){
                                           setFavoriteTeam(button,team);
@@ -69,12 +70,12 @@ public class TeamActivity extends AppCompatActivity {
                                                   System.out.println(t.getName());
                                               }
                                           } else{
+                                              // TODO:: remove sout and handle this
                                               System.out.println("Tomt i favoriteslista");
                                           }
                                       }
                                   });
         favoriteTeams = getFavoritedTeams(button);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv = (ListView) findViewById(R.id.matchList);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,7 +94,7 @@ public class TeamActivity extends AppCompatActivity {
                 for (TournamentMatch m : data) {
                     if (matchgroup == null && (m.getHometeamname().equals(team.getName()) || m.getAwayteamname().equals(team.getName()))) {
                         matches.add(m);
-                    } else{
+                    } else {
                         matches.add(m);
                     }
                 }
@@ -108,37 +109,33 @@ public class TeamActivity extends AppCompatActivity {
                         System.out.println("inside teamactivity SUCCESSCALLBACK");
                         lv.setAdapter(new MatchAdapter(getApplicationContext(), matches, tables));
                     }
+
                     @Override
                     public void errorCallback() {
                     }
                 });
             }
+
             @Override
             public void errorCallback() {
 
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
-    public ArrayList<TournamentTeam> getFavoritedTeams(Button button){
+    public ArrayList<TournamentTeam> getFavoritedTeams(ImageButton button){
         ArrayList<TournamentTeam> teams = new ArrayList<>();
         Map<String, ?> favoritedteams = preferences.getAll();
         if (favoritedteams != null && team != null){
             if(favoritedteams.containsValue(team.getId())){
-                button.setText("Unfavorite");
+                button.setImageDrawable(getResources().getDrawable(R.drawable.favoritefilled, getTheme()));
                 System.out.println(team + " Finnes i favoritter");
             }
         } else{
             System.out.println(team + " Finnes ikke i favoritter");
-            button.setText("Favorite");
+            //TODO Change .getDrawable? This will not work for Android API 15.
+            button.setImageDrawable(getResources().getDrawable(R.drawable.favoriteunfilled, getTheme()));
             return null;
         }
         return teams;
@@ -154,19 +151,30 @@ public class TeamActivity extends AppCompatActivity {
         return false;
     }
 
-    public void setFavoriteTeam(Button button, TournamentTeam team){
+    public void makeFavoriteToast(String text) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    public void setFavoriteTeam(ImageButton button, TournamentTeam team){
         if (!checkIfAlreadyFavorited(team.getId())){
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(team.getId(), team.getId());
             editor.commit();
-            button.setText("Unfavorite");
+            button.setImageDrawable(getResources().getDrawable(R.drawable.favoritefilled, getTheme()));
             System.out.println(team + " ble lagt til i favoritter");
+            String text = getResources().getString(R.string.activity_Team_Toast_teamAdded);
+            makeFavoriteToast(text);
         } else{
             SharedPreferences.Editor editor = preferences.edit();
             editor.remove(team.getId());
             editor.commit();
-            button.setText("Favorite");
+            button.setImageDrawable(getResources().getDrawable(R.drawable.favoriteunfilled, getTheme()));
             System.out.println(team + " ble fjernet fra favoritter");
+            String text = getResources().getString(R.string.activity_Team_Toast_teamRemoved);
+            makeFavoriteToast(text);
         }
     }
     @Override

@@ -119,9 +119,9 @@ public class TournamentActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Teams";
+                    return getResources().getString(R.string.activity_tournament_tab_teams);
                 case 1:
-                    return "Groups";
+                    return getResources().getString(R.string.activity_tournament_tab_groups);
             }
             return null;
         }

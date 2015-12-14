@@ -31,7 +31,6 @@ public class MatchAdapter extends BaseAdapter{
     private int sections = 4;
     Map<String, Integer> map = new HashMap<String, Integer>();
 
-
     public MatchAdapter(Context context, ArrayList<TournamentMatch> matches, ArrayList<MatchTable> tables) {
         this.context = context;
         this.matches = matches;
@@ -246,7 +245,7 @@ public class MatchAdapter extends BaseAdapter{
         System.out.println(s);
         switch (s){
             case "tableheader": {
-                return setHeader(vi, "Tabell");
+                return setHeader(vi, "Tabell"); //getResources().getString(R.string.activity_Team_Toast_teamAdded);
             }
             case "tableinformation": {
                 return setTableHeader(vi);

@@ -373,26 +373,16 @@ public class DataManager {
     }
 
     public void getInstagramItem(String url, final SoapCallback<byte[]> callback) {
-        //AsyncHttpClient client = new AsyncHttpClient();
         AsyncHttpClient client = new AsyncHttpClient();
 
         try{
-            /// We initialize a default Keystore
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            // We load the KeyStore
             trustStore.load(null, null);
-            // We initialize a new SSLSocketFacrory
             MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
-            // We set that all host names are allowed in the socket factory
             socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            // We initialize the Async Client
             client = new AsyncHttpClient();
-            // We set the timeout to 30 seconds
             client.setTimeout(30*1000);
-            // We set the SSL Factory
             client.setSSLSocketFactory(socketFactory);
-            // We initialize a GET http request
-
         } catch (Exception e) {
             System.out.println("error: "+e);
         }

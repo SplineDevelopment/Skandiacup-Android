@@ -131,9 +131,9 @@ public class EndplayActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "A-sluttspill";
+                    return getResources().getString(R.string.activity_Endplay_tab_aendplay);
                 case 1:
-                    return "B-sluttspill";
+                    return getResources().getString(R.string.activity_Endplay_tab_bendplay);
             }
             return null;
         }
