@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -19,22 +16,25 @@ import android.widget.Toast;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTable;
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTableRow;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 public class TeamActivity extends AppCompatActivity {
     SharedPreferences preferences;
     ArrayList<TournamentTeam> favoriteTeams;
+    private ArrayList<TournamentMatch> matches;
     ListView lv = null;
     TournamentTeam team = null;
     MatchGroup matchgroup = null;
     MatchTable table = null;
     String matchGroupId = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class TeamActivity extends AppCompatActivity {
         DataManager.getInstance().getTournamentMatches(null, matchGroupId, null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
             @Override
             public void successCallback(ArrayList<TournamentMatch> data) {
-                final ArrayList<TournamentMatch> matches = new ArrayList<TournamentMatch>();
+                matches = new ArrayList<>();
                 for (TournamentMatch m : data) {
                     if (matchgroup == null && (m.getHometeamname().equals(team.getName()) || m.getAwayteamname().equals(team.getName()))) {
                         matches.add(m);
@@ -103,8 +103,13 @@ public class TeamActivity extends AppCompatActivity {
                     @Override
                     public void successCallback(ArrayList<MatchTable> data) {
                         ArrayList<MatchTable> tables = new ArrayList<MatchTable>();
-                        for (MatchTable table : data) {
-                            tables.add(table);
+                        if(data.isEmpty()){
+                            tables.add(createEmptyTable());
+                        }
+                        else{
+                            for (MatchTable table : data) {
+                                tables.add(table);
+                            }
                         }
                         System.out.println("inside teamactivity SUCCESSCALLBACK");
                         lv.setAdapter(new MatchAdapter(getApplicationContext(), matches, tables));
@@ -184,5 +189,43 @@ public class TeamActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private MatchTable createEmptyTable(){
+        MatchTable emptyTable = new MatchTable();
+        ArrayList<MatchTableRow> rows = new ArrayList<>();
+        MatchTableRow header = new MatchTableRow();
+
+        ArrayList<String> teamNames = new ArrayList<>();
+        for(TournamentMatch match : matches){
+            if(!teamNames.contains(match.getHometeamname())){
+                teamNames.add(match.getHometeamname());
+            }
+            if(!teamNames.contains(match.getAwayteamname())){
+                teamNames.add(match.getAwayteamname());
+            }
+        }
+        Collections.sort(teamNames);
+
+        for(int i = 0; i<teamNames.size(); i++){
+            MatchTableRow row = new MatchTableRow();
+            row.setPosition("" + (i+1));
+            row.setA(teamNames.get(i));
+            row.setB("0");
+            row.setC("0");
+            row.setD("0");
+            row.setE("0");
+            row.setF("0 0 0");
+            row.setG("0");
+            row.setH("0");
+            row.setI("0");
+            row.setJ("0");
+            row.setK("0");
+            row.setL("0");
+            rows.add(row);
+        }
+        emptyTable.setHeader(header);
+        emptyTable.setRows(rows);
+        return emptyTable;
     }
 }
