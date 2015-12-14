@@ -50,7 +50,8 @@ public class FieldActivityFragmentDiaries extends Fragment {
                             public void successCallback(ArrayList<TournamentMatch> data) {
                                 ArrayList<TournamentMatch> matches = new ArrayList<TournamentMatch>();
                                 for (TournamentMatch m : data) {
-                                    if (m.getHomegoal() == null && m.getFieldid().equals(fieldnames.get(position).getFieldID())) { // Kan være noe funky her
+
+                                    if ((m.getHomegoal() == "" && m.getFieldid().equals(fieldnames.get(position).getFieldID())) || (m.getHomegoal() == null)){ // m.getHomegoal() == null &&
                                         matches.add(m);
                                     }
                                 }
