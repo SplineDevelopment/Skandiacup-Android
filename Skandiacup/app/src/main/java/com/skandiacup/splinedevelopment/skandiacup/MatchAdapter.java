@@ -283,8 +283,8 @@ public class MatchAdapter extends BaseAdapter{
                 return setMatchesPlayed(index, vi);
             }
             default:{
-                String adapter_match_errorOccurd = context.getResources().getString(R.string.adapter_match_errorOccurd);
-                return setInfosection(vi, adapter_match_errorOccurd);
+                String adapter_match_errorOccurred = context.getResources().getString(R.string.adapter_match_errorOccurred);
+                return setInfosection(vi, adapter_match_errorOccurred);
             }
 
         }
