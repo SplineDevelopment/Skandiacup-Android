@@ -48,7 +48,7 @@
     <string name="adapter_match_noUpcomingMatches">No upcoming matches</string>
     <string name="adapter_match_gamesPlayed">Games played</string>
     <string name="adapter_match_noGamesPlayed">No games played</string>
-    <string name="adapter_match_errorOccurd">No games played</string>
+    <string name="adapter_match_errorOccurred">Error occurred</string>
 
 
 
