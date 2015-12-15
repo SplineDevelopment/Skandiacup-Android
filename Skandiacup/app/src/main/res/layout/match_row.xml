@@ -14,8 +14,9 @@
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/dateLabel"
+        android:gravity="center|start"
         android:textColor="#0E0808"
-        android:layout_gravity="left|top" />
+        android:layout_gravity="start|top" />
 
     <TextView
         android:paddingLeft="16dp"
@@ -24,7 +25,7 @@
         android:text="New Text"
         android:id="@+id/homeScoreLabel"
         android:textColor="#0E0808"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="start|center_vertical" />
 
     <TextView
         android:paddingLeft="16dp"
@@ -33,7 +34,7 @@
         android:text="New Text"
         android:id="@+id/awayScoreLabel"
         android:textColor="#0E0808"
-        android:layout_gravity="left|bottom" />
+        android:layout_gravity="start|bottom" />
 
     <TextView
         android:paddingLeft="16dp"
