@@ -19,12 +19,4 @@
         android:id="@+id/teamsListItem"
         android:textColor="#0E0808"
         android:layout_gravity="start|top" />
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-            android:id="@+id/matchClassNameLabel"
-        android:textColor="#0E0808"
-        android:layout_gravity="end|top" />
-
 </FrameLayout>

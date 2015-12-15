@@ -51,6 +51,8 @@
     <string name="adapter_match_gamesPlayed">Games played</string>
     <string name="adapter_match_noGamesPlayed">No games played</string>
     <string name="adapter_match_errorOccurred">Error occurred</string>
+    <string name="adapter_match_no">No</string>
+    <string name="adapter_match_result">result</string>
 
     <!-- Static names in Teams Adapter-->
     <string name="adapter_teams_class">Class</string>
