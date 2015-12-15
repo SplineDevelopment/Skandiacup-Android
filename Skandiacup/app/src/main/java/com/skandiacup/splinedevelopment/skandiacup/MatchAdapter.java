@@ -1,6 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class MatchAdapter extends BaseAdapter{
     public ArrayList<TournamentMatch> matchesNotYetPlayed(ArrayList<TournamentMatch> m){
         ArrayList<TournamentMatch> matchesNotYetPlayed = new ArrayList<>();
         for (TournamentMatch match : m){
-            if (match.getHomegoal().equals(null) || match.getAwaygoal().equals(null)){
+            if (match.getHomegoal().equals("") || match.getAwaygoal().equals("")){
                 matchesNotYetPlayed.add(match);
             }
         }
@@ -168,15 +169,19 @@ public class MatchAdapter extends BaseAdapter{
         String finalDate = tempDate[0];
         String time = tempDate[1];
         StringBuilder sb = new StringBuilder(time);
-        sb.delete(5,8);
+        sb.delete(5, 8);
         time = sb.toString();
         dateLabel.setText(finalDate);
         timeLabel.setText(time);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
-        homescore.setText(matchesNotYetPlayed.get(position).getHomegoal());
+        homescore.setText(context.getResources().getString(R.string.adapter_match_no));
+        homescore.setTextSize(10);
+        homescore.setPadding(60,0,0,0);
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
-        awayscore.setText(matchesNotYetPlayed.get(position).getAwaygoal());
+        awayscore.setText(context.getResources().getString(R.string.adapter_match_result));
         TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
+        awayscore.setTextSize(10);
+        awayscore.setPadding(50,0,0,0);
         hometeam.setText(matchesNotYetPlayed.get(position).getHometeamname());
         TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
         awayteam.setText(matchesNotYetPlayed.get(position).getAwayteamname());
