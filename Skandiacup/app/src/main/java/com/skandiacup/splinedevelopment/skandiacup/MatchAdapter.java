@@ -181,13 +181,13 @@ public class MatchAdapter extends BaseAdapter{
         timeLabel.setText(time);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
         homescore.setText(context.getResources().getString(R.string.adapter_match_no));
-        homescore.setTextSize(10);
-        homescore.setPadding(60, 0, 0, 0);
+        homescore.setTextSize(12);
+        homescore.setPadding(60, 40, 0, 0);
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
         awayscore.setText(context.getResources().getString(R.string.adapter_match_result));
         TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
-        awayscore.setTextSize(10);
-        awayscore.setPadding(50, 0, 0, 0);
+        awayscore.setTextSize(12);
+        awayscore.setPadding(50, 0, 0, 50);
         hometeam.setText(matchesNotYetPlayed.get(position).getHometeamname());
         TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
         awayteam.setText(matchesNotYetPlayed.get(position).getAwayteamname());
@@ -265,19 +265,31 @@ public class MatchAdapter extends BaseAdapter{
         switch (s){
             case "tableheader": {
                 String adapter_match_table = context.getResources().getString(R.string.adapter_match_table);
-                return setHeader(vi, adapter_match_table, true); //
+                View v = setHeader(vi, adapter_match_table, true);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "tableinformation": {
-                return setTableHeader(vi);
+                View v = setTableHeader(vi);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "tableitem": {
                 String indexString = map.get("tableitem").toString();
                 int index = Integer.parseInt(indexString);
-                return setTableRow(vi, matchTableRows.get(index));
+                View v = setTableRow(vi, matchTableRows.get(index));
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "matchesnotplayedheader": {
                 String adapter_match_upcomingMatches = context.getResources().getString(R.string.adapter_match_upcomingMatches);
-                return setHeader(vi, adapter_match_upcomingMatches, false);
+                View v = setHeader(vi, adapter_match_upcomingMatches, false);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "noupcomming": {
                 String adapter_match_noUpcomingMatches = context.getResources().getString(R.string.adapter_match_noUpcomingMatches);
@@ -290,7 +302,10 @@ public class MatchAdapter extends BaseAdapter{
             }
             case "matchesplayedheader": {
                 String adapter_match_gamesPlayed = context.getResources().getString(R.string.adapter_match_gamesPlayed);
-                return setHeader(vi, adapter_match_gamesPlayed, false);
+                View v =  setHeader(vi, adapter_match_gamesPlayed, false);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "nomatchesplayed": {
                 String adapter_match_noGamesPlayed = context.getResources().getString(R.string.adapter_match_noGamesPlayed);

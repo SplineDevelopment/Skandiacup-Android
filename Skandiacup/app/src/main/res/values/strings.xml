@@ -10,8 +10,8 @@
     <string name="title_activity_news_item">News</string>
     <string name="title_activity_team">Team</string>
     <string name="title_activity_match_class">Match class</string>
-    <string name="title_activity_match_view">Match view</string>
-    <string name="title_activity_field_diaries_team_selected">Field diary</string>
+    <string name="title_activity_match_view">Match</string>
+    <string name="title_activity_field_diaries_team_selected">Match overview</string>
     <string name="title_Activity_InstagramPopover">#Skandiacup2016</string>
 
     <!--Static names in Main activity -->
@@ -34,7 +34,7 @@
 
     <!--Static names in Field activity -->
     <string name="activity_field_tab_map">Map</string>
-    <string name="activity_field_tab_Diaries">Diaries</string>
+    <string name="activity_field_tab_Diaries">Field overview</string>
     <string name="activity_field_no_matches_available">No matches available</string>
 
     <!--Static names in Endplay activity -->
