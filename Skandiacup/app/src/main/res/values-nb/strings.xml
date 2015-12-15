@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Skandiacup</string>
-    <string name="action_settings">Instillinger</string>
+    <string name="action_settings">Innstillinger</string>
     <string name="activity_Endplay_tab_aendplay">A-sluttspill</string>
     <string name="activity_Endplay_tab_bendplay">B-sluttspill</string>
     <string name="activity_Team_Toast_teamAdded">Lag lagt til i favoritt</string>
