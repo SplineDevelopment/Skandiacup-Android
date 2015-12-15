@@ -74,6 +74,8 @@ public class EndPlayMatchAdapter extends BaseAdapter{
                 vi = inflater.inflate(R.layout.list_header, null);
                 TextView text = (TextView) vi.findViewById(R.id.list_header_title);
                 text.setText(HEADER_TITLES.get(index + ".0000"));
+                text.setEnabled(false);
+                text.setOnClickListener(null);
                 return vi;
             }
             pow++;
