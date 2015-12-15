@@ -49,7 +49,6 @@ public class FavoritesActivity extends AppCompatActivity {
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
         }
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         favoriteTeamsID = getFavoritedTeamsId();
             DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
