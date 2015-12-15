@@ -94,7 +94,7 @@ public class TeamActivity extends AppCompatActivity {
                 for (TournamentMatch m : data) {
                     if (matchgroup == null && (m.getHometeamname().equals(team.getName()) || m.getAwayteamname().equals(team.getName()))) {
                         matches.add(m);
-                    } else {
+                    } else if(matchgroup != null){
                         matches.add(m);
                     }
                 }
