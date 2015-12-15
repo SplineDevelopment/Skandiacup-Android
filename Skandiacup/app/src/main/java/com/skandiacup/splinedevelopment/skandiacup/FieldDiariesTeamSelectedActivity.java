@@ -36,7 +36,6 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
             TextView tv = (TextView) findViewById(R.id.noTableMessage);
             tv.setText(getApplicationContext().getResources().getString(R.string.activity_field_no_matches_available));
         }
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

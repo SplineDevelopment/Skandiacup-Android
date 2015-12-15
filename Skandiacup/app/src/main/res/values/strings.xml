@@ -44,6 +44,7 @@
     <!--Static names in Team Activity activity-->
     <string name="activity_Team_Toast_teamAdded">Team added to favorites</string>
     <string name="activity_Team_Toast_teamRemoved">Team removed from favorites</string>
+    <string name="table_header_team_name">teamname</string>
 
     <!--Static names in Match adapter-->
     <string name="adapter_match_table">Table</string>
