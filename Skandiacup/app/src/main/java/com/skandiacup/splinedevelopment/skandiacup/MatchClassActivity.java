@@ -25,10 +25,6 @@ public class MatchClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match_class);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar a = getSupportActionBar();
-        if (a != null) {
-            a.setDisplayHomeAsUpEnabled(true);
-        }
         ListView lv = (ListView) findViewById(R.id.matchGroupsList);
         final MatchClass selectedClass = (MatchClass) getIntent().getSerializableExtra("MatchClass");
         setTitle(selectedClass.getName());

@@ -6,13 +6,13 @@
     android:layout_height="wrap_content"
     app:columnCount="8"
     android:textSize="20sp"
-    android:textColor="#0E0808"
     android:background="#8BBB30"
     android:id="@+id/tableHeader">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:textColor="#FFFFFF"
         android:text="#"
         android:id="@+id/textView2"
         app:layout_row="0"
@@ -23,6 +23,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="match_parent"
+        android:textColor="#FFFFFF"
         android:text="teamname"
         android:id="@+id/textView3"
         android:gravity="center"
@@ -33,6 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="Sp"
         android:id="@+id/textView4"
         android:gravity="center"
@@ -45,6 +47,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_columnWeight="1"
+        android:textColor="#FFFFFF"
         android:text="S"
         android:id="@+id/textView5"
         app:layout_row="0"
@@ -55,6 +58,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_columnWeight="1"
+        android:textColor="#FFFFFF"
         android:text="U"
         android:id="@+id/textView6"
         app:layout_row="0"
@@ -67,6 +71,7 @@
         app:layout_columnWeight="1"
         android:text="T"
         android:id="@+id/textView7"
+        android:textColor="#FFFFFF"
         app:layout_row="0"
         app:layout_column="5" />
 
@@ -76,6 +81,7 @@
         android:gravity="center"
         app:layout_columnWeight="1"
         android:text="+/-"
+        android:textColor="#FFFFFF"
         android:id="@+id/textView8"
         app:layout_row="0"
         app:layout_column="6" />
@@ -83,6 +89,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:gravity="center"
         app:layout_columnWeight="1"
         android:text="P"
