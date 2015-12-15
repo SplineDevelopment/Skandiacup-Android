@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
@@ -31,6 +32,10 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
         System.out.println("Matches.size(): " + matches.size());
         lv = (ListView) findViewById(R.id.FDMatchesList);
         lv.setAdapter(new FieldDiariesSelectedTeamAdapter(getApplicationContext(), matches));
+        if (matches.size() == 0){
+            TextView tv = (TextView) findViewById(R.id.noTableMessage);
+            tv.setText(getApplicationContext().getResources().getString(R.string.activity_field_no_matches_available));
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
