@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +25,12 @@ public class MatchClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match_class);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ActionBar a = getSupportActionBar();
+        if (a != null) {
+            a.setDisplayHomeAsUpEnabled(true);
+        }
+
         ListView lv = (ListView) findViewById(R.id.matchGroupsList);
         final MatchClass selectedClass = (MatchClass) getIntent().getSerializableExtra("MatchClass");
         setTitle(selectedClass.getName());
@@ -42,4 +50,16 @@ public class MatchClassActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
