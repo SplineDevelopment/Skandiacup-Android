@@ -31,7 +31,6 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
         System.out.println("Matches.size(): " + matches.size());
         lv = (ListView) findViewById(R.id.FDMatchesList);
         lv.setAdapter(new FieldDiariesSelectedTeamAdapter(getApplicationContext(), matches));
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
