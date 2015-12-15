@@ -14,7 +14,7 @@
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/dateLabel"
-        android:gravity="center|start"
+        android:gravity="center_vertical|start"
         android:textColor="#0E0808"
         android:layout_gravity="start|top" />
 
@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="New Text"
+        android:gravity="center_vertical"
         android:id="@+id/homeScoreLabel"
         android:textColor="#0E0808"
         android:layout_gravity="start|center_vertical" />
@@ -34,6 +35,7 @@
         android:text="New Text"
         android:id="@+id/awayScoreLabel"
         android:textColor="#0E0808"
+        android:gravity="center_vertical"
         android:layout_gravity="start|bottom" />
 
     <TextView
@@ -41,6 +43,7 @@
         android:layout_width="218dp"
         android:layout_height="30dp"
         android:text="New Text"
+        android:gravity="center_vertical"
         android:id="@+id/homeTeamLabel"
         android:textColor="#0E0808"
         android:layout_gravity="center" />
@@ -52,16 +55,31 @@
         android:text="New Text"
         android:id="@+id/awayTeamLabel"
         android:textColor="#0E0808"
+        android:gravity="center_vertical"
         android:layout_gravity="center_horizontal|bottom" />
 
     <TextView
         android:paddingRight="16dp"
         android:textColor="#0E0808"
-        android:gravity="center|right"
+        android:gravity="center_vertical|end"
         android:background="#B1ADAB"
         android:layout_width="183dp"
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/timeLabel"
-        android:layout_gravity="right|top" />
+        android:layout_gravity="end|top" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="60dp"
+        android:src="@drawable/righticon"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:alpha="0.4"
+        android:paddingTop="37dp"
+        android:paddingBottom="7dp"
+        android:layout_gravity="center_vertical|end"
+        android:paddingRight="16dp"
+        />
+
 </FrameLayout>
