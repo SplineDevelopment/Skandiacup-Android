@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:minHeight="60dp"
+    android:paddingStart="16dp"
     android:paddingLeft="16dp"
+    android:paddingEnd="16dp"
+    android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:textSize="20sp"
     android:textColor="#0E0808"
-    android:id="@+id/teamsListItem">
-</TextView>
+    android:id="@+id/matchRowItem">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/teamsListItem"
+        android:textColor="#0E0808"
+        android:layout_gravity="start|top" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+            android:id="@+id/matchClassNameLabel"
+        android:textColor="#0E0808"
+        android:layout_gravity="end|top" />
+
+</FrameLayout>
