@@ -53,6 +53,11 @@
     <string name="adapter_match_errorOccurred">Error occurred</string>
     <string name="adapter_match_no">No</string>
     <string name="adapter_match_result">result</string>
+
+    <!-- Static names in Teams Adapter-->
+    <string name="adapter_teams_class">Class</string>
+    <string name="adapter_teams_group">Group</string>
+
     <!-- Values contained in the spinner in filterView-->
     <string name ="sex_all">All</string>
     <string name ="sex_male">Men</string>

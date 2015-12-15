@@ -35,7 +35,7 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
            String soap_action = "http://profixio.com/soap/tournament/ForTournamentExt.php#" + params[0];
            SoapObject Request = new SoapObject(NAMESPACE, params[0]);
            Request.addProperty("application_key", "enKHJhF");
-           Request.addProperty("tournamentID", 16209);
+           Request.addProperty("tournamentID", 14218);
 
            for(int i = 1;i<params.length; i+=2){
                try{

@@ -30,9 +30,10 @@ public class MatchAdapter extends BaseAdapter{
     private ArrayList<MatchTableRow> matchTableRows;
     private static LayoutInflater inflater = null;
     private int sections = 4;
+    private String matchClassName;
     Map<String, Integer> map = new HashMap<String, Integer>();
 
-    public MatchAdapter(Context context, ArrayList<TournamentMatch> matches, ArrayList<MatchTable> tables) {
+    public MatchAdapter(Context context, ArrayList<TournamentMatch> matches, ArrayList<MatchTable> tables, String matchClassName) {
         this.context = context;
         this.matches = matches;
         this.matchesNotYetPlayed = matchesNotYetPlayed(matches);
@@ -43,7 +44,7 @@ public class MatchAdapter extends BaseAdapter{
         }else{
             this.matchTableRows = new ArrayList<>();
         }
-
+        this.matchClassName = matchClassName;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -100,10 +101,13 @@ public class MatchAdapter extends BaseAdapter{
         return position;
     }
 
-    public View setHeader(View convertView, String title){
+    public View setHeader(View convertView, String title, boolean isTableHeader){
         View vi = convertView;
         vi = inflater.inflate(R.layout.list_header, null);
         TextView text = (TextView) vi.findViewById(R.id.list_header_title);
+        if(isTableHeader && matchClassName != null) {
+            title += " - " + matchClassName;
+        }
         text.setText(title);
         return text;
     }
@@ -269,7 +273,7 @@ public class MatchAdapter extends BaseAdapter{
         switch (s){
             case "tableheader": {
                 String adapter_match_table = context.getResources().getString(R.string.adapter_match_table);
-                return setHeader(vi, adapter_match_table); //
+                return setHeader(vi, adapter_match_table, true); //
             }
             case "tableinformation": {
                 return setTableHeader(vi);
@@ -281,7 +285,7 @@ public class MatchAdapter extends BaseAdapter{
             }
             case "matchesnotplayedheader": {
                 String adapter_match_upcomingMatches = context.getResources().getString(R.string.adapter_match_upcomingMatches);
-                return setHeader(vi, adapter_match_upcomingMatches);
+                return setHeader(vi, adapter_match_upcomingMatches, false);
             }
             case "noupcomming": {
                 String adapter_match_noUpcomingMatches = context.getResources().getString(R.string.adapter_match_noUpcomingMatches);
@@ -294,7 +298,7 @@ public class MatchAdapter extends BaseAdapter{
             }
             case "matchesplayedheader": {
                 String adapter_match_gamesPlayed = context.getResources().getString(R.string.adapter_match_gamesPlayed);
-                return setHeader(vi, adapter_match_gamesPlayed);
+                return setHeader(vi, adapter_match_gamesPlayed, false);
             }
             case "nomatchesplayed": {
                 String adapter_match_noGamesPlayed = context.getResources().getString(R.string.adapter_match_noGamesPlayed);

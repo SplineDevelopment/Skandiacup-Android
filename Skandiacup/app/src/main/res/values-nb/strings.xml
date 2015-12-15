@@ -40,4 +40,6 @@
     <string name="sex_all">Alle</string>
     <string name="sex_female">Damer</string>
     <string name="sex_male">Menn</string>
+    <string name="adapter_teams_class">Klasse</string>
+    <string name="adapter_teams_group">Gruppe</string>
 </resources>

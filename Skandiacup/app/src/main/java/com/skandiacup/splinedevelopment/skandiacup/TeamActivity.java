@@ -34,6 +34,7 @@ public class TeamActivity extends AppCompatActivity {
     MatchGroup matchgroup = null;
     MatchTable table = null;
     String matchGroupId = null;
+    private String matchClassName;
 
 
     @Override
@@ -51,6 +52,7 @@ public class TeamActivity extends AppCompatActivity {
         //Therefore check for null when using team /matchgroup in other places.
         team = (TournamentTeam) getIntent().getSerializableExtra("TeamName");
         matchgroup = (MatchGroup) getIntent().getSerializableExtra("matchGroup");
+        matchClassName = (String)getIntent().getSerializableExtra("matchClassName");
 
         if(team != null){
             matchGroupId = team.getMatchGroupId();
@@ -112,7 +114,7 @@ public class TeamActivity extends AppCompatActivity {
                             }
                         }
                         System.out.println("inside teamactivity SUCCESSCALLBACK");
-                        lv.setAdapter(new MatchAdapter(getApplicationContext(), matches, tables));
+                        lv.setAdapter(new MatchAdapter(getApplicationContext(), matches, tables, matchClassName));
                     }
 
                     @Override
@@ -126,7 +128,6 @@ public class TeamActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public ArrayList<TournamentTeam> getFavoritedTeams(ImageButton button){
