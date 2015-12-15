@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
@@ -38,6 +39,7 @@ public class FavoritesActivity extends AppCompatActivity {
     SharedPreferences preferences;
     ArrayList<String> favoriteTeamsID;
     ArrayList<TournamentTeam> teams = new ArrayList<>();
+    ArrayList<MatchClass> matchClasses;
     ListView lv = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,17 @@ public class FavoritesActivity extends AppCompatActivity {
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
         }
+        DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
+            @Override
+            public void successCallback(ArrayList<MatchClass> data) {
+                matchClasses = data;
+            }
+
+            @Override
+            public void errorCallback() {
+
+            }
+        });
         preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         favoriteTeamsID = getFavoritedTeamsId();
             DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
@@ -62,7 +75,7 @@ public class FavoritesActivity extends AppCompatActivity {
                         }
                     }
                     lv = (ListView) findViewById(R.id.favoritesListView);
-                    lv.setAdapter(new FavoritesAdapter(getApplicationContext(), teams));
+                    lv.setAdapter(new FavoritesAdapter(getApplicationContext(), teams, matchClasses));
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,
