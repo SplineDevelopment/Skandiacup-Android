@@ -49,7 +49,6 @@ public class TournamentActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_tournament, container, false);
         lv = (ListView)rootView.findViewById(R.id.teamsList);
-
         final View filterView = inflater.inflate(R.layout.filterview, null, false);
         filterText = (EditTextBackEvent) filterView.findViewById(R.id.filterText);
         sexPicker = (Spinner) filterView.findViewById(R.id.sexPicker);
