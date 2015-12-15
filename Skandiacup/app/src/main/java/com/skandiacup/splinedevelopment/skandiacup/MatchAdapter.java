@@ -1,6 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,7 @@ public class MatchAdapter extends BaseAdapter{
     public ArrayList<TournamentMatch> matchesNotYetPlayed(ArrayList<TournamentMatch> m){
         ArrayList<TournamentMatch> matchesNotYetPlayed = new ArrayList<>();
         for (TournamentMatch match : m){
-            if (match.getHomegoal().equals(null) || match.getAwaygoal().equals(null)){
+            if (match.getHomegoal().equals("") || match.getAwaygoal().equals("")){
                 matchesNotYetPlayed.add(match);
             }
         }
@@ -71,7 +72,6 @@ public class MatchAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         int count = matchTableRows.size() + matches.size() + sections; // + matches.size() plus 1 beacuse og tableinformationheader
-        System.out.println("Antall celler som skal fylles ut " + count);
         return count;
     }
 
@@ -83,13 +83,16 @@ public class MatchAdapter extends BaseAdapter{
         s = s.replace("[", "");
         int index = -1;
         switch (s) {
+
             case "matchesnotplayeditem": {
                 String indexString = map.get("matchesnotplayeditem").toString();
                 index = Integer.parseInt(indexString);
+                break;
             }
             case "matchesplayeditem": {
                 String indexString = map.get("matchesplayeditem").toString();
                 index = Integer.parseInt(indexString);
+                break;
             }
         }
         return matches.get(index);
@@ -172,15 +175,19 @@ public class MatchAdapter extends BaseAdapter{
         String finalDate = tempDate[0];
         String time = tempDate[1];
         StringBuilder sb = new StringBuilder(time);
-        sb.delete(5,8);
+        sb.delete(5, 8);
         time = sb.toString();
         dateLabel.setText(finalDate);
         timeLabel.setText(time);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
-        homescore.setText(matchesNotYetPlayed.get(position).getHomegoal());
+        homescore.setText(context.getResources().getString(R.string.adapter_match_no));
+        homescore.setTextSize(10);
+        homescore.setPadding(60, 0, 0, 0);
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
-        awayscore.setText(matchesNotYetPlayed.get(position).getAwaygoal());
+        awayscore.setText(context.getResources().getString(R.string.adapter_match_result));
         TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
+        awayscore.setTextSize(10);
+        awayscore.setPadding(50, 0, 0, 0);
         hometeam.setText(matchesNotYetPlayed.get(position).getHometeamname());
         TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
         awayteam.setText(matchesNotYetPlayed.get(position).getAwayteamname());
@@ -218,39 +225,30 @@ public class MatchAdapter extends BaseAdapter{
         final int MATCHESPLAYED = UPCOMMINGMATCHES + matchesPlayed.size() + 1; // plus 1 because of the header
         if (position >= 0 && position < TABLECOUNTER) {
             if (position == 0) {
-                System.out.println("Setting tableheader in positionResolver()");
                 map.put("tableheader", 0);
             } else if (position == 1){
-                System.out.println("Setting tableinformation in positionResolver()");
                 map.put("tableinformation", 0);
             } else{
-                System.out.println("Setting tableitem in positionResolver()");
                 int newPosition = position - 2; // resets position to fill in correct tableitems
                 map.put("tableitem", newPosition); // Minus 1 because of the header
             }
         }
         if (position >= TABLECOUNTER && position < UPCOMMINGMATCHES) {
             int newPosition = position - TABLECOUNTER;
-            System.out.println(newPosition);
             if (newPosition == 0) {
-                System.out.println("Setting matches not played header in positionResolver()");
                 map.put("matchesnotplayedheader", 0);
             }
             else{
                 newPosition = newPosition-1; // minus 1 because of header
-                System.out.println("Setting matches not played item in positionResolver()");
                 map.put("matchesnotplayeditem", newPosition);
             }
         }
         if (position >= UPCOMMINGMATCHES && position < MATCHESPLAYED) {
             int newPosition = position - UPCOMMINGMATCHES;
-            System.out.println(newPosition);
             if (newPosition == 0) {
-                System.out.println("Setting matches played header in positionResolver()");
                 map.put("matchesplayedheader", 0);
             } else{
                 newPosition = newPosition-1; // minus 1 because of header
-                System.out.println("Setting matches played item in positionResolver()");
                 map.put("matchesplayeditem", newPosition);
             }
         }
@@ -264,7 +262,6 @@ public class MatchAdapter extends BaseAdapter{
         String s = map.keySet().toString();
         s = s.replace("]", "");
         s = s.replace("[", "");
-        System.out.println(s);
         switch (s){
             case "tableheader": {
                 String adapter_match_table = context.getResources().getString(R.string.adapter_match_table);

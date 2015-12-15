@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Skandiacup</string>
-    <string name="action_settings">Instillinger</string>
+    <string name="action_settings">Innstillinger</string>
     <string name="activity_Endplay_tab_aendplay">A-sluttspill</string>
     <string name="activity_Endplay_tab_bendplay">B-sluttspill</string>
     <string name="activity_Team_Toast_teamAdded">Lag lagt til i favoritt</string>
@@ -18,6 +18,8 @@
     <string name="adapter_match_noUpcomingMatches">Ingen kommende kamper</string>
     <string name="adapter_match_table">Tabell</string>
     <string name="adapter_match_upcomingMatches">Kommende kamper</string>
+    <string name="adapter_match_no">Ingen</string>
+    <string name="adapter_match_result">resultat</string>
     <string name="title_Activity_InstagramPopover">#Skandiacup2016</string>
     <string name="title_activity_endplay">Sluttspill</string>
     <string name="title_activity_favorites">Favoritt lag</string>
@@ -30,7 +32,7 @@
     <string name="title_activity_team">Lag</string>
     <string name="title_activity_tournament">Turnering</string>
     <string name="main_activity_endplay">Sluttspill</string>
-    <string name="main_activity_favourite">Favoritt lag</string>
+    <string name="main_activity_favourite">Favorittlag</string>
     <string name="main_activity_field">Baner</string>
     <string name="main_activity_home">Nyheter og info</string>
     <string name="main_activity_social">Instagram</string>
