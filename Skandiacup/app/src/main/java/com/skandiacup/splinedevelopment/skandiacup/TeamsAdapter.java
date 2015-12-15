@@ -29,21 +29,22 @@ class TeamsAdapter extends ArrayAdapter<TournamentTeam> {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.teams_table_view_item, null);
         }
+
+        String nameText = (getItem(position).getName());
         for(MatchClass mc : matchClasses){
             if(mc.getId().equals(getItem(position).getMatchClassId())) {
                 for (MatchGroup mg : mc.getMatchGroups()) {
                     if (mg.getId().equals(getItem(position).getMatchGroupId())) {
-                        ((TextView) convertView.findViewById(R.id.matchClassNameLabel))
-                                .setText(getContext().getResources().getString(R.string.adapter_teams_class)
+                                        nameText += " - " + getContext().getResources().getString(R.string.adapter_teams_class)
                                         + " " + mc.getCode() +
                                         " - " + getContext().getResources().getString(R.string.adapter_teams_group)
-                                        + " " + mg.getName());
+                                        + " " + mg.getName();
                     }
                 }
             }
         }
         TextView text = (TextView) convertView.findViewById(R.id.teamsListItem);
-        text.setText(getItem(position).getName());
+        text.setText(nameText);
         return convertView;
     }
 }
