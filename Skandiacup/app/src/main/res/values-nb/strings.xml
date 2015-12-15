@@ -6,8 +6,9 @@
     <string name="activity_Endplay_tab_bendplay">B-sluttspill</string>
     <string name="activity_Team_Toast_teamAdded">Lag lagt til i favoritt</string>
     <string name="activity_Team_Toast_teamRemoved">Lag fjernet fra favoritt</string>
-    <string name="activity_field_tab_Diaries">Dagbok</string>
+    <string name="activity_field_tab_Diaries">Baneoversikt</string>
     <string name="activity_field_tab_map">Kart</string>
+    <string name="activity_field_no_matches_available">Ingen kamper tilgjengelig</string>
     <string name="activity_news_tab_info">Info</string>
     <string name="activity_news_tab_news">Nyheter</string>
     <string name="activity_tournament_tab_groups">Gruppe</string>

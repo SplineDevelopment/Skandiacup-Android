@@ -35,6 +35,7 @@
     <!--Static names in Field activity -->
     <string name="activity_field_tab_map">Map</string>
     <string name="activity_field_tab_Diaries">Diaries</string>
+    <string name="activity_field_no_matches_available">No matches available</string>
 
     <!--Static names in Endplay activity -->
     <string name="activity_Endplay_tab_aendplay">A-Endplay</string>
