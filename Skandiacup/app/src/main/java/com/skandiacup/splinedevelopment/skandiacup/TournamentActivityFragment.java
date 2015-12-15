@@ -1,5 +1,6 @@
 package com.skandiacup.splinedevelopment.skandiacup;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 
 public class TournamentActivityFragment extends Fragment {
     ListView lv = null;
-    private EditText filterText;
+    private EditTextBackEvent filterText;
     private Spinner sexPicker;
     private Spinner countryPicker;
     private ArrayList<TournamentTeam> teamNames;
@@ -49,10 +51,18 @@ public class TournamentActivityFragment extends Fragment {
         lv = (ListView)rootView.findViewById(R.id.teamsList);
 
         final View filterView = inflater.inflate(R.layout.filterview, null, false);
-        filterText = (EditText) filterView.findViewById(R.id.filterText);
+        filterText = (EditTextBackEvent) filterView.findViewById(R.id.filterText);
         sexPicker = (Spinner) filterView.findViewById(R.id.sexPicker);
         countryPicker = (Spinner) filterView.findViewById(R.id.countryPicker);
         filteredTeams = new ArrayList<>();
+
+//        filterText.setOnEditTextImeBackListener(new EditTextImeBackListener() {
+//            @Override
+//            public void onImeBack(EditTextBackEvent ctrl, String text) {
+//                System.out.println("TEST AGAIN");
+//
+//            }
+//        });
 
         filterText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,17 +106,19 @@ public class TournamentActivityFragment extends Fragment {
         });
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+
+        final PopupWindow[] filterPopup = new PopupWindow[1];
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupWindow filterPopup;
-                filterPopup = new PopupWindow(filterView, GridLayout.LayoutParams.FILL_PARENT,
+                filterPopup[0] = new PopupWindow(filterView, GridLayout.LayoutParams.FILL_PARENT,
                         GridLayout.LayoutParams.WRAP_CONTENT, true); // Creation of pop
-                filterPopup.setAnimationStyle(android.R.style.Animation_Toast);
-                filterPopup.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-                filterPopup.showAsDropDown(rootView);
+                filterPopup[0].setAnimationStyle(android.R.style.Animation_Toast);
+                filterPopup[0].setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                filterPopup[0].showAsDropDown(rootView);
 
-                filterPopup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                filterPopup[0].setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
                         ImageView darkenScreen = (ImageView) rootView.findViewById(R.id.darkenScreen);
@@ -126,6 +138,15 @@ public class TournamentActivityFragment extends Fragment {
                 alpha.setDuration(500);
                 alpha.setFillAfter(true);
                 darkenScreen.startAnimation(alpha);
+                InputMethodManager inputMethodManager =(InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+            }
+        });
+
+        filterText.setOnEditTextImeBackListener(new EditTextImeBackListener() {
+            @Override
+            public void onImeBack(EditTextBackEvent ctrl, String text) {
+                filterPopup[0].dismiss();
             }
         });
 
@@ -153,10 +174,10 @@ public class TournamentActivityFragment extends Fragment {
                         Intent intent = new Intent(getContext(), TeamActivity.class);
                         TournamentTeam team = (TournamentTeam) lv.getAdapter().getItem(position);
                         intent.putExtra("TeamName", team);
-                        for(MatchClass mc : matchClasses){
-                            if(mc.getId().equals(team.getMatchClassId())){
-                                for(MatchGroup mg : mc.getMatchGroups()){
-                                    if(mg.getId().equals(team.getMatchGroupId())){
+                        for (MatchClass mc : matchClasses) {
+                            if (mc.getId().equals(team.getMatchClassId())) {
+                                for (MatchGroup mg : mc.getMatchGroups()) {
+                                    if (mg.getId().equals(team.getMatchGroupId())) {
                                         intent.putExtra("matchClassName", mc.getName() + " - " + mg.getName());
                                     }
                                 }
