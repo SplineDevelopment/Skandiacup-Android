@@ -8,6 +8,7 @@
     android:id="@+id/matchRowItem">
 
     <TextView
+        android:paddingLeft="16dp"
         android:background="#B1ADAB"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -17,6 +18,7 @@
         android:layout_gravity="left|top" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="New Text"
@@ -25,6 +27,7 @@
         android:layout_gravity="left|center_vertical" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="New Text"
@@ -33,6 +36,7 @@
         android:layout_gravity="left|bottom" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="218dp"
         android:layout_height="30dp"
         android:text="New Text"
@@ -41,6 +45,7 @@
         android:layout_gravity="center" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="218dp"
         android:layout_height="30dp"
         android:text="New Text"
