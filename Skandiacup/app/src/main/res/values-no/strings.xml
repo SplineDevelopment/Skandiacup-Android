@@ -35,4 +35,9 @@
     <string name="main_activity_home">Nyheter og info</string>
     <string name="main_activity_social">Instagram</string>
     <string name="main_activity_tournament">Turnering</string>
+    <string name="adapter_teams_class">Klasse</string>
+    <string name="adapter_teams_group">Gruppe</string>
+    <string name="sex_all">Alle</string>
+    <string name="sex_female">Damer</string>
+    <string name="sex_male">Menn</string>
 </resources>

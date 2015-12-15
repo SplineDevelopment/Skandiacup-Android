@@ -23,6 +23,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
@@ -58,10 +59,12 @@ public class TournamentActivityFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 filterTeams();
@@ -126,20 +129,10 @@ public class TournamentActivityFragment extends Fragment {
             }
         });
 
-        DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
+        DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
             @Override
-            public void successCallback(ArrayList<TournamentTeam> data) {
-                teamNames = data;
-                addCountryPickerValues();
-                lv.setAdapter(new TeamsAdapter(getContext(), teamNames));
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(getContext(), TeamActivity.class);
-                        intent.putExtra("TeamName", (TournamentTeam) lv.getAdapter().getItem(position));
-                        startActivity(intent);
-                    }
-                });
+            public void successCallback(ArrayList<MatchClass> data) {
+                matchClasses = data;
             }
 
             @Override
@@ -148,10 +141,32 @@ public class TournamentActivityFragment extends Fragment {
             }
         });
 
-        DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
+        DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
             @Override
-            public void successCallback(ArrayList<MatchClass> data) {
-                matchClasses = data;
+            public void successCallback(ArrayList<TournamentTeam> data) {
+                teamNames = data;
+                addCountryPickerValues();
+                lv.setAdapter(new TeamsAdapter(getContext(), teamNames, matchClasses));
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getContext(), TeamActivity.class);
+                        TournamentTeam team = (TournamentTeam) lv.getAdapter().getItem(position);
+                        intent.putExtra("TeamName", team);
+                        for(MatchClass mc : matchClasses){
+                            if(mc.getId().equals(team.getMatchClassId())){
+                                for(MatchGroup mg : mc.getMatchGroups()){
+                                    if(mg.getId().equals(team.getMatchGroupId())){
+                                        intent.putExtra("matchClassName", mc.getName() + " - " + mg.getName());
+                                    }
+                                }
+
+                            }
+                        }
+//                        intent.putExtra()
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -179,7 +194,7 @@ public class TournamentActivityFragment extends Fragment {
             }
         }
 
-//        Cannot use this method - it deletes all existing objects in the teams arraylist. WHY
+//        Cannot use this method - it deletes all existing objects in the teams arraylist.
 //        ((ArrayAdapter<TournamentTeam>)lv.getAdapter()).clear();
 
 //        ((ArrayAdapter<TournamentTeam>)lv.getAdapter()).addAll(filteredTeams);
@@ -187,7 +202,7 @@ public class TournamentActivityFragment extends Fragment {
 
 //        Therefore have to do this
 //        @TODO Check if this is causing poor performance
-        lv.setAdapter(new TeamsAdapter(getContext(), filteredTeams));
+        lv.setAdapter(new TeamsAdapter(getContext(), filteredTeams, matchClasses));
     }
 
     private void addCountryPickerValues(){
