@@ -58,11 +58,15 @@ public class FieldDiariesSelectedTeamAdapter extends BaseAdapter {
         String[] s = date.split("T");
         date = s[0];
         String time = s[1];
+        StringBuilder sb = new StringBuilder(time);
+        sb.delete(5,8);
+        time = sb.toString();
         text1.setText(date);
-        TextView text3 = (TextView) vi.findViewById(R.id.fieldDiaryMatchTime);
-        text3.setText(time);
         TextView text2 = (TextView) vi.findViewById(R.id.fieldDiaryMatchTeams);
         text2.setText(matches.get(position).getHometeamname() + " - " + matches.get(position).getAwayteamname());
+        TextView text3 = (TextView) vi.findViewById(R.id.fieldDiaryMatchTime);
+        text3.setText(time);
+
         return vi;
     }
 }
