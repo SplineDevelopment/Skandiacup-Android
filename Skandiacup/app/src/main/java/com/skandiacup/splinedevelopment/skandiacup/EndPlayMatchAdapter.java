@@ -84,7 +84,15 @@ public class EndPlayMatchAdapter extends BaseAdapter{
         ((TextView) vi.findViewById(R.id.awayTeamLabel)).setText(matches.get(position).getAwayteamname());
         ((TextView) vi.findViewById(R.id.homeScoreLabel)).setText(matches.get(position).getHomegoal());
         ((TextView) vi.findViewById(R.id.awayScoreLabel)).setText(matches.get(position).getAwaygoal());
-        ((TextView) vi.findViewById(R.id.dateLabel)).setText(matches.get(position).getMatchdate());
+        String date = matches.get(position).getMatchdate();
+        String[] s = date.split("T");
+        date = s[0];
+        String time = s[1];
+        StringBuilder sb = new StringBuilder(time);
+        sb.delete(5, 8);
+        time = sb.toString();
+        ((TextView) vi.findViewById(R.id.dateLabel)).setText(date);
+        ((TextView) vi.findViewById(R.id.timeLabel)).setText(time);
         return vi;
     }
 
