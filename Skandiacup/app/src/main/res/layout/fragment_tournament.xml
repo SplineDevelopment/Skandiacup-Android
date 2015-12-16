@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:paddingBottom="?attr/actionBarSize" >
 
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -8,7 +9,6 @@
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
         android:paddingTop="0dp"
-        android:paddingBottom="?attr/actionBarSize"
         tools:context=".MainActivity$PlaceholderFragment">
 
         <ListView
@@ -18,17 +18,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_menu_search"
-            android:layout_alignRight="@+id/teamsList"
-            android:layout_alignEnd="@+id/teamsList"
-            android:layout_alignBottom="@+id/teamsList"/>
     </RelativeLayout>
 
     <ImageView
@@ -38,4 +27,13 @@
         android:alpha="1.0"
         android:contentDescription = "Popup Fade out"
         android:src="@drawable/blacksquare" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_search"
+        />
 </FrameLayout>

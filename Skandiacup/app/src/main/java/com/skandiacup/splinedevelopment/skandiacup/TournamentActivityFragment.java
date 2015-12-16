@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +17,13 @@ import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
@@ -55,13 +56,13 @@ public class TournamentActivityFragment extends Fragment {
         countryPicker = (Spinner) filterView.findViewById(R.id.countryPicker);
         filteredTeams = new ArrayList<>();
 
-//        filterText.setOnEditTextImeBackListener(new EditTextImeBackListener() {
-//            @Override
-//            public void onImeBack(EditTextBackEvent ctrl, String text) {
-//                System.out.println("TEST AGAIN");
-//
-//            }
-//        });
+        Button clearText = (Button)filterView.findViewById(R.id.filtertext_deletebutton);
+        clearText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterText.setText("");
+            }
+        });
 
         filterText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -146,6 +147,18 @@ public class TournamentActivityFragment extends Fragment {
             @Override
             public void onImeBack(EditTextBackEvent ctrl, String text) {
                 filterPopup[0].dismiss();
+            }
+        });
+
+        filterText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    filterPopup[0].dismiss();
+                    return true;
+                }
+                return false;
             }
         });
 
