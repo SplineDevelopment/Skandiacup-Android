@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.MatchViewActivity;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
+import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
+import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,7 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_field_diaries_team_selected);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /*
         matches = (ArrayList<TournamentMatch>) getIntent().getSerializableExtra("Match");
         System.out.println("Matches.size(): " + matches.size());
         lv = (ListView) findViewById(R.id.FDMatchesList);
@@ -45,10 +48,48 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
         ActionBar a = getSupportActionBar();
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
         }
+
+        final String fieldId = (String) getIntent().getSerializableExtra("fieldId");
+
+        lv = (ListView) findViewById(R.id.FDMatchesList);
+
+        DataManager.getInstance().getTournamentMatches(null, null, null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
+            @Override
+            public void successCallback(ArrayList<TournamentMatch> data) {
+                ArrayList<TournamentMatch> matches = new ArrayList<TournamentMatch>();
+                for (TournamentMatch m : data) {
+                    if (m.getHomegoal().equals("") && m.getFieldid().equals(fieldId)) {
+                        matches.add(m);
+                    }
+                }
+                lv.setAdapter(new FieldDiariesSelectedTeamAdapter(getApplicationContext(), matches));
+                if (matches.size() == 0){
+                    TextView tv = (TextView) findViewById(R.id.noTableMessage);
+                    tv.setText(getApplicationContext().getResources().getString(R.string.activity_field_no_matches_available));
+                }
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TournamentMatch match = (TournamentMatch) lv.getAdapter().getItem(position);
+                        Intent intent = new Intent(getApplicationContext(), MatchViewActivity.class);
+                        intent.putExtra("match", match);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @Override
+            public void errorCallback() {
+
+            }
+        });
+
     }
 
     @Override

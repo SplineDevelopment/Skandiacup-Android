@@ -42,26 +42,9 @@ public class FieldActivityFragmentDiaries extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             final int position, long id) {
-                       final Intent intent = new Intent(getContext(), FieldDiariesTeamSelectedActivity.class);
-                        DataManager.getInstance().getTournamentMatches(null, null, null, null, null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
-                            @Override
-                            public void successCallback(ArrayList<TournamentMatch> data) {
-                                ArrayList<TournamentMatch> matches = new ArrayList<TournamentMatch>();
-                                for (TournamentMatch m : data) {
-
-                                    if ((m.getHomegoal().equals("") || m.getHomegoal() == null) && m.getFieldid().equals(fieldnames.get(position).getFieldID())){ // m.getHomegoal() == null &&
-                                        matches.add(m);
-                                    }
-                                }
-                                intent.putExtra("Match", matches);
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void errorCallback() {
-
-                            }
-                        });
+                        final Intent intent = new Intent(getContext(), FieldDiariesTeamSelectedActivity.class);
+                        intent.putExtra("fieldId", fieldnames.get(position).getFieldID());
+                        startActivity(intent);
                     }
                 });
             }
