@@ -42,7 +42,7 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
            soapEnvelope.setOutputSoapObject(Request);
 
            HttpTransportSE androidHttpTransport = new HttpTransportSE(URL, HTTP_TIMEOUT_MS);
-           androidHttpTransport.debug = true;
+           //androidHttpTransport.debug = true;
 
            //Make the HTTP call
            androidHttpTransport.call(soap_action, soapEnvelope);

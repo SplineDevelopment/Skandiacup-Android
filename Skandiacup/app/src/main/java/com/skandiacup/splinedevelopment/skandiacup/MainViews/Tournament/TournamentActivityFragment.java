@@ -182,6 +182,9 @@ public class TournamentActivityFragment extends Fragment {
             public void successCallback(ArrayList<TournamentTeam> data) {
                 teamNames = data;
                 addCountryPickerValues();
+                if (getContext() == null) {
+                    return;
+                }
                 lv.setAdapter(new TeamsAdapter(getContext(), teamNames, matchClasses));
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -248,7 +251,9 @@ public class TournamentActivityFragment extends Fragment {
                 countryCodes.add(team.getCountryCode());
             }
         }
-
+        if (getActivity() == null) {
+            return;
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countryCodes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countryPicker.setAdapter(adapter);

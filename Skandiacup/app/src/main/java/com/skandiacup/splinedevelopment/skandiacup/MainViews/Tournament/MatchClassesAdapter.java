@@ -23,8 +23,9 @@ public class MatchClassesAdapter extends BaseAdapter {
         // TODO Auto-generated constructor stub
         this.context = context;
         this.matchClasses = mcs;
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (context != null) {
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
     }
 
     @Override
