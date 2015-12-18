@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/testlayout"
     android:fitsSystemWindows="true"
-    tools:context="com.skandiacup.splinedevelopment.skandiacup.MainActivity">
+    tools:context="com.skandiacup.splinedevelopment.skandiacup.MainViews.MainActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"

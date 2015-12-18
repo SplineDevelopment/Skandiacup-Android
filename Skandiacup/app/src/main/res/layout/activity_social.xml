@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sosial"
     android:fitsSystemWindows="true"
-    tools:context="com.skandiacup.splinedevelopment.skandiacup.SocialActivity">
+    tools:context="com.skandiacup.splinedevelopment.skandiacup.MainViews.Instagram.SocialActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
