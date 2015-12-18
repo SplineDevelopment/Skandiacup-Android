@@ -52,7 +52,7 @@ public class FieldActivityFragmentDiaries extends Fragment {
                                 ArrayList<TournamentMatch> matches = new ArrayList<TournamentMatch>();
                                 for (TournamentMatch m : data) {
 
-                                    if ((m.getHomegoal() == "" && m.getFieldid().equals(fieldnames.get(position).getFieldID())) || (m.getHomegoal() == null)){ // m.getHomegoal() == null &&
+                                    if ((m.getHomegoal().equals("") || m.getHomegoal() == null) && m.getFieldid().equals(fieldnames.get(position).getFieldID())){ // m.getHomegoal() == null &&
                                         matches.add(m);
                                     }
                                 }
