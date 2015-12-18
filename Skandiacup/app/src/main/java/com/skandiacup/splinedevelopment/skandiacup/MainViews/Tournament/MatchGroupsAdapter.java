@@ -48,7 +48,7 @@ public class MatchGroupsAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         View vi = inflater.inflate(R.layout.matchgroup_list_item, null);
         TextView text = (TextView) vi.findViewById(R.id.matchgroupListItem);
-        text.setText(mgs.get(position).getName());
+        text.setText(context.getResources().getString(R.string.adapter_teams_group) + " " + mgs.get(position).getName());
         return vi;
     }
 }

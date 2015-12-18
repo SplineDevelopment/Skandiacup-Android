@@ -24,13 +24,10 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
     @Override
     protected Object doInBackground(String... params) {
        try {
-           for(int i = 0; i<params.length; i++){
-               System.out.println("PARAMTER " + params[i]);
-           }
            String soap_action = "http://profixio.com/soap/tournament/ForTournamentExt.php#" + params[0];
            SoapObject Request = new SoapObject(NAMESPACE, params[0]);
            Request.addProperty("application_key", "enKHJhF");
-           Request.addProperty("tournamentID", 16209);
+           Request.addProperty("tournamentID", 14218);
 
            for(int i = 1;i<params.length; i+=2){
                try{
@@ -55,7 +52,6 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
 
            return obj1;
        }catch(Exception e){
-           System.out.println("EXCEPTION");
            e.printStackTrace();
        }
         return null;

@@ -10,8 +10,8 @@
     <string name="title_activity_news_item">News</string>
     <string name="title_activity_team">Team</string>
     <string name="title_activity_match_class">Match class</string>
-    <string name="title_activity_match_view">Match view</string>
-    <string name="title_activity_field_diaries_team_selected">Field diary</string>
+    <string name="title_activity_match_view">Match</string>
+    <string name="title_activity_field_diaries_team_selected">Match overview</string>
     <string name="title_Activity_InstagramPopover">#Skandiacup2016</string>
 
     <!--Static names in Main activity -->
@@ -20,7 +20,7 @@
     <string name="main_activity_tournament">Tournament</string>
     <string name="main_activity_field">Fields</string>
     <string name="main_activity_endplay">Endplay</string>
-    <string name="main_activity_favourite">Favourite</string>
+    <string name="main_activity_favourite">Favorite</string>
 
 
 
@@ -34,7 +34,8 @@
 
     <!--Static names in Field activity -->
     <string name="activity_field_tab_map">Map</string>
-    <string name="activity_field_tab_Diaries">Diaries</string>
+    <string name="activity_field_tab_Diaries">Field overview</string>
+    <string name="activity_field_no_matches_available">No matches available</string>
 
     <!--Static names in Endplay activity -->
     <string name="activity_Endplay_tab_aendplay">A-Endplay</string>
@@ -43,6 +44,7 @@
     <!--Static names in Team Activity activity-->
     <string name="activity_Team_Toast_teamAdded">Team added to favorites</string>
     <string name="activity_Team_Toast_teamRemoved">Team removed from favorites</string>
+    <string name="table_header_team_name">teamname</string>
 
     <!--Static names in Match adapter-->
     <string name="adapter_match_table">Table</string>
@@ -51,11 +53,21 @@
     <string name="adapter_match_gamesPlayed">Games played</string>
     <string name="adapter_match_noGamesPlayed">No games played</string>
     <string name="adapter_match_errorOccurred">Error occurred</string>
+    <string name="adapter_match_no">No</string>
+    <string name="adapter_match_result">result</string>
+
+    <!-- Static names in Teams Adapter-->
+    <string name="adapter_teams_class">Class</string>
+    <string name="adapter_teams_group">Group</string>
 
     <!-- Values contained in the spinner in filterView-->
+    <string name ="sex_all">All</string>
+    <string name ="sex_male">Men</string>
+    <string name ="sex_female">Women</string>
+
     <string-array name="sexPickerValues">
-        <item>All</item>
-        <item>Male</item>
-        <item>Female</item>
+        <item>@string/sex_all</item>
+        <item>@string/sex_male</item>
+        <item>@string/sex_female</item>
     </string-array>
 </resources>

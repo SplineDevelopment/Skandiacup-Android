@@ -3,48 +3,82 @@
     android:minHeight="100dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="20sp"
     android:textColor="#0E0808"
     android:id="@+id/matchRowItem">
 
     <TextView
+        android:paddingLeft="16dp"
         android:background="#B1ADAB"
-        android:layout_width="match_parent"
+        android:layout_width="183dp"
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/dateLabel"
+        android:gravity="center_vertical|start"
         android:textColor="#0E0808"
-        android:layout_gravity="left|top" />
+        android:layout_gravity="start|top" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="New Text"
+        android:gravity="center_vertical"
         android:id="@+id/homeScoreLabel"
         android:textColor="#0E0808"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="start|center_vertical" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/awayScoreLabel"
         android:textColor="#0E0808"
-        android:layout_gravity="left|bottom" />
+        android:gravity="center_vertical"
+        android:layout_gravity="start|bottom" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="218dp"
         android:layout_height="30dp"
         android:text="New Text"
+        android:gravity="center_vertical"
         android:id="@+id/homeTeamLabel"
         android:textColor="#0E0808"
         android:layout_gravity="center" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:layout_width="218dp"
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/awayTeamLabel"
         android:textColor="#0E0808"
+        android:gravity="center_vertical"
         android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:paddingRight="16dp"
+        android:textColor="#0E0808"
+        android:gravity="center_vertical|end"
+        android:background="#B1ADAB"
+        android:layout_width="183dp"
+        android:layout_height="30dp"
+        android:text="New Text"
+        android:id="@+id/timeLabel"
+        android:layout_gravity="end|top" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="60dp"
+        android:src="@drawable/righticon"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:alpha="0.4"
+        android:paddingTop="37dp"
+        android:paddingBottom="7dp"
+        android:layout_gravity="center_vertical|end"
+        android:paddingRight="16dp"
+        />
+
 </FrameLayout>

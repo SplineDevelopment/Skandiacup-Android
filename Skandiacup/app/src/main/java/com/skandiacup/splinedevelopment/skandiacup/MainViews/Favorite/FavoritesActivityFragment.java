@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
@@ -26,6 +27,7 @@ public class FavoritesActivityFragment extends Fragment {
     SharedPreferences preferences;
     ArrayList<String> favoriteTeamsID;
     ArrayList<TournamentTeam> teams;
+    ArrayList<MatchClass> matchClasses;
     ListView lv = null;
 
     public FavoritesActivityFragment(){
@@ -34,7 +36,17 @@ public class FavoritesActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("Halla!!!!");
+        DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
+            @Override
+            public void successCallback(ArrayList<MatchClass> data) {
+                matchClasses = data;
+            }
+
+            @Override
+            public void errorCallback() {
+
+            }
+        });
         preferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         View rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         favoriteTeamsID = getFavoritedTeamsId();
@@ -53,7 +65,7 @@ public class FavoritesActivityFragment extends Fragment {
             });
         }
         lv = (ListView)rootView.findViewById(R.id.favoritesList);
-        lv.setAdapter(new FavoritesAdapter(getContext(), teams));
+        lv.setAdapter(new FavoritesAdapter(getContext(), teams,matchClasses));
         return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
 

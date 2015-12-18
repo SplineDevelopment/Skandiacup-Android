@@ -23,9 +23,10 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:src="@drawable/favoriteunfilled"
                 android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
                 android:id="@+id/favoritebutton"
                 android:background="@null"
                 android:layout_alignParentEnd="true"

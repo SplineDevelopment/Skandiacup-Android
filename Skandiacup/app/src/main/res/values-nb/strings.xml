@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Skandiacup</string>
-    <string name="action_settings">Instillinger</string>
+    <string name="action_settings">Innstillinger</string>
     <string name="activity_Endplay_tab_aendplay">A-sluttspill</string>
     <string name="activity_Endplay_tab_bendplay">B-sluttspill</string>
     <string name="activity_Team_Toast_teamAdded">Lag lagt til i favoritt</string>
     <string name="activity_Team_Toast_teamRemoved">Lag fjernet fra favoritt</string>
-    <string name="activity_field_tab_Diaries">Dagbok</string>
+    <string name="activity_field_tab_Diaries">Baneoversikt</string>
     <string name="activity_field_tab_map">Kart</string>
+    <string name="activity_field_no_matches_available">Ingen kamper tilgjengelig</string>
     <string name="activity_news_tab_info">Info</string>
     <string name="activity_news_tab_news">Nyheter</string>
     <string name="activity_tournament_tab_groups">Gruppe</string>
@@ -18,15 +19,17 @@
     <string name="adapter_match_table">Tabell</string>
     <string name="adapter_match_noUpcomingMatches">Ingen kommende kamper</string>
     <string name="adapter_match_upcomingMatches">Kommende kamper</string>
+    <string name="adapter_match_no">Ingen</string>
+    <string name="adapter_match_result">resultat</string>
     <string name="main_activity_endplay">Sluttspill</string>
-    <string name="main_activity_favourite">Favoritt lag</string>
+    <string name="main_activity_favourite">Favorittlag</string>
     <string name="main_activity_field">Baner</string>
     <string name="main_activity_home">Nyheter og info</string>
     <string name="main_activity_social">Instagram</string>
     <string name="main_activity_tournament">Turnering</string>
     <string name="title_activity_endplay">Sluttspill</string>
     <string name="title_Activity_InstagramPopover">#Skandiacup2016</string>
-    <string name="title_activity_favorites">Favoritt lag</string>
+    <string name="title_activity_favorites">Favorittlag</string>
     <string name="title_activity_field_diaries_team_selected">Kampoversikt</string>
     <string name="title_activity_fields">Baner</string>
     <string name="title_activity_home">Generell informasjon</string>
@@ -35,4 +38,9 @@
     <string name="title_activity_news_item">Nyheter</string>
     <string name="title_activity_team">Lag</string>
     <string name="title_activity_tournament">Turnering</string>
+    <string name="sex_all">Alle</string>
+    <string name="sex_female">Damer</string>
+    <string name="sex_male">Menn</string>
+    <string name="adapter_teams_class">Klasse</string>
+    <string name="adapter_teams_group">Gruppe</string>
 </resources>

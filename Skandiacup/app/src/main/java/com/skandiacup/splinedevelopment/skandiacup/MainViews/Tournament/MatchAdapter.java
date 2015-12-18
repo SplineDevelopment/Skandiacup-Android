@@ -1,6 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +29,10 @@ public class MatchAdapter extends BaseAdapter{
     private ArrayList<MatchTableRow> matchTableRows;
     private static LayoutInflater inflater = null;
     private int sections = 4;
+    private String matchClassName;
     Map<String, Integer> map = new HashMap<String, Integer>();
 
-    public MatchAdapter(Context context, ArrayList<TournamentMatch> matches, ArrayList<MatchTable> tables) {
+    public MatchAdapter(Context context, ArrayList<TournamentMatch> matches, ArrayList<MatchTable> tables, String matchClassName) {
         this.context = context;
         this.matches = matches;
         this.matchesNotYetPlayed = matchesNotYetPlayed(matches);
@@ -41,7 +43,7 @@ public class MatchAdapter extends BaseAdapter{
         }else{
             this.matchTableRows = new ArrayList<>();
         }
-
+        this.matchClassName = matchClassName;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -49,7 +51,7 @@ public class MatchAdapter extends BaseAdapter{
     public ArrayList<TournamentMatch> matchesNotYetPlayed(ArrayList<TournamentMatch> m){
         ArrayList<TournamentMatch> matchesNotYetPlayed = new ArrayList<>();
         for (TournamentMatch match : m){
-            if (match.getHomegoal().equals(null) || match.getAwaygoal().equals(null)){
+            if (match.getHomegoal().equals("") || match.getAwaygoal().equals("")){
                 matchesNotYetPlayed.add(match);
             }
         }
@@ -69,7 +71,6 @@ public class MatchAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         int count = matchTableRows.size() + matches.size() + sections; // + matches.size() plus 1 beacuse og tableinformationheader
-        System.out.println("Antall celler som skal fylles ut " + count);
         return count;
     }
 
@@ -81,13 +82,16 @@ public class MatchAdapter extends BaseAdapter{
         s = s.replace("[", "");
         int index = -1;
         switch (s) {
+
             case "matchesnotplayeditem": {
                 String indexString = map.get("matchesnotplayeditem").toString();
                 index = Integer.parseInt(indexString);
+                break;
             }
             case "matchesplayeditem": {
                 String indexString = map.get("matchesplayeditem").toString();
                 index = Integer.parseInt(indexString);
+                break;
             }
         }
         return matches.get(index);
@@ -98,10 +102,13 @@ public class MatchAdapter extends BaseAdapter{
         return position;
     }
 
-    public View setHeader(View convertView, String title){
+    public View setHeader(View convertView, String title, boolean isTableHeader){
         View vi = convertView;
         vi = inflater.inflate(R.layout.list_header, null);
         TextView text = (TextView) vi.findViewById(R.id.list_header_title);
+        if(isTableHeader && matchClassName != null) {
+            title += " - " + matchClassName;
+        }
         text.setText(title);
         return text;
     }
@@ -161,12 +168,25 @@ public class MatchAdapter extends BaseAdapter{
     public View setMatchesNotPlayed(int position, View vi){
         vi = inflater.inflate(R.layout.match_row, null);
         TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
-        dateLabel.setText(matchesNotYetPlayed.get(position).getMatchdate());
+        TextView timeLabel = (TextView) vi.findViewById(R.id.timeLabel);
+        String dateText = matchesNotYetPlayed.get(position).getMatchdate();
+        String[] tempDate = dateText.split("T");
+        String finalDate = tempDate[0];
+        String time = tempDate[1];
+        StringBuilder sb = new StringBuilder(time);
+        sb.delete(5, 8);
+        time = sb.toString();
+        dateLabel.setText(finalDate);
+        timeLabel.setText(time);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
-        homescore.setText(matchesNotYetPlayed.get(position).getHomegoal());
+        homescore.setText(context.getResources().getString(R.string.adapter_match_no));
+        homescore.setTextSize(12);
+        homescore.setPadding(60, 40, 0, 0);
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
-        awayscore.setText(matchesNotYetPlayed.get(position).getAwaygoal());
+        awayscore.setText(context.getResources().getString(R.string.adapter_match_result));
         TextView hometeam = (TextView) vi.findViewById(R.id.homeTeamLabel);
+        awayscore.setTextSize(12);
+        awayscore.setPadding(50, 0, 0, 50);
         hometeam.setText(matchesNotYetPlayed.get(position).getHometeamname());
         TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
         awayteam.setText(matchesNotYetPlayed.get(position).getAwayteamname());
@@ -176,7 +196,16 @@ public class MatchAdapter extends BaseAdapter{
     public View setMatchesPlayed(int position, View vi){
         vi = inflater.inflate(R.layout.match_row, null);
         TextView dateLabel = (TextView) vi.findViewById(R.id.dateLabel);
-        dateLabel.setText(matchesPlayed.get(position).getMatchdate());
+        TextView timeLabel = (TextView) vi.findViewById(R.id.timeLabel);
+        String dateText = matchesPlayed.get(position).getMatchdate();
+        String[] tempDate = dateText.split("T");
+        String finalDate = tempDate[0];
+        String time = tempDate[1];
+        StringBuilder sb = new StringBuilder(time);
+        sb.delete(5,8);
+        time = sb.toString();
+        dateLabel.setText(finalDate);
+        timeLabel.setText(time);
         TextView homescore = (TextView) vi.findViewById(R.id.homeScoreLabel);
         homescore.setText(matchesPlayed.get(position).getHomegoal());
         TextView awayscore = (TextView) vi.findViewById(R.id.awayScoreLabel);
@@ -195,39 +224,30 @@ public class MatchAdapter extends BaseAdapter{
         final int MATCHESPLAYED = UPCOMMINGMATCHES + matchesPlayed.size() + 1; // plus 1 because of the header
         if (position >= 0 && position < TABLECOUNTER) {
             if (position == 0) {
-                System.out.println("Setting tableheader in positionResolver()");
                 map.put("tableheader", 0);
             } else if (position == 1){
-                System.out.println("Setting tableinformation in positionResolver()");
                 map.put("tableinformation", 0);
             } else{
-                System.out.println("Setting tableitem in positionResolver()");
                 int newPosition = position - 2; // resets position to fill in correct tableitems
                 map.put("tableitem", newPosition); // Minus 1 because of the header
             }
         }
         if (position >= TABLECOUNTER && position < UPCOMMINGMATCHES) {
             int newPosition = position - TABLECOUNTER;
-            System.out.println(newPosition);
             if (newPosition == 0) {
-                System.out.println("Setting matches not played header in positionResolver()");
                 map.put("matchesnotplayedheader", 0);
             }
             else{
                 newPosition = newPosition-1; // minus 1 because of header
-                System.out.println("Setting matches not played item in positionResolver()");
                 map.put("matchesnotplayeditem", newPosition);
             }
         }
         if (position >= UPCOMMINGMATCHES && position < MATCHESPLAYED) {
             int newPosition = position - UPCOMMINGMATCHES;
-            System.out.println(newPosition);
             if (newPosition == 0) {
-                System.out.println("Setting matches played header in positionResolver()");
                 map.put("matchesplayedheader", 0);
             } else{
                 newPosition = newPosition-1; // minus 1 because of header
-                System.out.println("Setting matches played item in positionResolver()");
                 map.put("matchesplayeditem", newPosition);
             }
         }
@@ -241,23 +261,34 @@ public class MatchAdapter extends BaseAdapter{
         String s = map.keySet().toString();
         s = s.replace("]", "");
         s = s.replace("[", "");
-        System.out.println(s);
         switch (s){
             case "tableheader": {
                 String adapter_match_table = context.getResources().getString(R.string.adapter_match_table);
-                return setHeader(vi, adapter_match_table); //
+                View v = setHeader(vi, adapter_match_table, true);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "tableinformation": {
-                return setTableHeader(vi);
+                View v = setTableHeader(vi);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "tableitem": {
                 String indexString = map.get("tableitem").toString();
                 int index = Integer.parseInt(indexString);
-                return setTableRow(vi, matchTableRows.get(index));
+                View v = setTableRow(vi, matchTableRows.get(index));
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "matchesnotplayedheader": {
                 String adapter_match_upcomingMatches = context.getResources().getString(R.string.adapter_match_upcomingMatches);
-                return setHeader(vi, adapter_match_upcomingMatches);
+                View v = setHeader(vi, adapter_match_upcomingMatches, false);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "noupcomming": {
                 String adapter_match_noUpcomingMatches = context.getResources().getString(R.string.adapter_match_noUpcomingMatches);
@@ -270,7 +301,10 @@ public class MatchAdapter extends BaseAdapter{
             }
             case "matchesplayedheader": {
                 String adapter_match_gamesPlayed = context.getResources().getString(R.string.adapter_match_gamesPlayed);
-                return setHeader(vi, adapter_match_gamesPlayed);
+                View v =  setHeader(vi, adapter_match_gamesPlayed, false);
+                v.setEnabled(false);
+                v.setOnClickListener(null);
+                return v;
             }
             case "nomatchesplayed": {
                 String adapter_match_noGamesPlayed = context.getResources().getString(R.string.adapter_match_noGamesPlayed);
