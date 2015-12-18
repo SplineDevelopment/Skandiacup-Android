@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.skandiacup.splinedevelopment.skandiacup.CustomViewPager;
+import com.skandiacup.splinedevelopment.skandiacup.Extention.CustomViewPager;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 
 public class FieldsActivity extends AppCompatActivity {

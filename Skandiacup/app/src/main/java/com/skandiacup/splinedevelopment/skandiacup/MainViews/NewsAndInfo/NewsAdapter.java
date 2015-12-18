@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by hoxmark on 28/10/15.
  */
-class NewsAdapter extends BaseAdapter {
+public class NewsAdapter extends BaseAdapter {
 
     Context context;
     String[] data;

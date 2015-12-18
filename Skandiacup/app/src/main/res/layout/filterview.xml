@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.skandiacup.splinedevelopment.skandiacup.EditTextBackEvent
+        <com.skandiacup.splinedevelopment.skandiacup.Extention.EditTextBackEvent
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/filterText"
@@ -18,7 +18,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:inputType="text">
-        </com.skandiacup.splinedevelopment.skandiacup.EditTextBackEvent>
+        </com.skandiacup.splinedevelopment.skandiacup.Extention.EditTextBackEvent>
 
         <Button
             android:id="@+id/filtertext_deletebutton"

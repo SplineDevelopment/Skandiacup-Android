@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.skandiacup.splinedevelopment.skandiacup.FavoritesAdapter;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.TeamActivity;

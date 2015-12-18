@@ -1,4 +1,4 @@
-package com.skandiacup.splinedevelopment.skandiacup;
+package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
+import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 

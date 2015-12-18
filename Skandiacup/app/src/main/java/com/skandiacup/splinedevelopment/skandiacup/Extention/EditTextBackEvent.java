@@ -1,4 +1,4 @@
-package com.skandiacup.splinedevelopment.skandiacup;
+package com.skandiacup.splinedevelopment.skandiacup.Extention;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,9 +6,10 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
+
 public class EditTextBackEvent extends EditText {
 
-    private EditTextImeBackListener mOnImeBack;
+    public EditTextImeBackListener mOnImeBack;
 
     public EditTextBackEvent(Context context) {
         super(context);
@@ -37,6 +38,3 @@ public class EditTextBackEvent extends EditText {
 
 }
 
-interface EditTextImeBackListener {
-    void onImeBack(EditTextBackEvent ctrl, String text);
-}
