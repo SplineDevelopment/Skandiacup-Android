@@ -1,15 +1,9 @@
 package com.skandiacup.splinedevelopment.skandiacup.repository;
 
-import android.util.Log;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.MySSLSocketFactory;
-import com.loopj.android.http.RequestParams;
-import com.skandiacup.splinedevelopment.skandiacup.InstagramRestClient;
-import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
-import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
@@ -30,31 +24,16 @@ import com.skandiacup.splinedevelopment.skandiacup.mappers.TournamentMatchesMapp
 import com.skandiacup.splinedevelopment.skandiacup.mappers.RSSMapper;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.util.EntityUtils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.security.KeyStore;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
 
 /**
  * Created by Jorgen on 28/10/15.

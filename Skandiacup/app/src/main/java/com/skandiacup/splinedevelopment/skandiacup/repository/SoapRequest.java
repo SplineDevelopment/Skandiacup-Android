@@ -2,15 +2,10 @@ package com.skandiacup.splinedevelopment.skandiacup.repository;
 
 import android.os.AsyncTask;
 
-import com.skandiacup.splinedevelopment.skandiacup.SoapCallback;
-import com.skandiacup.splinedevelopment.skandiacup.SoapRequestCallback;
-
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-
-import java.util.ArrayList;
 
 /**
  * Created by Jorgen on 27/10/15.

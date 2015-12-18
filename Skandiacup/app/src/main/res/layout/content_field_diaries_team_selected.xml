@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_field_diaries_team_selected"
-    tools:context="com.skandiacup.splinedevelopment.skandiacup.FieldDiariesTeamSelectedActivity">
+    tools:context="com.skandiacup.splinedevelopment.skandiacup.MainViews.Field.FieldDiariesTeamSelectedActivity">
 
     <ListView
         android:layout_width="wrap_content"

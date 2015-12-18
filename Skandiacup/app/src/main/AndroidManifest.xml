@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MainViews.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
@@ -23,69 +23,69 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewsActivity"
+            android:name=".MainViews.NewsAndInfo.NewsActivity"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".TournamentActivity"
+            android:name=".MainViews.Tournament.TournamentActivity"
             android:label="@string/title_activity_tournament"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SocialActivity"
+            android:name=".MainViews.Instagram.SocialActivity"
             android:label="@string/title_Activity_InstagramPopover"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EndplayActivity"
+            android:name=".MainViews.Endplay.EndplayActivity"
             android:label="@string/title_activity_endplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FavoritesActivity"
+            android:name=".MainViews.Favorite.FavoritesActivity"
             android:label="@string/title_activity_favorites"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FieldsActivity"
+            android:name=".MainViews.Field.FieldsActivity"
             android:label="@string/title_activity_fields"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NewsItemActivity"
+            android:name=".MainViews.NewsAndInfo.NewsItemActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_news_item" />
         <activity
-            android:name=".TeamActivity"
+            android:name=".MainViews.Tournament.TeamActivity"
             android:label="@string/title_activity_team"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MatchClassActivity"
+            android:name=".MainViews.Tournament.MatchClassActivity"
             android:label="@string/title_activity_match_class"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MatchViewActivity"
+            android:name=".MainViews.Tournament.MatchViewActivity"
             android:label="@string/title_activity_match_view"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".InstagramPopoverActivity"
+            android:name=".MainViews.Instagram.InstagramPopoverActivity"
             android:label="@string/title_Activity_InstagramPopover"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".EndPlayClassesActivity"
-            android:label="@string/title_activity_match_view"
+            android:name=".MainViews.Endplay.EndPlayClassesActivity"
+            android:label="@string/title_activity_endplay"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         
         <activity
-            android:name=".FieldDiariesTeamSelectedActivity"
+            android:name=".MainViews.Field.FieldDiariesTeamSelectedActivity"
             android:label="@string/title_activity_field_diaries_team_selected"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >

@@ -1,7 +1,7 @@
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
 /**
- * Created by Jorgen on 28/10/15.
+ *
  */
 public class Arena {
     private int arenaID;
