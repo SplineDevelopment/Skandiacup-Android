@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -37,7 +38,7 @@ public class TeamActivity extends AppCompatActivity {
     MatchTable table = null;
     String matchGroupId = null;
     private String matchClassName;
-
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class TeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
         ActionBar a = getSupportActionBar();
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
@@ -116,6 +118,7 @@ public class TeamActivity extends AppCompatActivity {
                             }
                         }
                         System.out.println("inside teamactivity SUCCESSCALLBACK");
+                        spinner.setVisibility(View.GONE);
                         lv.setAdapter(new MatchAdapter(getApplicationContext(), matches, tables, matchClassName));
                     }
 

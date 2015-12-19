@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.MatchViewActivity;
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -28,6 +29,7 @@ public class EndplayActivityFragment extends Fragment {
     private String matchClassId;
     private ArrayList<TournamentMatch> matches;
     private ListView lv = null;
+    private ProgressBar spinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,12 +37,17 @@ public class EndplayActivityFragment extends Fragment {
         this.endGameLevel = args.getString("endGameLevel");
         this.matchClassId = args.getString("matchClassId");
 
+
+
         View rootView = inflater.inflate(R.layout.fragment_endplay, container, false);
         lv = (ListView)rootView.findViewById(R.id.endPlayMatches);
+
+        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
 
         DataManager.getInstance().getTournamentMatches(matchClassId, null, null, "1", null, null, null, new SoapCallback<ArrayList<TournamentMatch>>() {
             @Override
             public void successCallback(ArrayList<TournamentMatch> data) {
+                spinner.setVisibility(View.GONE);
                 addAndFilterEndPlayMatches(data);
                 lv.setAdapter(new EndPlayMatchAdapter(getContext(), matches));
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

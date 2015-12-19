@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
  */
 public class TournamentGroupsActivityFragment extends Fragment {
     ListView lv = null;
+    private ProgressBar spinner;
 
     public TournamentGroupsActivityFragment() {
     }
@@ -31,6 +33,7 @@ public class TournamentGroupsActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tournament_groups, container, false);
         lv = (ListView)rootView.findViewById(R.id.groupsList);
+        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
         DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
             @Override
             public void successCallback(ArrayList<MatchClass> data) {
@@ -38,6 +41,7 @@ public class TournamentGroupsActivityFragment extends Fragment {
                 for(MatchClass mc : data){
                     mcs.add(mc);
                 }
+                spinner.setVisibility(View.GONE);
                 lv.setAdapter(new MatchClassesAdapter(getContext(), mcs));
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

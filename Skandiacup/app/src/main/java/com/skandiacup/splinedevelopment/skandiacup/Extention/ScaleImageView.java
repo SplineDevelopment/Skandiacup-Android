@@ -1,4 +1,4 @@
-package scaleimageview;
+package com.skandiacup.splinedevelopment.skandiacup.Extention;
 
 import android.content.Context;
 import android.graphics.Bitmap;

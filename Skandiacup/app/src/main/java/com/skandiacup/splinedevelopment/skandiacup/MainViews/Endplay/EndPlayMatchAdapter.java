@@ -39,6 +39,9 @@ public class EndPlayMatchAdapter extends BaseAdapter{
         this.context = context;
         this.matches = matches;
         Collections.sort(this.matches);
+        if (context == null) {
+            return;
+        }
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

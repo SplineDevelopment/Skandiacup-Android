@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.skandiacup.splinedevelopment.skandiacup.Extention.ScaleImageView;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 
 /**
@@ -31,7 +32,7 @@ public class FieldActivityFragment extends Fragment {
         mapRotateButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scaleimageview.ScaleImageView img = (scaleimageview.ScaleImageView) view.findViewById(R.id.mapimagefield);
+                ScaleImageView img = (ScaleImageView) view.findViewById(R.id.mapimagefield);
                 if (rotated) {
                     img.setRotation(0);
                     img.setScaleX(1f);
