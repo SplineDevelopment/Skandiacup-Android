@@ -22,6 +22,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.skandiacup.splinedevelopment.skandiacup.Extention.EditTextBackEvent;
@@ -43,7 +44,7 @@ public class TournamentActivityFragment extends Fragment {
     private ArrayList<TournamentTeam> teamNames;
     private ArrayList<TournamentTeam> filteredTeams;
     private ArrayList<MatchClass> matchClasses;
-
+    private ProgressBar spinner;
 
     public TournamentActivityFragment() {
     }
@@ -53,6 +54,9 @@ public class TournamentActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_tournament, container, false);
         lv = (ListView)rootView.findViewById(R.id.teamsList);
+
+        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
+
         final View filterView = inflater.inflate(R.layout.filterview, null, false);
         filterText = (EditTextBackEvent) filterView.findViewById(R.id.filterText);
         sexPicker = (Spinner) filterView.findViewById(R.id.sexPicker);
@@ -180,6 +184,7 @@ public class TournamentActivityFragment extends Fragment {
         DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
             @Override
             public void successCallback(ArrayList<TournamentTeam> data) {
+                spinner.setVisibility(View.GONE);
                 teamNames = data;
                 addCountryPickerValues();
                 if (getContext() == null) {

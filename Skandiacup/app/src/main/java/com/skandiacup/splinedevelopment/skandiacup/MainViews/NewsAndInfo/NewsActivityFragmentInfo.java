@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
  */
 public class NewsActivityFragmentInfo extends Fragment{
     ListView lv = null;
+    private ProgressBar spinner;
 
     ArrayList<RSSObject> rssObject;
 
@@ -36,13 +38,15 @@ public class NewsActivityFragmentInfo extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
         lv = (ListView) rootView.findViewById(R.id.newsListView);
 
+        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
+
         DataManager.getInstance().getRSSFeedInfo(new SoapCallback<ArrayList<RSSObject>>() {
             @Override
             public void successCallback(ArrayList<RSSObject> data) {
                 System.out.println("Datamanager RSS OK: " + data.size());
                 rssObject = data;
                 if (getContext() != null) {
-                    System.out.println("View ikke tilgjengelig!");
+                    spinner.setVisibility(View.GONE);
                     NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), data);
                     lv.setAdapter(newsAdapter);
                 }

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
@@ -23,8 +24,7 @@ import java.util.ArrayList;
 public class SocialActivity extends AppCompatActivity {
     ArrayList<InstagramItem> list;
     GridLayout grid;
-
-
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,28 +34,32 @@ public class SocialActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.spinner = (ProgressBar)findViewById(R.id.progressBar1);
 
         ActionBar a = getSupportActionBar();
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
         }
 
-
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width = size.x;
         int height = size.y;
+        System.out.println("supposed to set list");
         setList(width, height);
     }
 
-    void setList(final int width, int height){
+    protected void setList(final int width, int height){
+        System.out.println("setting list..");
+        final ProgressBar spinnerRef = this.spinner;
         DataManager.getInstance().getInstagramPhotos(new SoapCallback<ArrayList<InstagramItem>>() {
             @Override
             public void successCallback(ArrayList<InstagramItem> data) {
                 list = data;
                 grid = (GridLayout) findViewById(R.id.grid);
-                for(int x=0;x<list.size();x++) {
+                spinnerRef.setVisibility(View.GONE);
+                for (int x = 0; x < list.size(); x++) {
                     final ImageButton image = new ImageButton(SocialActivity.this);
                     image.setPadding(10, 10, 10, 10); //perfect padding.
                     final int bestSize = ((width - 10) / 3); //Best size of images.
