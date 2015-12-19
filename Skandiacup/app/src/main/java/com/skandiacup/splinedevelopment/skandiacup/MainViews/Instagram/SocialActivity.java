@@ -72,6 +72,7 @@ public class SocialActivity extends AppCompatActivity {
                             intent.putExtra(("profileImage"), list.get(image.getId()).getUserPhotoURL());
                             intent.putExtra(("username"), list.get(image.getId()).getUser());
                             intent.putExtra(("mainImage"), list.get(image.getId()).getUrl());
+                            intent.putExtra(("id"), list.get(image.getId()).getId());
                             startActivity(intent);
                         }
                     });

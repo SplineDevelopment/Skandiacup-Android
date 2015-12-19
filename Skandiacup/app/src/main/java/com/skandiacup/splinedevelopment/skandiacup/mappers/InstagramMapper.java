@@ -19,6 +19,7 @@ public class InstagramMapper {
                 JSONObject etbilde = data.getJSONObject(i);
                 InstagramItem temp = new InstagramItem();
 
+
                 //URL Object
                 JSONObject imageURLs = etbilde.getJSONObject("images");
 
@@ -44,6 +45,12 @@ public class InstagramMapper {
                 //Created time
                 String dato = etbilde.getString("created_time");
                 temp.setDato(dato);
+
+
+                //Set id
+
+                String tempId = etbilde.getString("id");
+                temp.setId(tempId);
 
                 list.add(temp);
             }

@@ -1,15 +1,19 @@
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Instagram;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +25,7 @@ public class InstagramPopoverActivity extends AppCompatActivity {
     String username = "";
     String mainImageURL = "";
     String profileImageURL = "";
+    String id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         try{
             username = intent.getStringExtra("username");
             mainImageURL = intent.getStringExtra("mainImage");
+            id = intent.getStringExtra("id");
             profileImageURL = intent.getStringExtra("profileImage");
             setInstagram();
 
@@ -46,6 +52,28 @@ public class InstagramPopoverActivity extends AppCompatActivity {
             System.out.println(e);
             finish();
         }
+
+
+        Button takeMeToInstagram = (Button) findViewById(R.id.takeMeToInstagram);
+        takeMeToInstagram.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://instagram.com/_u/"+username);
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                likeIng.setPackage("com.instagram.android");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://instagram.com/"+username)));
+                }
+            }
+        });
+
+
     }
 
             public void setInstagram(){
@@ -112,6 +140,8 @@ public class InstagramPopoverActivity extends AppCompatActivity {
         int width = size.x;
         return width;
     }
+
+
 
 
 

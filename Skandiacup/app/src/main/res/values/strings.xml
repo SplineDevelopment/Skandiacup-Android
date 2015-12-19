@@ -70,4 +70,10 @@
         <item>@string/sex_male</item>
         <item>@string/sex_female</item>
     </string-array>
+
+    <!-- Static names in instagramPopover-->
+
+    <string name ="takeMeToInstagramButton">Open user in Instagram</string>
+
+
 </resources>

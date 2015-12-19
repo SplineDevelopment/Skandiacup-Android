@@ -10,6 +10,7 @@ public class InstagramItem {
     String dato = "";
     String user = "";
     String userPhotoURL = "";
+
     int widthOfImage = 0;
     int heightOfImage = 0;
 
