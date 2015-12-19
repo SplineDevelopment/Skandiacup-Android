@@ -30,7 +30,7 @@
 
     <!--Static names in Tournament activity -->
     <string name="activity_tournament_tab_teams">Teams</string>
-    <string name="activity_tournament_tab_groups">Groups</string>
+    <string name="activity_tournament_tab_groups">Classes</string>
 
     <!--Static names in Field activity -->
     <string name="activity_field_tab_map">Map</string>

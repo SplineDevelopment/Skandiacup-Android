@@ -11,7 +11,7 @@
     <string name="activity_field_no_matches_available">Ingen kamper tilgjengelig</string>
     <string name="activity_news_tab_info">Info</string>
     <string name="activity_news_tab_news">Nyheter</string>
-    <string name="activity_tournament_tab_groups">Gruppe</string>
+    <string name="activity_tournament_tab_groups">Klasser</string>
     <string name="activity_tournament_tab_teams">Lag</string>
     <string name="adapter_match_errorOccurred">Det oppstod en feil</string>
     <string name="adapter_match_noGamesPlayed">Ingen kamper spilt</string>

@@ -11,7 +11,7 @@
         android:paddingLeft="16dp"
         android:background="#B1ADAB"
         android:minHeight="60dp"
-        android:layout_width="195dp"
+        android:layout_width="match_parent"
         android:layout_height="34dp"
         android:textColor="#0E0808"
         android:id="@+id/fieldDiaryMatchDate"

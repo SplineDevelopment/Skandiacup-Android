@@ -9,7 +9,7 @@
     <TextView
         android:paddingLeft="16dp"
         android:background="#B1ADAB"
-        android:layout_width="183dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/dateLabel"
