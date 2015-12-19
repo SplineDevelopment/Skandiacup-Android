@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.FavoritesAdapter;
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -68,6 +69,10 @@ public class FavoritesActivity extends AppCompatActivity {
                     }
                     lv = (ListView) findViewById(R.id.favoritesListView);
                     lv.setAdapter(new FavoritesAdapter(getApplicationContext(), teams, matchClasses));
+                    if (teams.size() == 0){
+                        TextView tv = (TextView) findViewById(R.id.noFavoritesAdded);
+                        tv.setText(getApplicationContext().getResources().getString(R.string.no_favorites_added));
+                    }
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,

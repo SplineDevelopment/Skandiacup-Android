@@ -70,4 +70,5 @@
         <item>@string/sex_male</item>
         <item>@string/sex_female</item>
     </string-array>
+    <string name="no_favorites_added">No favorite teams are added</string>
 </resources>

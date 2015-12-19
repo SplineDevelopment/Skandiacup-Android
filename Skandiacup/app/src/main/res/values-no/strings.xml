@@ -43,4 +43,5 @@
     <string name="sex_all">Alle</string>
     <string name="sex_female">Damer</string>
     <string name="sex_male">Menn</string>
+    <string name="no_favorites_added">Du har ikke lagt til noen favoritter</string>
 </resources>
