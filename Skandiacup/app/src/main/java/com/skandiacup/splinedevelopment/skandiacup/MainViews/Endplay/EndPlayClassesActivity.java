@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.MatchClassesAdapter;
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class EndPlayClassesActivity extends AppCompatActivity {
     private ArrayList<MatchClass> matchClasses;
-
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class EndPlayClassesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_end_play_classes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
 
         ActionBar a = getSupportActionBar();
         if (a != null) {
@@ -39,6 +42,7 @@ public class EndPlayClassesActivity extends AppCompatActivity {
         DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
             @Override
             public void successCallback(ArrayList<MatchClass> data) {
+                spinner.setVisibility(View.GONE);
                 addAndFilterEndplayMatchClasses(data);
                 ListView lv = (ListView)findViewById(R.id.endPlayClasses);
                 lv.setAdapter(new MatchClassesAdapter(getApplicationContext(), matchClasses));
