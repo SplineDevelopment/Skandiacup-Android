@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.MatchViewActivity;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
     ArrayList<TournamentMatch> matches = null;
     ListView lv = null;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_field_diaries_team_selected);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+
         /*
         matches = (ArrayList<TournamentMatch>) getIntent().getSerializableExtra("Match");
         System.out.println("Matches.size(): " + matches.size());
@@ -68,6 +72,7 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
                     }
                 }
                 lv.setAdapter(new FieldDiariesSelectedTeamAdapter(getApplicationContext(), matches));
+                spinner.setVisibility(View.GONE);
                 if (matches.size() == 0){
                     TextView tv = (TextView) findViewById(R.id.noTableMessage);
                     tv.setText(getApplicationContext().getResources().getString(R.string.activity_field_no_matches_available));

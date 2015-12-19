@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.FavoritesAdapter;
@@ -29,6 +30,7 @@ import java.util.Set;
 
 
 public class FavoritesActivity extends AppCompatActivity {
+    private ProgressBar spinner;
     SharedPreferences preferences;
     ArrayList<String> favoriteTeamsID;
     ArrayList<TournamentTeam> teams = new ArrayList<>();
@@ -44,6 +46,7 @@ public class FavoritesActivity extends AppCompatActivity {
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
         }
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
         DataManager.getInstance().getMatchClasses(new SoapCallback<ArrayList<MatchClass>>() {
             @Override
             public void successCallback(ArrayList<MatchClass> data) {
@@ -69,6 +72,7 @@ public class FavoritesActivity extends AppCompatActivity {
                     }
                     lv = (ListView) findViewById(R.id.favoritesListView);
                     lv.setAdapter(new FavoritesAdapter(getApplicationContext(), teams, matchClasses));
+                    spinner.setVisibility(View.GONE);
                     if (teams.size() == 0){
                         TextView tv = (TextView) findViewById(R.id.noFavoritesAdded);
                         tv.setText(getApplicationContext().getResources().getString(R.string.no_favorites_added));
