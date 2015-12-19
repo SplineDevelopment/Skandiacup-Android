@@ -36,7 +36,7 @@ public class MatchClassActivity extends AppCompatActivity {
 
         ArrayList<MatchGroup> mgs = new ArrayList<>();
         for(MatchGroup mg : selectedClass.getMatchGroups()){
-            mgs.add(mg);
+            if(mg.getIsPlayOff().toLowerCase().equals("false")) mgs.add(mg);
         }
 
         lv.setAdapter(new MatchGroupsAdapter(getApplicationContext(), mgs));
