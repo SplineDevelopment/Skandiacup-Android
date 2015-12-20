@@ -45,4 +45,6 @@
     <string name="adapter_teams_group">Gruppe</string>
     <string name="takeMeToInstagramButton">Åpne bruker i Instagram</string>
     <string name="no_favorites_added">Du har ikke lagt til noen favoritter</string>
+    <string name="error_message_one">Error 0</string>
+    <string name="error_message_two">Error 1</string>
 </resources>

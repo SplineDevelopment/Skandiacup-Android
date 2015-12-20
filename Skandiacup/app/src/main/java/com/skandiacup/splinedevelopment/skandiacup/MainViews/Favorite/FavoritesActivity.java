@@ -28,6 +28,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
+
 
 public class FavoritesActivity extends AppCompatActivity {
     private ProgressBar spinner;
@@ -36,6 +38,7 @@ public class FavoritesActivity extends AppCompatActivity {
     ArrayList<TournamentTeam> teams = new ArrayList<>();
     ArrayList<MatchClass> matchClasses;
     ListView lv = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,13 @@ public class FavoritesActivity extends AppCompatActivity {
 
             @Override
             public void errorCallback() {
-
+                System.out.println("Error getting matchClasses in favorites view");
+                TextView tv = (TextView) findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getApplicationContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
         preferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
@@ -90,7 +99,13 @@ public class FavoritesActivity extends AppCompatActivity {
 
                 @Override
                 public void errorCallback() {
-
+                    System.out.println("Error getting teams in favorite view");
+                    TextView tv = (TextView) findViewById(R.id.onErrorMessage);
+                    spinner.setVisibility(View.GONE);
+                    if(tv.getText().length() == 0) {
+                        String errorMessage = getErrorMessage(getApplicationContext());
+                        tv.setText(errorMessage);
+                    }
                 }
             });
         }
