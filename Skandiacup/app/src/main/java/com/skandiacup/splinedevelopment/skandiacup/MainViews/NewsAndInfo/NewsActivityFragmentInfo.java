@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
@@ -16,6 +17,8 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 import java.util.ArrayList;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 /**
  * Created by borgarlie on 13/12/15.
@@ -35,7 +38,7 @@ public class NewsActivityFragmentInfo extends Fragment{
                              Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_info, container, false);
         lv = (ListView) rootView.findViewById(R.id.newsListView);
 
         spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
@@ -56,6 +59,10 @@ public class NewsActivityFragmentInfo extends Fragment{
             public void errorCallback() {
                 //TODO Legg inn feilmelding
                 System.out.println("Datamanager RSS IKKE-OK");
+                TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                String errorMessage = getErrorMessage(getContext());
+                tv.setText(errorMessage);
             }
         });
 

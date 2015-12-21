@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.MatchViewActivity;
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -17,6 +18,8 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 import java.util.ArrayList;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 /**
  * Created by Jorgen on 27/10/15.
@@ -39,7 +42,7 @@ public class EndplayActivityFragment extends Fragment {
 
 
 
-        View rootView = inflater.inflate(R.layout.fragment_endplay, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_endplay, container, false);
         lv = (ListView)rootView.findViewById(R.id.endPlayMatches);
 
         spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
@@ -62,7 +65,12 @@ public class EndplayActivityFragment extends Fragment {
 
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
 

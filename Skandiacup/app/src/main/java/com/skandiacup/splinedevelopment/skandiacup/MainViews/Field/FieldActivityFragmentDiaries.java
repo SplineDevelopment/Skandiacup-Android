@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
@@ -16,6 +17,8 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 import java.util.ArrayList;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 /**
  * Created by borgarlie on 13/12/15.
@@ -28,7 +31,7 @@ public class FieldActivityFragmentDiaries extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_field_diary, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_field_diary, container, false);
         lv = (ListView)rootView.findViewById(R.id.fieldDiariesList);
         DataManager.getInstance().getFields(null, null, null, new SoapCallback<ArrayList<Field>>() {
             @Override
@@ -51,7 +54,11 @@ public class FieldActivityFragmentDiaries extends Fragment {
 
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
         return rootView;

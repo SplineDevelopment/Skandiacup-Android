@@ -14,12 +14,15 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
 import com.skandiacup.splinedevelopment.skandiacup.mappers.InstagramItem;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 import java.util.ArrayList;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 public class SocialActivity extends AppCompatActivity {
     ArrayList<InstagramItem> list;
@@ -90,7 +93,7 @@ public class SocialActivity extends AppCompatActivity {
 
                         @Override
                         public void errorCallback() {
-                            //TODO Error ?
+                            // can not rly display anything here.
                         }
                     });
                 }
@@ -98,7 +101,10 @@ public class SocialActivity extends AppCompatActivity {
 
             @Override
             public void errorCallback() {
-                //TODO fix this
+                TextView tv = (TextView) findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                String errorMessage = getErrorMessage(getApplicationContext());
+                tv.setText(errorMessage);
             }
         });
     }

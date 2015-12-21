@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.MatchClassesAdapter;
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -19,6 +20,8 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 import java.util.ArrayList;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 public class EndPlayClassesActivity extends AppCompatActivity {
     private ArrayList<MatchClass> matchClasses;
@@ -57,7 +60,12 @@ public class EndPlayClassesActivity extends AppCompatActivity {
             }
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getApplicationContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
     }

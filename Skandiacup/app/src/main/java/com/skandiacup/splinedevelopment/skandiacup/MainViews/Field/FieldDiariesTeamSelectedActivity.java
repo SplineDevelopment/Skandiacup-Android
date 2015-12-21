@@ -21,6 +21,8 @@ import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
 
 import java.util.ArrayList;
 
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
+
 public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
     ArrayList<TournamentMatch> matches = null;
     ListView lv = null;
@@ -34,25 +36,6 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         spinner = (ProgressBar)findViewById(R.id.progressBar1);
 
-        /*
-        matches = (ArrayList<TournamentMatch>) getIntent().getSerializableExtra("Match");
-        System.out.println("Matches.size(): " + matches.size());
-        lv = (ListView) findViewById(R.id.FDMatchesList);
-        lv.setAdapter(new FieldDiariesSelectedTeamAdapter(getApplicationContext(), matches));
-        if (matches.size() == 0){
-            TextView tv = (TextView) findViewById(R.id.noTableMessage);
-            tv.setText(getApplicationContext().getResources().getString(R.string.activity_field_no_matches_available));
-        }
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TournamentMatch match = (TournamentMatch) lv.getAdapter().getItem(position);
-                Intent intent = new Intent(getApplicationContext(), MatchViewActivity.class);
-                intent.putExtra("match", match);
-                startActivity(intent);
-            }
-        });
-        */
         ActionBar a = getSupportActionBar();
         if (a != null) {
             a.setDisplayHomeAsUpEnabled(true);
@@ -91,7 +74,12 @@ public class FieldDiariesTeamSelectedActivity extends AppCompatActivity {
 
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getApplicationContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
 

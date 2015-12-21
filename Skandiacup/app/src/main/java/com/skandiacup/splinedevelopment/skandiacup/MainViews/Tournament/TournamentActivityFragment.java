@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.Extention.EditTextBackEvent;
 import com.skandiacup.splinedevelopment.skandiacup.Extention.EditTextImeBackListener;
@@ -35,6 +36,8 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 import java.util.ArrayList;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 public class TournamentActivityFragment extends Fragment {
     ListView lv = null;
@@ -215,7 +218,12 @@ public class TournamentActivityFragment extends Fragment {
 
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
         return rootView;

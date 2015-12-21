@@ -109,20 +109,12 @@ public class DataManager {
                 arr = new ArrayList<>();
                 arr.add(new RSSObject("test", "test1", "test2", "test123123123 test test test test test"));
                 callback.successCallback(arr);
-                /*
-                try {
-                    arr = RSSMapper.mapRSS(response);
-                    callback.successCallback(arr);
-                } catch (XmlPullParserException | IOException e) {
-                    e.printStackTrace();
-                    callback.errorCallback();
-                }
-                */
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                System.out.println("Info failure");
                 callback.errorCallback();
             }
         });
@@ -172,7 +164,7 @@ public class DataManager {
 
             @Override
             public void errorCallback() {
-
+                callback.errorCallback();
             }
         });
         req.execute(params.toArray(new String[params.size()]));
@@ -342,11 +334,22 @@ public class DataManager {
                 callback.successCallback(instagramMapper.mapFromJson(response));
             }
 
+            // is all 3 neeeded?
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                System.out.println(statusCode);
-                System.out.println("? JSONArray timeline --- getInstagramPhotos -- DataManager ");
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                callback.errorCallback();
             }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                callback.errorCallback();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                callback.errorCallback();
+            }
+
         });
 
     }
@@ -354,13 +357,14 @@ public class DataManager {
     public void getInstagramItem(String url, final SoapCallback<byte[]> callback) {
         AsyncHttpClient client = new AsyncHttpClient();
 
+        // is this needed?
         try{
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
             trustStore.load(null, null);
             MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
             socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
             client = new AsyncHttpClient();
-            client.setTimeout(30*1000);
+            client.setTimeout(5*1000);
             client.setSSLSocketFactory(socketFactory);
         } catch (Exception e) {
             System.out.println("error: "+e);

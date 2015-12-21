@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
@@ -27,6 +28,8 @@ import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
+
+import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
 public class TeamActivity extends AppCompatActivity {
     SharedPreferences preferences;
@@ -124,13 +127,19 @@ public class TeamActivity extends AppCompatActivity {
 
                     @Override
                     public void errorCallback() {
+                        // errors are handled on outer error
                     }
                 });
             }
 
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if(tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getApplicationContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
     }
