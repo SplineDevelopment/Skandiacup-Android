@@ -193,15 +193,19 @@ public class TournamentActivityFragment extends Fragment {
                                 Intent intent = new Intent(getContext(), TeamActivity.class);
                                 TournamentTeam team = (TournamentTeam) lv.getAdapter().getItem(position);
                                 intent.putExtra("TeamName", team);
+                                boolean found = false;
                                 for (MatchClass mc : matchClasses) {
                                     if (mc.getId().equals(team.getMatchClassId())) {
                                         for (MatchGroup mg : mc.getMatchGroups()) {
                                             if (mg.getId().equals(team.getMatchGroupId())) {
                                                 intent.putExtra("matchClassName", mc.getName() + " - " + mg.getName());
+                                                found = true;
+                                                break;
                                             }
                                         }
 
                                     }
+                                    if(found) break;
                                 }
                                 startActivity(intent);
                             }

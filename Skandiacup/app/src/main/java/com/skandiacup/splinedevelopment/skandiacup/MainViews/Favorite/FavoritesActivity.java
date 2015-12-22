@@ -82,14 +82,17 @@ public class FavoritesActivity extends AppCompatActivity {
                                                     int position, long id) {
                                 Intent intent = new Intent(getApplicationContext(), TeamActivity.class);
                                 intent.putExtra("TeamName", teams.get(position));
+                                boolean found = false;
                                 for (MatchClass mc : matchClasses) {
                                     if (mc.getId().equals(teams.get(position).getMatchClassId())) {
                                         for (MatchGroup mg : mc.getMatchGroups()) {
                                             if (mg.getId().equals(teams.get(position).getMatchGroupId())) {
                                                 intent.putExtra("matchClassName", mc.getName() + " - " + mg.getName());
+                                                found = true;
+                                                break;
                                             }
                                         }
-
+                                        if(found) break;
                                     }
                                 }
                                 startActivity(intent);
