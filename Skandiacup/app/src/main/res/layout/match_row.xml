@@ -9,7 +9,7 @@
     <TextView
         android:paddingLeft="16dp"
         android:background="#B1ADAB"
-        android:layout_width="match_parent"
+        android:layout_width="210dp"
         android:layout_height="30dp"
         android:text="New Text"
         android:id="@+id/dateLabel"
@@ -79,6 +79,17 @@
         android:paddingBottom="7dp"
         android:layout_gravity="center_vertical|end"
         android:paddingRight="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="#0E0808"
+        android:layout_height="30dp"
+        android:text="ID: "
+        android:id="@+id/matchIdLabel"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|end"
+        android:background="#B1ADAB"
         />
 
 </FrameLayout>

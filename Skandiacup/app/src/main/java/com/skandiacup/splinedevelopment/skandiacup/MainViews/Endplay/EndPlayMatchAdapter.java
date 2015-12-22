@@ -86,8 +86,8 @@ public class EndPlayMatchAdapter extends BaseAdapter{
         }
         position -= getMinusFromPos(position);
         View vi = inflater.inflate(R.layout.match_row, null);
-        ((TextView) vi.findViewById(R.id.homeTeamLabel)).setText(matches.get(position).getHometeamname());
-        ((TextView) vi.findViewById(R.id.awayTeamLabel)).setText(matches.get(position).getAwayteamname());
+        ((TextView) vi.findViewById(R.id.homeTeamLabel)).setText(matches.get(position).getHometeamtext());
+        ((TextView) vi.findViewById(R.id.awayTeamLabel)).setText(matches.get(position).getAwayteamtext());
         TextView tv1 = (TextView) vi.findViewById(R.id.homeScoreLabel);
         TextView tv2 = (TextView) vi.findViewById(R.id.awayScoreLabel);
         if (matches.get(position).getHomegoal().equals("")){
@@ -110,6 +110,7 @@ public class EndPlayMatchAdapter extends BaseAdapter{
         time = sb.toString();
         ((TextView) vi.findViewById(R.id.dateLabel)).setText(date);
         ((TextView) vi.findViewById(R.id.timeLabel)).setText(time);
+        ((TextView)vi.findViewById(R.id.matchIdLabel)).append(matches.get(position).getMatchno());
         return vi;
     }
 

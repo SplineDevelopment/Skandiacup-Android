@@ -190,6 +190,7 @@ public class MatchAdapter extends BaseAdapter{
         hometeam.setText(matchesNotYetPlayed.get(position).getHometeamname());
         TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
         awayteam.setText(matchesNotYetPlayed.get(position).getAwayteamname());
+        ((TextView)vi.findViewById(R.id.matchIdLabel)).append(matches.get(position).getMatchno());
         return vi;
     }
 
@@ -214,6 +215,7 @@ public class MatchAdapter extends BaseAdapter{
         hometeam.setText(matchesPlayed.get(position).getHometeamname());
         TextView awayteam = (TextView) vi.findViewById(R.id.awayTeamLabel);
         awayteam.setText(matchesPlayed.get(position).getAwayteamname());
+        ((TextView)vi.findViewById(R.id.matchIdLabel)).append(matches.get(position).getMatchno());
         return vi;
     }
 
