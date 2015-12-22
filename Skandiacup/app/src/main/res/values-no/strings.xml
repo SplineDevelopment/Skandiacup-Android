@@ -47,4 +47,6 @@
     <string name="takeMeToInstagramButton">Åpne bruker i Instagram</string>
     <string name="error_message_one">Error 0</string>
     <string name="error_message_two">Error 1</string>
+    <string name="activity_match_penaltyreason"> vant etter straffesparkkonkurranse</string>
+    <string name="activity_match_walkoverreason">vant på walkover</string>
 </resources>

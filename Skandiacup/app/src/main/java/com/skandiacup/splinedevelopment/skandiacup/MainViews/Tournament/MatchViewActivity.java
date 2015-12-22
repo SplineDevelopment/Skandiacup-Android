@@ -43,6 +43,24 @@ public class MatchViewActivity extends AppCompatActivity {
             if(match.getAwaygoal() != null && !match.getAwaygoal().equals("")){
                 ((TextView)this.findViewById(R.id.awayTeamGoalLabel)).setText(match.getAwaygoal());
             }
+
+            if(match.getReason() != null && !match.getReason().equals("")){
+                String winner = "";
+                if(match.getWinner().equals("H")){
+                    winner = match.getHometeamtext();
+                } else{
+                    winner = match.getAwayteamtext();
+                }
+
+                if(match.getReason().equals("ST")){
+                    ((TextView)this.findViewById(R.id.matchReason)).setText(winner + getResources().getString(R.string.activity_match_penaltyreason));
+
+                } else if(match.getReason().equals("WO")){
+                    ((TextView)this.findViewById(R.id.matchReason)).setText(winner + getResources().getString(R.string.activity_match_walkoverreason));
+                } else{
+                    ((TextView)this.findViewById(R.id.matchReason)).setText("");
+                }
+            }
         }
         ActionBar a = getSupportActionBar();
         if (a != null) {

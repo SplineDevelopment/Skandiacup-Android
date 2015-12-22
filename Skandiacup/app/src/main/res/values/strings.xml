@@ -56,6 +56,10 @@
     <string name="adapter_match_no">No</string>
     <string name="adapter_match_result">result</string>
 
+    <!-- Static names in MatchViewActivity-->
+    <string name="activity_match_penaltyreason"> won after a penalty shootout</string>
+    <string name="activity_match_walkoverreason"> won by walkover</string>
+
     <!-- Static names in Teams Adapter-->
     <string name="adapter_teams_class">Class</string>
     <string name="adapter_teams_group">Group</string>
