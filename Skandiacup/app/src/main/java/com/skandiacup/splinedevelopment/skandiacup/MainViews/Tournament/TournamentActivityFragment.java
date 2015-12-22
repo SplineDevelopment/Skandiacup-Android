@@ -148,8 +148,8 @@ public class TournamentActivityFragment extends Fragment {
                 alpha.setDuration(500);
                 alpha.setFillAfter(true);
                 darkenScreen.startAnimation(alpha);
-                InputMethodManager inputMethodManager =(InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+                InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
             }
         });
 
@@ -176,54 +176,53 @@ public class TournamentActivityFragment extends Fragment {
             @Override
             public void successCallback(ArrayList<MatchClass> data) {
                 matchClasses = data;
-            }
 
-            @Override
-            public void errorCallback() {
-
-            }
-        });
-
-        DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
-            @Override
-            public void successCallback(ArrayList<TournamentTeam> data) {
-                spinner.setVisibility(View.GONE);
-                teamNames = data;
-                addCountryPickerValues();
-                if (getContext() == null) {
-                    return;
-                }
-                lv.setAdapter(new TeamsAdapter(getContext(), teamNames, matchClasses));
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                DataManager.getInstance().getTournamentTeams(null, null, null, null, new SoapCallback<ArrayList<TournamentTeam>>() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(getContext(), TeamActivity.class);
-                        TournamentTeam team = (TournamentTeam) lv.getAdapter().getItem(position);
-                        intent.putExtra("TeamName", team);
-                        for (MatchClass mc : matchClasses) {
-                            if (mc.getId().equals(team.getMatchClassId())) {
-                                for (MatchGroup mg : mc.getMatchGroups()) {
-                                    if (mg.getId().equals(team.getMatchGroupId())) {
-                                        intent.putExtra("matchClassName", mc.getName() + " - " + mg.getName());
+                    public void successCallback(ArrayList<TournamentTeam> data) {
+                        spinner.setVisibility(View.GONE);
+                        teamNames = data;
+                        addCountryPickerValues();
+                        if (getContext() == null) {
+                            return;
+                        }
+                        lv.setAdapter(new TeamsAdapter(getContext(), teamNames, matchClasses));
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent intent = new Intent(getContext(), TeamActivity.class);
+                                TournamentTeam team = (TournamentTeam) lv.getAdapter().getItem(position);
+                                intent.putExtra("TeamName", team);
+                                for (MatchClass mc : matchClasses) {
+                                    if (mc.getId().equals(team.getMatchClassId())) {
+                                        for (MatchGroup mg : mc.getMatchGroups()) {
+                                            if (mg.getId().equals(team.getMatchGroupId())) {
+                                                intent.putExtra("matchClassName", mc.getName() + " - " + mg.getName());
+                                            }
+                                        }
+
                                     }
                                 }
-
+                                startActivity(intent);
                             }
+                        });
+                    }
+
+                    @Override
+                    public void errorCallback() {
+                        TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
+                        spinner.setVisibility(View.GONE);
+                        if (tv.getText().length() == 0) {
+                            String errorMessage = getErrorMessage(getContext());
+                            tv.setText(errorMessage);
                         }
-//                        intent.putExtra()
-                        startActivity(intent);
                     }
                 });
             }
 
             @Override
             public void errorCallback() {
-                TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
-                spinner.setVisibility(View.GONE);
-                if(tv.getText().length() == 0) {
-                    String errorMessage = getErrorMessage(getContext());
-                    tv.setText(errorMessage);
-                }
+
             }
         });
         return rootView;

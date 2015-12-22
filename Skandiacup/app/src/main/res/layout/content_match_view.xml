@@ -101,8 +101,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:id="@+id/matchReason"
+        android:id="@+id/matchFieldNameLabel"
         android:layout_below="@+id/textView10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/matchReason"
+        android:layout_below="@+id/matchFieldNameLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
 

@@ -8,7 +8,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.skandiacup.splinedevelopment.skandiacup.R;
+import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
+import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
+import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
+
+import java.util.ArrayList;
 
 
 public class MatchViewActivity extends AppCompatActivity {
@@ -22,6 +27,25 @@ public class MatchViewActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         match = (TournamentMatch) getIntent().getSerializableExtra("match");
+
+        DataManager.getInstance().getFields(null, null, null, new SoapCallback<ArrayList<Field>>() {
+            @Override
+            public void successCallback(ArrayList<Field> data) {
+                if(match != null) {
+                    for (Field f : data) {
+                        if (f.getFieldID().equals(match.getFieldid())) {
+                            ((TextView)findViewById(R.id.matchFieldNameLabel)).setText(f.getFieldName());
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void errorCallback() {
+
+            }
+        });
 
         if (match != null){
             if(match.getHometeamname() != null && !match.getHometeamname().equals("")){
@@ -53,10 +77,10 @@ public class MatchViewActivity extends AppCompatActivity {
                 }
 
                 if(match.getReason().equals("ST")){
-                    ((TextView)this.findViewById(R.id.matchReason)).setText(winner + getResources().getString(R.string.activity_match_penaltyreason));
+                    ((TextView)this.findViewById(R.id.matchReason)).setText(winner + " " + getResources().getString(R.string.activity_match_penaltyreason));
 
                 } else if(match.getReason().equals("WO")){
-                    ((TextView)this.findViewById(R.id.matchReason)).setText(winner + getResources().getString(R.string.activity_match_walkoverreason));
+                    ((TextView)this.findViewById(R.id.matchReason)).setText(winner + " " + getResources().getString(R.string.activity_match_walkoverreason));
                 } else{
                     ((TextView)this.findViewById(R.id.matchReason)).setText("");
                 }
