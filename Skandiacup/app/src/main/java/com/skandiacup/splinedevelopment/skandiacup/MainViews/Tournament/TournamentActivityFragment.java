@@ -205,7 +205,7 @@ public class TournamentActivityFragment extends Fragment {
                                         }
 
                                     }
-                                    if(found) break;
+                                    if (found) break;
                                 }
                                 startActivity(intent);
                             }
@@ -234,16 +234,18 @@ public class TournamentActivityFragment extends Fragment {
 
     private void filterTeams(){
         filteredTeams.clear();
-        for(TournamentTeam team: teamNames){
-            if(team.getName().toLowerCase().contains(filterText.getText().toString().toLowerCase()) && team.getCountryCode().equals(countryPicker.getSelectedItem().toString())){
-                if(sexPicker.getSelectedItemPosition() == 0){
-                    filteredTeams.add(team);
-                }
-                for(MatchClass mc : matchClasses){
-                    if(team.getMatchClassId().equals(mc.getId()) && sexPicker.getSelectedItemPosition()==1 && mc.getGender().equals("M")){
+        if(teamNames != null) {
+            for (TournamentTeam team : teamNames) {
+                if (team.getName().toLowerCase().contains(filterText.getText().toString().toLowerCase()) && team.getCountryCode().equals(countryPicker.getSelectedItem().toString())) {
+                    if (sexPicker.getSelectedItemPosition() == 0) {
                         filteredTeams.add(team);
-                    }else if(team.getMatchClassId().equals(mc.getId()) && sexPicker.getSelectedItemPosition()==2 && mc.getGender().equals("F")){
-                        filteredTeams.add(team);
+                    }
+                    for (MatchClass mc : matchClasses) {
+                        if (team.getMatchClassId().equals(mc.getId()) && sexPicker.getSelectedItemPosition() == 1 && mc.getGender().equals("M")) {
+                            filteredTeams.add(team);
+                        } else if (team.getMatchClassId().equals(mc.getId()) && sexPicker.getSelectedItemPosition() == 2 && mc.getGender().equals("F")) {
+                            filteredTeams.add(team);
+                        }
                     }
                 }
             }
