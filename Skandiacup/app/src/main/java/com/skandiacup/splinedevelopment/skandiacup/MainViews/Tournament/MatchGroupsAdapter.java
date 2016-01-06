@@ -19,7 +19,6 @@ public class MatchGroupsAdapter extends BaseAdapter {
 
 
     public MatchGroupsAdapter(Context context, ArrayList<MatchGroup> mgs) {
-        // TODO Auto-generated constructor stub
         this.context = context;
         this.mgs = mgs;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -27,25 +26,21 @@ public class MatchGroupsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return mgs.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return mgs.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         View vi = inflater.inflate(R.layout.matchgroup_list_item, null);
         TextView text = (TextView) vi.findViewById(R.id.matchgroupListItem);
         text.setText(context.getResources().getString(R.string.adapter_teams_group) + " " + mgs.get(position).getName());

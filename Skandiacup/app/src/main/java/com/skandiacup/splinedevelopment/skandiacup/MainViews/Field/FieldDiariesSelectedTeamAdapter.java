@@ -12,9 +12,6 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentMatch;
 
 import java.util.ArrayList;
 
-/**
- * Created by eiriksandberg on 13.12.2015.
- */
 public class FieldDiariesSelectedTeamAdapter extends BaseAdapter {
     Context context;
     ArrayList<TournamentMatch> matches;
@@ -22,7 +19,6 @@ public class FieldDiariesSelectedTeamAdapter extends BaseAdapter {
 
 
     public FieldDiariesSelectedTeamAdapter(Context context, ArrayList<TournamentMatch> matches) {
-        // TODO Auto-generated constructor stub
         this.context = context;
         this.matches = matches;
         inflater = (LayoutInflater) context
@@ -31,28 +27,22 @@ public class FieldDiariesSelectedTeamAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return matches.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return matches.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        View vi = convertView;
-        vi = inflater.inflate(R.layout.matches_field_diaries, null);
-        // }
+        View vi = inflater.inflate(R.layout.matches_field_diaries, null);
         TextView text1 = (TextView) vi.findViewById(R.id.fieldDiaryMatchDate);
         String date = matches.get(position).getMatchdate();
         String[] s = date.split("T");

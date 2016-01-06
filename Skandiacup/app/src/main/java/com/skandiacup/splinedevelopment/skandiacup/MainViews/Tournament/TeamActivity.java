@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -73,15 +74,6 @@ public class TeamActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
                                       public void onClick(View v){
                                           setFavoriteTeam(button,team);
-                                          favoriteTeams = getFavoritedTeams(button);
-                                          if (favoriteTeams != null){
-                                              for (TournamentTeam t : favoriteTeams){
-                                                  System.out.println(t.getName());
-                                              }
-                                          } else{
-                                              // TODO:: remove sout and handle this
-                                              System.out.println("Tomt i favoriteslista");
-                                          }
                                       }
                                   });
         favoriteTeams = getFavoritedTeams(button);
@@ -111,7 +103,7 @@ public class TeamActivity extends AppCompatActivity {
                 DataManager.getInstance().getMatchTables(matchGroupId, null, null, null, null, new SoapCallback<ArrayList<MatchTable>>() {
                     @Override
                     public void successCallback(ArrayList<MatchTable> data) {
-                        ArrayList<MatchTable> tables = new ArrayList<MatchTable>();
+                        ArrayList<MatchTable> tables = new ArrayList<>();
                         if(data.isEmpty()){
                             tables.add(createEmptyTable());
                         }
@@ -149,13 +141,12 @@ public class TeamActivity extends AppCompatActivity {
         Map<String, ?> favoritedteams = preferences.getAll();
         if (favoritedteams != null && team != null){
             if(favoritedteams.containsValue(team.getId())){
-                button.setImageDrawable(getResources().getDrawable(R.drawable.favoritefilled, getTheme()));
+                button.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favoritefilled));
                 System.out.println(team + " Finnes i favoritter");
             }
         } else{
             System.out.println(team + " Finnes ikke i favoritter");
-            //TODO Change .getDrawable? This will not work for Android API 15.
-            button.setImageDrawable(getResources().getDrawable(R.drawable.favoriteunfilled, getTheme()));
+            button.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favoriteunfilled));
             return null;
         }
         return teams;
@@ -183,7 +174,7 @@ public class TeamActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(team.getId(), team.getId());
             editor.commit();
-            button.setImageDrawable(getResources().getDrawable(R.drawable.favoritefilled, getTheme()));
+            button.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favoritefilled));
             System.out.println(team + " ble lagt til i favoritter");
             String text = getResources().getString(R.string.activity_Team_Toast_teamAdded);
             makeFavoriteToast(text);
@@ -191,7 +182,7 @@ public class TeamActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = preferences.edit();
             editor.remove(team.getId());
             editor.commit();
-            button.setImageDrawable(getResources().getDrawable(R.drawable.favoriteunfilled, getTheme()));
+            button.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favoriteunfilled));
             System.out.println(team + " ble fjernet fra favoritter");
             String text = getResources().getString(R.string.activity_Team_Toast_teamRemoved);
             makeFavoriteToast(text);

@@ -263,7 +263,6 @@ public class TournamentActivityFragment extends Fragment {
 //        ((ArrayAdapter<TournamentTeam>)lv.getAdapter()).notifyDataSetChanged();
 
 //        Therefore have to do this
-//        @TODO Check if this is causing poor performance
         lv.setAdapter(new TeamsAdapter(getContext(), filteredTeams, matchClasses));
     }
 
@@ -277,7 +276,7 @@ public class TournamentActivityFragment extends Fragment {
         if (getActivity() == null) {
             return;
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countryCodes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countryCodes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countryPicker.setAdapter(adapter);
     }

@@ -20,9 +20,6 @@ import java.util.ArrayList;
 
 import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
-/**
- * Created by borgarlie on 13/12/15.
- */
 public class NewsActivityFragmentInfo extends Fragment{
     ListView lv = null;
     private ProgressBar spinner;
@@ -57,7 +54,6 @@ public class NewsActivityFragmentInfo extends Fragment{
 
             @Override
             public void errorCallback() {
-                //TODO Legg inn feilmelding
                 System.out.println("Datamanager RSS IKKE-OK");
                 TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
                 spinner.setVisibility(View.GONE);
