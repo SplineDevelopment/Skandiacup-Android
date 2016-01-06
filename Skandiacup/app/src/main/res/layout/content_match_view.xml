@@ -27,29 +27,28 @@
         app:columnCount="2"
         android:id="@+id/tableRowItem1">
 
-        <TextView
+        <com.skandiacup.splinedevelopment.skandiacup.Extention.AutoResizeTextView
             android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="team1"
+            android:textSize="24sp"
+            android:ellipsize="none"
             android:id="@+id/homeTeamNameLabel"
-            android:layout_alignTop="@+id/awayTeamNameLabel"
             app:layout_column="0"
             app:layout_row="0"
             app:layout_columnWeight="1" />
 
-        <TextView
+        <com.skandiacup.splinedevelopment.skandiacup.Extention.AutoResizeTextView
             android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
+            android:textSize="24sp"
+            android:ellipsize="none"
             app:layout_column="1"
             app:layout_row="0"
             app:layout_columnWeight="1"
             android:gravity="center"
-            android:text="team2"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/awayTeamNameLabel"/>
 
     </android.support.v7.widget.GridLayout>
@@ -58,7 +57,7 @@
     <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_marginTop="100dp"
         android:textSize="20sp"
         app:columnCount="1"
@@ -67,14 +66,13 @@
 
         <TextView
             android:textColor="@android:color/white"
-            android:text="date?"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|bottom"
             app:layout_row="0"
             app:layout_rowWeight="1"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/timeLabel" />
+            android:id="@+id/dateLabel" />
 
     </android.support.v7.widget.GridLayout>
 
@@ -82,8 +80,8 @@
     <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="150dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="125dp"
         android:textSize="20sp"
         app:columnCount="1"
         app:rowCount="1"
@@ -91,14 +89,13 @@
 
         <TextView
             android:textColor="@android:color/white"
-            android:text="time?"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             app:layout_row="0"
             app:layout_rowWeight="1"
             android:gravity="center_horizontal|top"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/dateLabel" />
+            android:id="@+id/timeLabel" />
 
     </android.support.v7.widget.GridLayout>
 
@@ -107,12 +104,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/colorPrimaryDark"
-        android:alpha="0.6"
-        android:layout_marginTop="200dp"
+        android:background="#66000000"
+        android:layout_marginTop="150dp"
         app:rowCount="1"
         app:columnCount="3"
-        android:textSize="20sp"
         android:id="@+id/tableRowItem">
 
         <TextView
@@ -120,10 +115,9 @@
             android:layout_width="wrap_content"
             app:layout_column="0"
             app:layout_columnWeight="1"
+            android:textSize="30sp"
             android:gravity="center"
-            android:text="score1"
             android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/homeTeamGoalLabel" />
 
         <TextView
@@ -133,8 +127,8 @@
             android:gravity="center"
             app:layout_column="1"
             app:layout_columnWeight="0"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text=":"
+            android:textSize="25sp"
             android:id="@+id/textView10"
             android:layout_alignTop="@+id/awayTeamGoalLabel"
             android:layout_centerHorizontal="true" />
@@ -146,9 +140,8 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/awayTeamGoalLabel"
-            android:text="score2" />
+            android:textSize="30sp"
+            android:id="@+id/awayTeamGoalLabel" />
 
     </android.support.v7.widget.GridLayout>
 
@@ -156,8 +149,8 @@
     <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="250dp"
         app:columnCount="1"
         app:rowCount="1"
         android:textSize="20sp"
@@ -169,7 +162,6 @@
             android:layout_height="fill_parent"
             app:layout_row="0"
             app:layout_rowWeight="1"
-            android:text="field"
             android:id="@+id/matchFieldNameLabel"
             android:gravity="center"/>
 
@@ -180,7 +172,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="300dp"
         android:textSize="20sp"
         android:id="@+id/tableRowItem">
 
@@ -189,7 +181,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="center"
-            android:text="reason"
             android:id="@+id/matchReason" />
 
     </android.support.v7.widget.GridLayout>

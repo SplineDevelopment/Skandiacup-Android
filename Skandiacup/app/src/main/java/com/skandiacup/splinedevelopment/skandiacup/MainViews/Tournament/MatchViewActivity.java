@@ -57,7 +57,15 @@ public class MatchViewActivity extends AppCompatActivity {
             }
 
             if(match.getMatchdate() != null && !match.getMatchdate().equals("")){
-                ((TextView)this.findViewById(R.id.dateLabel)).setText(match.getMatchdate());
+                String dateText = match.getMatchdate();
+                String[] tempDate = dateText.split("T");
+                String date = tempDate[0];
+                String time = tempDate[1];
+                StringBuilder sb = new StringBuilder(time);
+                sb.delete(5, 8);
+                time = sb.toString();
+                ((TextView)this.findViewById(R.id.timeLabel)).setText(time);
+                ((TextView)this.findViewById(R.id.dateLabel)).setText(date);
             }
 
             if(match.getHomegoal() != null && !match.getHomegoal().equals("")){
