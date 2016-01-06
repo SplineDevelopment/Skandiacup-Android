@@ -82,7 +82,7 @@
                 android:text="@string/takeMeToInstagramButton"
                 android:id="@+id/takeMeToInstagram"
                 android:gravity="center"
-                android:background="@drawable/instagrambutton"
+                android:background="@drawable/instabuttonbackground"
                 android:textColor="#ffffff"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
