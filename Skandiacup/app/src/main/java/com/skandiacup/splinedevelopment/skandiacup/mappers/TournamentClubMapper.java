@@ -1,15 +1,11 @@
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
-import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
 import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentClub;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by eiriksandberg on 28.10.2015.
- */
 public class TournamentClubMapper {
     public static ArrayList<TournamentClub> mapTournamentClubs(SoapObject soapObject) {
         ArrayList<TournamentClub> clubs = new ArrayList<>();

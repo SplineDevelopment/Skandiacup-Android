@@ -1,7 +1,6 @@
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.Field;
-import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 
 import org.ksoap2.serialization.SoapObject;
 

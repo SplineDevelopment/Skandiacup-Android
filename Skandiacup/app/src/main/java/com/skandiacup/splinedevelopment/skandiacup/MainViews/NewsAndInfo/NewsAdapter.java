@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class NewsAdapter extends BaseAdapter {
 
     Context context;
-    String[] data;
     ArrayList<RSSObject> rssObjects;
     private static LayoutInflater inflater = null;
 
@@ -27,7 +26,6 @@ public class NewsAdapter extends BaseAdapter {
     public NewsAdapter(Context context, ArrayList<RSSObject> rssObjects) {
         this.context = context;
         this.rssObjects = rssObjects;
-        this.data = data;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -39,7 +37,7 @@ public class NewsAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return data[position];
+        return null;
     }
 
     @Override

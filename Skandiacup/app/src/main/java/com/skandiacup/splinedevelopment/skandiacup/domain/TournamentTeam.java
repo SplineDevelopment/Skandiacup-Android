@@ -2,9 +2,6 @@ package com.skandiacup.splinedevelopment.skandiacup.domain;
 
 import java.io.Serializable;
 
-/**
- * Created by eiriksandberg on 28.10.2015.
- */
 public class TournamentTeam implements Serializable{
     String id;
     String name;

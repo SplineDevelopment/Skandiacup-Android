@@ -82,7 +82,7 @@ public class EndPlayClassesActivity extends AppCompatActivity {
     private void addAndFilterEndplayMatchClasses(ArrayList<MatchClass> data) {
         for (MatchClass mc : data) {
             for (MatchGroup mg : mc.getMatchGroups()) {
-                if (mc.getId() == mg.getMatchClassId() && mg.getIsPlayOff().equals("true")) {
+                if (mc.getId().equals(mg.getMatchClassId()) && mg.getIsPlayOff().equals("true")) {
                     matchClasses.add(mc);
                     break;
                 }

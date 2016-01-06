@@ -1,6 +1,5 @@
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
-import com.skandiacup.splinedevelopment.skandiacup.domain.MatchClass;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTable;
 
 import org.ksoap2.serialization.SoapObject;

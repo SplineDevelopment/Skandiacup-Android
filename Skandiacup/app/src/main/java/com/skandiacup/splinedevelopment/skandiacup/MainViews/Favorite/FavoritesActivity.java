@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.skandiacup.splinedevelopment.skandiacup.FavoritesAdapter;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchGroup;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
@@ -131,8 +129,8 @@ public class FavoritesActivity extends AppCompatActivity {
         Map<String, ?> favoritedteams = preferences.getAll();
         Set s = favoritedteams.keySet();
         if(s != null) {
-            for (Iterator<String> it = s.iterator(); it.hasNext(); ) {
-                String id = it.next();
+            for (Iterator it = s.iterator(); it.hasNext(); ) {
+                String id = (String) it.next();
                 System.out.println("lag ID ===== " + id);
                 teams.add(id);
             }

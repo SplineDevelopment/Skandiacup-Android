@@ -3,9 +3,6 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.TournamentTeam;
 import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 
-/**
- * Created by eiriksandberg on 28.10.2015.
- */
 public class TournamentTeamMapper {
     public static ArrayList<TournamentTeam> mapTournamentTeams(SoapObject soapObject){
         ArrayList<TournamentTeam> teams = new ArrayList<>();

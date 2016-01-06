@@ -1,8 +1,5 @@
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
-/**
- * Created by eiriksandberg on 28.10.2015.
- */
 public class TournamentClub {
     String id;
     String name;
