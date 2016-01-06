@@ -81,7 +81,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/takeMeToInstagramButton"
                 android:id="@+id/takeMeToInstagram"
-                android:gravity="bottom"
+                android:gravity="center"
+                android:background="@drawable/instabutton"
+                android:textColor="#ffffff"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
