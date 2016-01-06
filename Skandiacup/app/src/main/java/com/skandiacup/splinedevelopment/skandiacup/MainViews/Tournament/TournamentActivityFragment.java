@@ -226,7 +226,12 @@ public class TournamentActivityFragment extends Fragment {
 
             @Override
             public void errorCallback() {
-
+                TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
+                spinner.setVisibility(View.GONE);
+                if (tv.getText().length() == 0) {
+                    String errorMessage = getErrorMessage(getContext());
+                    tv.setText(errorMessage);
+                }
             }
         });
         return rootView;
