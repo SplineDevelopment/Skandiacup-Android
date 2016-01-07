@@ -292,7 +292,14 @@ public class TournamentMatch implements Serializable, Comparable{
 
     @Override
     public int compareTo(Object another) {
-        TournamentMatch obj = (TournamentMatch) another;
-        return this.sortorder.compareTo(obj.sortorder);
+        try{
+            TournamentMatch obj = (TournamentMatch) another;
+            double sort1 = Double.parseDouble(this.sortorder);
+            double sort2 = Double.parseDouble(obj.sortorder);
+            return Double.compare(sort1, sort2);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
