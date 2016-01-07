@@ -329,7 +329,7 @@ public class DataManager {
 
     public void getInstagramPhotos(final SoapCallback<ArrayList<InstagramItem>> callback){
 
-        String tag = "Beachday";
+        String tag = "Norwaycup2014";
         String id = "121ee171e8534280918447ab69eb8c5b";
         String get_uri = "https://api.instagram.com/v1/tags/" + tag + "/media/recent?client_id=" + id;
 
