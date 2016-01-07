@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_match_view">
 
     <ImageView
-        android:background="@drawable/finalmatchview"
+        android:background="@drawable/finalmatchviewimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
