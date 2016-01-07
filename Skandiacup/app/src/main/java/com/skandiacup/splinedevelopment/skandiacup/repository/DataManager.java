@@ -105,10 +105,6 @@ public class DataManager {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-//                ArrayList<RSSObject> arr;
-//                arr = new ArrayList<>();
-//                arr.add(new RSSObject("test", "test1", "test2", "test123123123 test test test test test"));
-//                callback.successCallback(arr);
                 ArrayList<RSSObject> arr;
                 try {
                     arr = RSSMapper.mapRSS(response);

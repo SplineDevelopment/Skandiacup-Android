@@ -47,7 +47,7 @@ public class NewsActivityFragmentInfo extends Fragment{
                 rssObject = data;
                 if (getContext() != null) {
                     spinner.setVisibility(View.GONE);
-                    NewsAdapter newsAdapter = new NewsAdapter(getContext().getApplicationContext(), data);
+                    InfoAdapter newsAdapter = new InfoAdapter(getContext().getApplicationContext(), data);
                     lv.setAdapter(newsAdapter);
                 }
             }

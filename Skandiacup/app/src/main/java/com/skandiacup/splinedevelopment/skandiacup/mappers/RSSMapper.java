@@ -32,7 +32,6 @@ public class RSSMapper {
         String text = "";
         ArrayList<RSSObject> arr = new ArrayList<>();
         RSSObject current = new RSSObject();
-        boolean is_item = false;
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -46,11 +45,7 @@ public class RSSMapper {
                     case XmlPullParser.END_TAG:
                         switch (name) {
                             case "item":
-                                if (is_item) {
-                                    arr.add(current);
-                                } else {
-                                    is_item = true;
-                                }
+                                arr.add(current);
                                 current = new RSSObject();
                                 break;
                             case "title":
