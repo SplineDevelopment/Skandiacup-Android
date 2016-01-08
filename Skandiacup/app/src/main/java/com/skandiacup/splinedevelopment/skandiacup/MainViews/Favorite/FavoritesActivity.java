@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Favorite;
 
 import android.content.Context;
@@ -28,7 +32,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
-
 
 public class FavoritesActivity extends AppCompatActivity {
     private ProgressBar spinner;

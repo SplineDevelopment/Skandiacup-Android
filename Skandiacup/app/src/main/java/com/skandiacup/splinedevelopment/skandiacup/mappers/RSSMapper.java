@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
@@ -10,10 +14,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-/**
- * Created by borgarlie on 28/10/15.
- */
 
 public class RSSMapper {
     public static ArrayList<RSSObject> mapRSS(byte[] xml) throws XmlPullParserException, IOException {

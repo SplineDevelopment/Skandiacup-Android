@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
 import org.json.JSONArray;
@@ -5,9 +9,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by hoxmark on 05/11/15.
- */
 public class InstagramMapper {
     ArrayList<InstagramItem> list = new ArrayList<>();
 

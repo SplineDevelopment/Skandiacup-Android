@@ -1,8 +1,9 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
-/**
- * Created by hoxmark on 05/11/15.
- */
 public class InstagramItem {
     String id = "";
     String url = "";

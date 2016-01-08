@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.Arena;
@@ -6,9 +10,6 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jorgen on 28/10/15.
- */
 public class ArenasMapper {
     public static ArrayList<Arena> mapArenas(SoapObject soapObject){
         ArrayList<Arena> arenas = new ArrayList<>();

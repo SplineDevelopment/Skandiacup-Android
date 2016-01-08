@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.NewsAndInfo;
 
 import android.content.Context;
@@ -12,9 +16,6 @@ import com.skandiacup.splinedevelopment.skandiacup.domain.RSSObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by hoxmark on 28/10/15.
- */
 public class NewsAdapter extends BaseAdapter {
 
     Context context;

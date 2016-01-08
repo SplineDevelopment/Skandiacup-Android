@@ -1,8 +1,9 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
-/**
- * Created by eiriksandberg on 28.10.2015.
- */
 public class Field {
     String fieldID;
     String arenaID;

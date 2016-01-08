@@ -1,12 +1,13 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
 import android.text.Html;
 
 import java.io.Serializable;
 
-/**
- * Created by borgarlie on 28/10/15.
- */
 public class RSSObject implements Serializable{
     private String title;
     private String pubDate;

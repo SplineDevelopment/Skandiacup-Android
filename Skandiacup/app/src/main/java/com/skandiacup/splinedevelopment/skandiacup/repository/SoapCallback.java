@@ -1,8 +1,9 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.repository;
 
-/**
- * Created by Jorgen on 27/10/15.
- */
 public interface SoapCallback<T> {
     void successCallback(T data);
     void errorCallback();

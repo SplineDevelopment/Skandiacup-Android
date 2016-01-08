@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.repository;
 
 import android.os.AsyncTask;
@@ -7,9 +11,6 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-/**
- * Created by Jorgen on 27/10/15.
- */
 public class SoapRequest extends AsyncTask<String, Void, Object>{
     private static String NAMESPACE = "http://profixio.com/soap/tournament/ForTournamentExt.php";
     private static String URL = "http://profixio.com/soap/tournament/ForTournamentExt.php";

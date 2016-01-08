@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
 import android.content.Intent;
@@ -21,9 +25,6 @@ import java.util.ArrayList;
 
 import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class TournamentGroupsActivityFragment extends Fragment {
     ListView lv = null;
     private ProgressBar spinner;

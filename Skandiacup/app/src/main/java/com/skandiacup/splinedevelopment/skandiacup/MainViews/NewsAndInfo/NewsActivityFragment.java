@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.NewsAndInfo;
 
 import android.content.Intent;
@@ -20,9 +24,6 @@ import java.util.ArrayList;
 
 import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
-/**
- * Created by hoxmark on 27/10/15.
- */
 public class NewsActivityFragment extends Fragment {
     ListView lv = null;
     private ProgressBar spinner;

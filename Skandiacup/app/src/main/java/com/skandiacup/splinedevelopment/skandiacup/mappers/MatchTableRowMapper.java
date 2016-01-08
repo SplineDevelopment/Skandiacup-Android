@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.mappers;
 
 import com.skandiacup.splinedevelopment.skandiacup.domain.MatchTableRow;
@@ -6,9 +10,6 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by eiriksandberg on 29.10.2015.
- */
 public class MatchTableRowMapper {
 
     public static ArrayList<MatchTableRow> mapMatchTableRows(SoapObject soapObject) {

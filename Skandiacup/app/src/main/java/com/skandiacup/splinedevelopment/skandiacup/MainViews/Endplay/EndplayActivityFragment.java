@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Endplay;
 
 import android.content.Intent;
@@ -21,9 +25,6 @@ import java.util.ArrayList;
 
 import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
-/**
- * Created by Jorgen on 27/10/15.
- */
 public class EndplayActivityFragment extends Fragment {
     private static final String NAMESPACE = "http://www.w3schools.com/webservices/";
     private static final String MAIN_REQUEST_URL = "http:/2/www.w3schools.com/webservices/tempconvert.asmx";

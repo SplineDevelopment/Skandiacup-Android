@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Field;
 
 import android.content.Intent;
@@ -19,9 +23,6 @@ import java.util.ArrayList;
 
 import static com.skandiacup.splinedevelopment.skandiacup.utils.ErrorMessageGenerator.getErrorMessage;
 
-/**
- * Created by borgarlie on 13/12/15.
- */
 public class FieldActivityFragmentDiaries extends Fragment {
     ListView lv = null;
     public FieldActivityFragmentDiaries() {

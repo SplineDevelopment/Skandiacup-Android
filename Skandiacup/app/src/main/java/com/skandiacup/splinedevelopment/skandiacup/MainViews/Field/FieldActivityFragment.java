@@ -1,5 +1,8 @@
-package com.skandiacup.splinedevelopment.skandiacup.MainViews.Field;
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
 
+package com.skandiacup.splinedevelopment.skandiacup.MainViews.Field;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +14,6 @@ import android.widget.ImageButton;
 import com.skandiacup.splinedevelopment.skandiacup.Extention.ScaleImageView;
 import com.skandiacup.splinedevelopment.skandiacup.R;
 
-/**
- * Created by Jorgen on 27/10/15.
- */
 public class FieldActivityFragment extends Fragment {
     boolean rotated = false;
 

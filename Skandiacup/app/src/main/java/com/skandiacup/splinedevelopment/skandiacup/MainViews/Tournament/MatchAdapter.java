@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
 import android.content.Context;
@@ -16,9 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by eiriksandberg on 05.11.2015.
- */
 public class MatchAdapter extends BaseAdapter{
     Context context;
     private ArrayList<TournamentMatch> matches;

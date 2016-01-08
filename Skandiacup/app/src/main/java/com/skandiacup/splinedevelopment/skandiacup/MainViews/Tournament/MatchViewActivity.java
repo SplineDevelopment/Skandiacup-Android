@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
 import android.os.Bundle;
@@ -14,7 +18,6 @@ import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 import com.skandiacup.splinedevelopment.skandiacup.repository.SoapCallback;
 
 import java.util.ArrayList;
-
 
 public class MatchViewActivity extends AppCompatActivity {
     TournamentMatch match;

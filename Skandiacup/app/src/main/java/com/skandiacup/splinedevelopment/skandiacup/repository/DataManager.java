@@ -1,3 +1,7 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.repository;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -35,9 +39,6 @@ import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jorgen on 28/10/15.
- */
 public class DataManager {
     private static DataManager ourInstance = new DataManager();
 

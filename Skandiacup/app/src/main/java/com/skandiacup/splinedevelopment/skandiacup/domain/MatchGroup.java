@@ -1,10 +1,11 @@
+/**
+ * Copyright 2016 Bjørn Hoxmark, Borgar Lie, Eirik Sandberg, Jørgen Wilhelmsen
+ */
+
 package com.skandiacup.splinedevelopment.skandiacup.domain;
 
 import java.io.Serializable;
 
-/**
- * Created by Jorgen on 28/10/15.
- */
 public class MatchGroup implements Serializable{
     private String id;
     private String name;
