@@ -11,8 +11,7 @@
         android:id="@+id/mapimagefield"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="60dp"
-        android:src="@drawable/fieldsmap" />
+        android:layout_marginBottom="60dp" />
 
     <ImageButton
         android:contentDescription="rotatebutton"

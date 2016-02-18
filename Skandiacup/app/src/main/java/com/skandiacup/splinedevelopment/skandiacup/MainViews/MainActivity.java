@@ -18,6 +18,7 @@ import com.skandiacup.splinedevelopment.skandiacup.MainViews.Instagram.SocialAct
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.NewsAndInfo.NewsActivity;
 import com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament.TournamentActivity;
 import com.skandiacup.splinedevelopment.skandiacup.R;
+import com.skandiacup.splinedevelopment.skandiacup.repository.DataManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        DataManager manager = DataManager.getInstance();
+        System.out.println("Datamanager is loaded");
     }
 
     public void changeToTournamentActivity(View view){

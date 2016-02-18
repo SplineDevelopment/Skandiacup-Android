@@ -17,9 +17,13 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
     // does the timeout value work properly?
     private static int HTTP_TIMEOUT_MS = 5000;
     private SoapRequestCallback callback;
+    private String application_key;
+    private int tournamentID;
 
-    public SoapRequest (SoapRequestCallback callback){
+    public SoapRequest (SoapRequestCallback callback, String application_key, int tournamentID){
         this.callback = callback;
+        this.application_key = application_key;
+        this.tournamentID = tournamentID;
     }
 
     @Override
@@ -27,8 +31,8 @@ public class SoapRequest extends AsyncTask<String, Void, Object>{
        try {
            String soap_action = "http://profixio.com/soap/tournament/ForTournamentExt.php#" + params[0];
            SoapObject Request = new SoapObject(NAMESPACE, params[0]);
-           Request.addProperty("application_key", "enKHJhF");
-           Request.addProperty("tournamentID", 14218);
+           Request.addProperty("application_key", this.application_key);
+           Request.addProperty("tournamentID", this.tournamentID);
 
            for(int i = 1;i<params.length; i+=2){
                try{
