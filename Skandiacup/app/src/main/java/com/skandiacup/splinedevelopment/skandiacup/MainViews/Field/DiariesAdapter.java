@@ -25,8 +25,10 @@ public class DiariesAdapter extends BaseAdapter{
     public DiariesAdapter(Context context, ArrayList<Field> fields) {
         this.context = context;
         this.fields = fields;
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (context != null) {
+            inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
     }
 
     @Override
