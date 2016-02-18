@@ -60,8 +60,36 @@ public class DataManager {
     private int tournamentID = 0;
     private String instagramHashtag = null;
     private int version = 1;
+    public boolean configIsLoaded = false;
 
-    public DataManager() {
+    private static DataManager ourInstance = new DataManager();
+
+    public static DataManager getInstanceSplashScreen() {
+        return ourInstance;
+    }
+
+    public static DataManager getInstance() {
+        if(!ourInstance.configIsLoaded) {
+            ourInstance.loadConfigFileFTP(new FTPcallback<Boolean>() {
+                @Override
+                public void successCallback(Boolean data) {
+
+                }
+
+                @Override
+                public void errorCallback() {
+
+                }
+            });
+        }
+        return ourInstance;
+    }
+
+    public String getInstagramHashTag() {
+        return this.instagramHashtag;
+    }
+
+    public void loadConfigFileFTP(final FTPcallback<Boolean> callback) {
         FTPdownload ftpdownloader = new FTPdownload(new FTPcallback() {
             @Override
             public void successCallback(Object data) {
@@ -70,6 +98,7 @@ public class DataManager {
                     jObject = new JSONObject(new String((byte[]) data, "UTF-8"));
                 } catch (JSONException | UnsupportedEncodingException e) {
                     e.printStackTrace();
+                    callback.errorCallback();
                 }
                 try {
                     JSONObject conf = jObject != null ? jObject.getJSONObject("config") : null;
@@ -80,26 +109,21 @@ public class DataManager {
                         tournamentID = conf.getInt("tournamentID");
                         instagramHashtag = conf.getString("instagramHashtag");
                         version = conf.getInt("version");
+                        configIsLoaded = true;
+                        callback.successCallback(true);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    callback.errorCallback();
                 }
             }
 
             @Override
             public void errorCallback() {
-                System.out.println("error callback from ftpdownloader");
+                callback.errorCallback();
             }
         }, this.configFile);
         ftpdownloader.execute();
-
-
-    }
-
-    private static DataManager ourInstance = new DataManager();
-
-    public static DataManager getInstance() {
-        return ourInstance;
     }
 
     public void getFieldImage(final SoapCallback<byte[]> callback) {
@@ -477,6 +501,12 @@ public class DataManager {
 
 //        String tag = "Norwaycup2014";
         String id = ExternalConfig.instagram_id;
+
+        if (this.instagramHashtag == null) {
+            callback.errorCallback();
+            return;
+        }
+
         String get_uri = "https://api.instagram.com/v1/tags/" + this.instagramHashtag + "/media/recent?client_id=" + id;
 
         AsyncHttpClient client = new AsyncHttpClient();

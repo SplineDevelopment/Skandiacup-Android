@@ -48,6 +48,11 @@ public class SocialActivity extends AppCompatActivity {
             a.setDisplayHomeAsUpEnabled(true);
         }
 
+        String instagramhashtag = DataManager.getInstance().getInstagramHashTag();
+        if (instagramhashtag != null) {
+            setTitle("#" + instagramhashtag);
+        }
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
