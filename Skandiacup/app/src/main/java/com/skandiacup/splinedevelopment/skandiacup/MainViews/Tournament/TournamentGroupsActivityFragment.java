@@ -4,6 +4,7 @@
 
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -62,8 +63,11 @@ public class TournamentGroupsActivityFragment extends Fragment {
                 TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
                 spinner.setVisibility(View.GONE);
                 if(tv.getText().length() == 0) {
-                    String errorMessage = getErrorMessage(getContext());
-                    tv.setText(errorMessage);
+                    Context c = getContext();
+                    if (c != null) {
+                        String errorMessage = getErrorMessage(c);
+                        tv.setText(errorMessage);
+                    }
                 }
             }
         });

@@ -4,6 +4,7 @@
 
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Instagram;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -112,8 +113,11 @@ public class SocialActivity extends AppCompatActivity {
             public void errorCallback() {
                 TextView tv = (TextView) findViewById(R.id.onErrorMessage);
                 spinner.setVisibility(View.GONE);
-                String errorMessage = getErrorMessage(getApplicationContext());
-                tv.setText(errorMessage);
+                Context c = getApplicationContext();
+                if (c != null) {
+                    String errorMessage = getErrorMessage(c);
+                    tv.setText(errorMessage);
+                }
             }
         });
     }

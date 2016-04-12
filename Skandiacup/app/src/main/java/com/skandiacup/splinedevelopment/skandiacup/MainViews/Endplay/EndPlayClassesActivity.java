@@ -4,6 +4,7 @@
 
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Endplay;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -67,8 +68,11 @@ public class EndPlayClassesActivity extends AppCompatActivity {
                 TextView tv = (TextView) findViewById(R.id.onErrorMessage);
                 spinner.setVisibility(View.GONE);
                 if(tv.getText().length() == 0) {
-                    String errorMessage = getErrorMessage(getApplicationContext());
-                    tv.setText(errorMessage);
+                    Context c = getApplicationContext();
+                    if (c != null) {
+                        String errorMessage = getErrorMessage(c);
+                        tv.setText(errorMessage);
+                    }
                 }
             }
         });

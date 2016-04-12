@@ -5,6 +5,7 @@
 package com.skandiacup.splinedevelopment.skandiacup.MainViews.Tournament;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -221,8 +222,11 @@ public class TournamentActivityFragment extends Fragment {
                         TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
                         spinner.setVisibility(View.GONE);
                         if (tv.getText().length() == 0) {
-                            String errorMessage = getErrorMessage(getContext());
-                            tv.setText(errorMessage);
+                            Context c = getContext();
+                            if (c != null) {
+                                String errorMessage = getErrorMessage(c);
+                                tv.setText(errorMessage);
+                            }
                         }
                     }
                 });
@@ -233,8 +237,11 @@ public class TournamentActivityFragment extends Fragment {
                 TextView tv = (TextView) rootView.findViewById(R.id.onErrorMessage);
                 spinner.setVisibility(View.GONE);
                 if (tv.getText().length() == 0) {
-                    String errorMessage = getErrorMessage(getContext());
-                    tv.setText(errorMessage);
+                    Context c = getContext();
+                    if (c != null) {
+                        String errorMessage = getErrorMessage(c);
+                        tv.setText(errorMessage);
+                    }
                 }
             }
         });

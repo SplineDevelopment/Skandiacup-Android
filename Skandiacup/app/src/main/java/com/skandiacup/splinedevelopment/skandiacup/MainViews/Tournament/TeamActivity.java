@@ -133,8 +133,11 @@ public class TeamActivity extends AppCompatActivity {
                 TextView tv = (TextView) findViewById(R.id.onErrorMessage);
                 spinner.setVisibility(View.GONE);
                 if(tv.getText().length() == 0) {
-                    String errorMessage = getErrorMessage(getApplicationContext());
-                    tv.setText(errorMessage);
+                    Context c = getApplicationContext();
+                    if (c != null) {
+                        String errorMessage = getErrorMessage(c);
+                        tv.setText(errorMessage);
+                    }
                 }
             }
         });
