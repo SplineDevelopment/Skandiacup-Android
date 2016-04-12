@@ -83,4 +83,5 @@
     <string name="no_favorites_added">No favorite teams are added</string>
     <string name="error_message_one">An error occurred. Please check your internet connection and try again</string>
     <string name="error_message_two">An error occurred. Please check your internet connection and try again</string>
+    <string name="title_activity_info_item">Information</string>
 </resources>

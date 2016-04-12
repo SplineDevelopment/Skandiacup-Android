@@ -65,6 +65,10 @@
             android:screenOrientation="portrait"
             android:label="@string/title_activity_news_item" />
         <activity
+            android:name=".MainViews.NewsAndInfo.InfoItemActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_info_item" />
+        <activity
             android:name=".MainViews.Tournament.TeamActivity"
             android:label="@string/title_activity_team"
             android:screenOrientation="portrait"

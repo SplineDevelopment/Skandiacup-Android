@@ -50,4 +50,5 @@
     <string name="error_message_one">Beklager! En feil oppstod. Sjekk internettilkoblingen og prøv på nytt.</string>
     <string name="error_message_two">Beklager! En feil oppstod. Sjekk internettilkoblingen og prøv på nytt.</string>
     <string name="table_header_team_name">lagnavn</string>
+    <string name="title_activity_info_item">Informasjon</string>
 </resources>

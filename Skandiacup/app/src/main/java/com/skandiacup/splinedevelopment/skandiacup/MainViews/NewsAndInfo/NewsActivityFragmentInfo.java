@@ -74,7 +74,7 @@ public class NewsActivityFragmentInfo extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent detailIntent = new Intent(getContext(), NewsItemActivity.class);
+                Intent detailIntent = new Intent(getContext(), InfoItemActivity.class);
                 detailIntent.putExtra("NewItem",rssObject.get(position));
                 startActivity(detailIntent);
             }
